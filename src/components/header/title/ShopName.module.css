@@ -1,0 +1,11 @@
+.shop {
+  margin: 5px;
+  padding: 10px;
+  /* border: 1px solid red; */
+}
+
+.shop_text {
+  font-size: 5vh;
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+}

@@ -1,0 +1,85 @@
+/* main-products*/
+
+.products_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 500px;
+  /* border: 1px solid red; */
+}
+
+/* main-products-list */
+
+.product_list_top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.products_list_name {
+  width: 70%;
+  margin: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* border-bottom: 1px solid red; */
+}
+
+.products_list_name_text {
+  width: 100%;
+  padding: 15px;
+  font-size: 5vh;
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  border-bottom: 5px solid rgba(128, 128, 128, 0.438);
+}
+
+/* main products */
+
+.products_list_products {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+/* placeholder */
+
+.product {
+  margin: 15px 5px 15px 5px;
+  width: 30%;
+  min-height: 12em;
+  display: flex;
+  justify-content: center;
+  border: 1px solid grey;
+}
+
+.product_image {
+  width: 50%;
+  height: 50;
+  border-radius: 5%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+}
+
+.product_text {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 15px;
+}

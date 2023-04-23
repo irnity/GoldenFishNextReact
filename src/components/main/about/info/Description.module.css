@@ -1,0 +1,14 @@
+.description {
+  width: 100%;
+  margin: 0 15px 0 0;
+}
+
+.name {
+  padding: 25px 0;
+}
+
+.info {
+  font-size: 1.2em;
+  padding: 25px 0;
+  text-align: justify;
+}

@@ -1,0 +1,30 @@
+.top {
+  display: flex;
+  justify-content: space-between;
+  background-color: #5a616e;
+  /* border: 1px solid red; */
+}
+
+.top_info_list {
+  display: flex;
+  padding: 5px;
+}
+
+.top_info_list li {
+  border-radius: 15px;
+  margin: 0 15px;
+}
+
+.top_info_list li:hover {
+  transition: 0.5s;
+  background-color: rgba(238, 235, 235, 0.616);
+}
+
+.top_info_href {
+  padding: 5px;
+  display: block;
+  color: #fff;
+  line-height: 1;
+  font-weight: 400;
+  text-decoration: none;
+}

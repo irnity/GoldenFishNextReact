@@ -1,0 +1,36 @@
+.bottom {
+  width: 100%;
+  margin: 20px 0 0px 0;
+  display: flex;
+  justify-content: center;
+  /* background-color: grey; */
+}
+
+.bottom_block {
+  width: 90%;
+  margin: 20px 0 20px 0;
+  display: flex;
+  justify-content: flex-start;
+  /* align-items: flex-start; */
+  /* background-color: grey; */
+  border-bottom: 2px solid rgba(2, 2, 2, 0.486);
+}
+.bottom_block_text {
+  padding: 10px;
+  font-size: 3vh;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  margin: 0 15px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.link:hover {
+  transition: 0.5s;
+  background-color: rgba(3, 200, 250, 0.829);
+  border-radius: 10px;
+}

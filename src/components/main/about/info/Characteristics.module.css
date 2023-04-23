@@ -1,0 +1,10 @@
+.characteristics {
+  width: 60%;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px 10px 5px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.486);
+}

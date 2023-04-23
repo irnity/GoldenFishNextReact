@@ -1,0 +1,10 @@
+.home_block {
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home_text {
+  font-size: 8vh;
+}
