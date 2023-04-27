@@ -19,22 +19,23 @@ const Item: FunctionComponent<ItemProps> = (props: any) => {
   )
 }
 
+// url paths
 export async function getStaticPaths() {
-  const collectionRef = await collection(db, "store")
-  const collectionSnap = await getDocs(collectionRef)
-
-  const documentsData = collectionSnap.docs.map((doc) => doc.id)
-  const dataslents = documentsData.map((data) => data.id)
-
   const paths: any = []
 
+  // get all category names
+  const collectionRef = await collection(db, "store")
+  const collectionSnap = await getDocs(collectionRef)
+  const documentsData = collectionSnap.docs.map((doc) => doc.id)
+
+  // by every category name fetch items
   documentsData.forEach(async (doc) => {
+    // get all items in category
     const itemsRef = await collection(db, "store", `${doc}`, "items")
     const itemsSnap = await getDocs(itemsRef)
     const itemsData = itemsSnap.docs.map((data) => data.id)
 
-    // console.log(itemsData)
-
+    // by every item create path
     itemsData.forEach((item) => {
       paths.push({
         params: {
@@ -51,6 +52,7 @@ export async function getStaticPaths() {
   }
 }
 
+// get Data from server
 export async function getStaticProps(context: any) {
   // get url
   const { categoryId, itemId } = context.params
