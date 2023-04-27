@@ -1,3 +1,5 @@
+import { db } from "@/config/firebase"
+import { collection, doc, getDocs } from "firebase/firestore"
 import { useRouter } from "next/router"
 import { FunctionComponent } from "react"
 
@@ -18,6 +20,35 @@ const Item: FunctionComponent<ItemProps> = (props: any) => {
 }
 
 export async function getStaticPaths() {
+  const collectionRef = collection(db, "store")
+  const collectionSnap = await getDocs(collectionRef)
+
+  // docs to data
+  const dynamic1Values = collectionSnap.docs.map((doc) => ({
+    id: doc.id,
+  }))
+
+  const path= []
+
+
+  dynamic1Values.forEach((dynamic1)=>{
+
+  })
+
+  // dynamic1Values.forEach((dynamic1) => {
+  // dynamic2Values.forEach((dynamic2) => {
+  // paths.push({
+  // params: {
+  // dynamic1,
+  // dynamic2,
+  // },
+  // });
+  // });
+  // });
+
+
+
+
   return {
     fallback: false,
     paths: [
