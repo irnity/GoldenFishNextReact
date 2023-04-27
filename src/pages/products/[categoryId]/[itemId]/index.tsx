@@ -12,7 +12,7 @@ const Item: FunctionComponent<ItemProps> = (props: any) => {
   console.log(props.data)
   return (
     <div>
-      <h1>Category</h1>
+      <h1>Category:{categoryId}</h1>
 
       <h1>name:{itemId}</h1>
     </div>
@@ -20,45 +20,34 @@ const Item: FunctionComponent<ItemProps> = (props: any) => {
 }
 
 export async function getStaticPaths() {
-  const collectionRef = collection(db, "store")
+  const collectionRef = await collection(db, "store")
   const collectionSnap = await getDocs(collectionRef)
 
-  // docs to data
-  const dynamic1Values = collectionSnap.docs.map((doc) => ({
-    id: doc.id,
-  }))
+  const documentsData = collectionSnap.docs.map((doc) => doc.id)
+  const dataslents = documentsData.map((data) => data.id)
 
-  const path= []
+  const paths: any = []
 
+  documentsData.forEach(async (doc) => {
+    const itemsRef = await collection(db, "store", `${doc}`, "items")
+    const itemsSnap = await getDocs(itemsRef)
+    const itemsData = itemsSnap.docs.map((data) => data.id)
 
-  dynamic1Values.forEach((dynamic1)=>{
+    // console.log(itemsData)
 
+    itemsData.forEach((item) => {
+      paths.push({
+        params: {
+          categoryId: doc,
+          itemId: item,
+        },
+      })
+    })
   })
-
-  // dynamic1Values.forEach((dynamic1) => {
-  // dynamic2Values.forEach((dynamic2) => {
-  // paths.push({
-  // params: {
-  // dynamic1,
-  // dynamic2,
-  // },
-  // });
-  // });
-  // });
-
-
-
 
   return {
     fallback: false,
-    paths: [
-      {
-        params: {
-          categoryId: "fishingrod",
-          itemId: "m1",
-        },
-      },
-    ],
+    paths,
   }
 }
 

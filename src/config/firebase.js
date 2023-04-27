@@ -67,4 +67,4 @@ async function name() {
   console.log(path)
 }
 
-name()
+// name()

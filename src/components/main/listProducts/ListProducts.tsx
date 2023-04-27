@@ -11,6 +11,7 @@ import AddProductButton from "../addProductButton/AddProductButton"
 import classes from "./ListProducts.module.css"
 
 import { ProductSliceProps } from "../../../store/model"
+import { useRouter } from "next/router"
 
 interface ListProductsProps {}
 
@@ -22,6 +23,10 @@ const ListProducts: FunctionComponent<ListProductsProps> = () => {
   const { isAdmin } = useSelector(
     (state: { auth: { isLogedIn: boolean; isAdmin: boolean } }) => state.auth
   )
+
+  const router = useRouter()
+
+  const { categoryId } = router.query
 
   return (
     <div className={classes.products_list}>
@@ -38,7 +43,7 @@ const ListProducts: FunctionComponent<ListProductsProps> = () => {
           return (
             <div className={classes.product} key={product.id}>
               <div className={classes.product_image}>
-                <Link href={product.id}>
+                <Link href={`${categoryId}/${product.id}`}>
                   <img
                     src={product.image}
                     alt={`${product.id}`}
