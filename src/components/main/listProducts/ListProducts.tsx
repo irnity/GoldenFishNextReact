@@ -12,8 +12,17 @@ import classes from "./ListProducts.module.css"
 
 import { ProductSliceProps } from "../../../store/model"
 import { useRouter } from "next/router"
+import Image from "next/image"
 
 interface ListProductsProps {}
+
+//   id: string
+// code: string
+// title: string
+// image: string
+// price: number
+// description: string
+// inStock: number
 
 const ListProducts: FunctionComponent<ListProductsProps> = () => {
   const products = useSelector(
@@ -44,18 +53,29 @@ const ListProducts: FunctionComponent<ListProductsProps> = () => {
             <div className={classes.product} key={product.id}>
               <div className={classes.product_image}>
                 <Link href={`${categoryId}/${product.id}`}>
-                  <img
+                  <Image
                     src={product.image}
                     alt={`${product.id}`}
                     className={classes.image}
+                    width={185}
+                    height={185}
+                    // fill
+                    priority
                   />
                 </Link>
               </div>
 
-              <ul className={classes.product_text}>
-                <li className={classes.product_text_p}>{product.title}</li>
-                <li className={classes.product_text_p}>{product.price}</li>
-              </ul>
+              <div className={classes.product_text}>
+                <div className={classes.product_text_code}>
+                  Code: {product.code}
+                </div>
+                <div className={classes.product_text_title}>
+                  {product.title}
+                </div>
+                <div className={classes.product_text_price}>
+                  {product.price} грн.
+                </div>
+              </div>
             </div>
           )
         })}

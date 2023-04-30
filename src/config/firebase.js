@@ -39,32 +39,32 @@ export const googleProvider = new GoogleAuthProvider()
 
 export const db = getFirestore(app)
 
-async function name() {
-  const collectionRef = await collection(db, "store")
-  const collectionSnap = await getDocs(collectionRef)
+// async function name() {
+//   const collectionRef = await collection(db, "store")
+//   const collectionSnap = await getDocs(collectionRef)
 
-  const documentsData = collectionSnap.docs.map((doc) => doc.id)
-  const dataslents = documentsData.map((data) => data.id)
+//   const documentsData = collectionSnap.docs.map((doc) => doc.id)
+//   const dataslents = documentsData.map((data) => data.id)
 
-  const path = []
+//   const path = []
 
-  documentsData.forEach(async (doc) => {
-    const itemsRef = await collection(db, "store", `${doc}`, "items")
-    const itemsSnap = await getDocs(itemsRef)
-    const itemsData = itemsSnap.docs.map((data) => data.id)
+//   documentsData.forEach(async (doc) => {
+//     const itemsRef = await collection(db, "store", `${doc}`, "items")
+//     const itemsSnap = await getDocs(itemsRef)
+//     const itemsData = itemsSnap.docs.map((data) => data.id)
 
-    // console.log(itemsData)
+//     // console.log(itemsData)
 
-    itemsData.forEach((item) => {
-      path.push({
-        params: {
-          categoryId: doc,
-          itemId: item,
-        },
-      })
-    })
-  })
-  console.log(path)
-}
+//     itemsData.forEach((item) => {
+//       path.push({
+//         params: {
+//           categoryId: doc,
+//           itemId: item,
+//         },
+//       })
+//     })
+//   })
+//   console.log(path)
+// }
 
 // name()

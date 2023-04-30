@@ -6,11 +6,12 @@ import { useEffect, FunctionComponent } from "react"
 
 import { db } from "../../../config/firebase"
 import { getDocs, doc, collection, getDoc } from "firebase/firestore"
+import { getAuth } from "firebase/auth"
 
 interface ProductsListProps {}
 
 const ProductsList: FunctionComponent<ProductsListProps> = (props: any) => {
-  console.log(props)
+  console.log(props.data)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -40,11 +41,18 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: any) {
   // запит до API або бази даних для отримання списку постів
   const id = context.params.categoryId
+
   try {
     // get collection
-    const productsCollectionRef = collection(db, `store`, `${id}`, "items")
+    const productsCollectionRef = await collection(
+      db,
+      `store`,
+      `${id}`,
+      "items"
+    )
 
     // get docs
+
     const data = await getDocs(productsCollectionRef)
 
     // docs to data
@@ -57,6 +65,7 @@ export async function getStaticProps(context: any) {
       props: {
         data: filteredData,
       },
+      revalidate: 30,
     }
   } catch (err) {
     console.error(err)
