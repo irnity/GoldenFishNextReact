@@ -1,4 +1,95 @@
-.box {
+.mainbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 25%;
+}
+
+.email {
+  width: 90%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.email label {
+  margin-left: -3px;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+.email input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 20px;
+}
+
+.password {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.password label {
+  margin-left: -3px;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+.password input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 20px;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.enter_email {
+  width: 90%;
+  margin: 15px 0 0 0;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.enter_email:hover {
+  cursor: pointer;
+  background-color: rgb(209, 202, 202);
+  /* padding: 2px; */
+}
+.enter_google {
+  width: 90%;
+  margin: 15px 0 15px 0;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.enter_google:hover {
+  cursor: pointer;
+  background-color: rgb(209, 202, 202);
+  /* padding: 2px; */
+}
+
+.email input,
+.enter_email,
+.enter_google,
+.password input {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  flex-wrap: wrap;
 }

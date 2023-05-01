@@ -20,25 +20,36 @@ const AuthPage: FunctionComponent<AuthProps> = () => {
   } = useAuth()
 
   return (
-    <div className={classes.box}>
-      <input
-        placeholder="Email..."
-        value={email}
-        onChange={emailHandler}
-        type="email"
-      />
-      <input
-        placeholder="Password..."
-        onChange={passwordHandler}
-        type="password"
-        value={password}
-      />
+    <div className={classes.mainbox}>
+      <div className={classes.email}>
+        <label>Email</label>
+        <input
+          id="email"
+          placeholder="email"
+          onChange={emailHandler}
+          value={email}
+          type="email"
+        />
+      </div>
+      <div className={classes.password}>
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          placeholder="password"
+          onChange={passwordHandler}
+          value={password}
+          type="password"
+        />
+      </div>
 
-      <div className={classes.box}>
-        <button onClick={registrationHandler}>
+      <div className={classes.buttons}>
+        <button onClick={registrationHandler} className={classes.enter_email}>
           Зареєструватися за допомогою логіна і паролю
         </button>
-        <button onClick={loginWithGoogleHandler}>
+        <button
+          onClick={loginWithGoogleHandler}
+          className={classes.enter_google}
+        >
           Зареєструватися за допомогою Google
         </button>
       </div>

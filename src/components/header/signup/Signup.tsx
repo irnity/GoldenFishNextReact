@@ -22,14 +22,14 @@ const Sighup: FunctionComponent<SighupProps> = () => {
   return (
     <div className={classes.signup}>
       {isLogedIn === false ? (
-        <div>
-          <div>
+        <div className={classes.mainbox}>
+          <div className={classes.login}>
             <Link href="/login">
               <button>Увійти</button>
             </Link>
           </div>
           <div>
-            <Link href="/signin">
+            <Link href="/signin" className={classes.login}>
               <button>Зареєструватися</button>
             </Link>
           </div>

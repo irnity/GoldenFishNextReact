@@ -13,7 +13,7 @@ const Basket: FunctionComponent<BasketProps> = () => {
 
   return (
     <>
-      <div className={classes.backet}>
+      <div className={classes.mainbox}>
         <button onClick={toggleHandler}>Backet</button>
       </div>
       {!toggleOverlay && <BasketOverlay onConfirm={toggleHandler} />}
