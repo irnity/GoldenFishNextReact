@@ -23,3 +23,13 @@ export interface BasketSliceProps {
   }[]
   totalPrice: number
 }
+
+export interface ProductList {
+  id: string
+  code: string
+  title: string
+  image: string
+  price: number
+  description: string
+  inStock: string
+}

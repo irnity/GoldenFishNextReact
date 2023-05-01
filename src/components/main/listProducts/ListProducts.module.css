@@ -80,6 +80,11 @@
   height: 100%;
 }
 
+.link {
+  text-decoration: none;
+  color: rgb(55, 180, 180);
+}
+
 .product_text {
   width: 90%;
   display: flex;

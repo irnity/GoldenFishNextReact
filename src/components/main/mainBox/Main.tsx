@@ -3,12 +3,16 @@ import Card from "../card/Card"
 
 import ListProducts from "../listProducts/ListProducts"
 
-interface MainProps {}
+import { ProductList } from "@/store/model"
 
-const Main: FunctionComponent<MainProps> = () => {
+interface MainProps {
+  data: ProductList[]
+}
+
+const Main: FunctionComponent<MainProps> = (props) => {
   return (
     <Card>
-      <ListProducts />
+      <ListProducts data={props.data} />
     </Card>
   )
 }

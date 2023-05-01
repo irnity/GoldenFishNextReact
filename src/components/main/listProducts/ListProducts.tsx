@@ -14,20 +14,14 @@ import { ProductSliceProps } from "../../../store/model"
 import { useRouter } from "next/router"
 import Image from "next/image"
 
-interface ListProductsProps {}
+import { ProductList } from "../../../store/model"
 
-//   id: string
-// code: string
-// title: string
-// image: string
-// price: number
-// description: string
-// inStock: number
+interface ListProductsProps {
+  data: ProductList[]
+}
 
-const ListProducts: FunctionComponent<ListProductsProps> = () => {
-  const products = useSelector(
-    (state: { products: ProductSliceProps }) => state.products.products
-  )
+const ListProducts: FunctionComponent<ListProductsProps> = (props) => {
+  const products = props.data
 
   const { isAdmin } = useSelector(
     (state: { auth: { isLogedIn: boolean; isAdmin: boolean } }) => state.auth
@@ -52,7 +46,10 @@ const ListProducts: FunctionComponent<ListProductsProps> = () => {
           return (
             <div className={classes.product} key={product.id}>
               <div className={classes.product_image}>
-                <Link href={`${categoryId}/${product.id}`}>
+                <Link
+                  href={`${categoryId}/${product.id}`}
+                  className={classes.link}
+                >
                   <Image
                     src={product.image}
                     alt={`${product.id}`}
@@ -70,7 +67,12 @@ const ListProducts: FunctionComponent<ListProductsProps> = () => {
                   Code: {product.code}
                 </div>
                 <div className={classes.product_text_title}>
-                  {product.title}
+                  <Link
+                    href={`${categoryId}/${product.id}`}
+                    className={classes.link}
+                  >
+                    {product.title}
+                  </Link>
                 </div>
                 <div className={classes.product_text_price}>
                   {product.price} грн.

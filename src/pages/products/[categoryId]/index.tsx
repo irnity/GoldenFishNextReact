@@ -8,17 +8,14 @@ import { db } from "../../../config/firebase"
 import { getDocs, doc, collection, getDoc } from "firebase/firestore"
 import { getAuth } from "firebase/auth"
 
-interface ProductsListProps {}
+import { ProductList } from "@/store/model"
 
-const ProductsList: FunctionComponent<ProductsListProps> = (props: any) => {
-  console.log(props.data)
-  const dispatch = useDispatch()
+interface ProductsListProps {
+  data: ProductList[]
+}
 
-  useEffect(() => {
-    dispatch(productsActions.replaceProducts(props.data))
-  }, [dispatch, props.data])
-
-  return <Main />
+const ProductsList: FunctionComponent<ProductsListProps> = (props) => {
+  return <Main data={props.data} />
 }
 export async function getStaticPaths() {
   const collectionRef = collection(db, "store")
