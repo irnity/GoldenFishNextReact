@@ -35,7 +35,7 @@ const ListProducts: FunctionComponent<ListProductsProps> = (props) => {
     <div className={classes.products_list}>
       <div className={classes.product_list_top}>
         <div className={classes.products_list_name}>
-          <p className={classes.products_list_name_text}>Назва Товару</p>
+          <p className={classes.products_list_name_text}>{categoryId}</p>
         </div>
 
         {isAdmin && <AddProductButton />}

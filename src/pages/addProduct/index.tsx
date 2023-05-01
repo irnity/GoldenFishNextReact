@@ -1,21 +1,22 @@
 import React, { FunctionComponent } from "react"
 import NewProductForm from "../../components/main/newProductForm/NewProductForm"
+import { useRouter } from "next/router"
 
 interface NewProductPageProps {}
 
 const NewProductPage: FunctionComponent<NewProductPageProps> = () => {
+  const router = useRouter()
   const addMeetupHadler = async (enteredMeetupData: any) => {
     const responce = await fetch("/api/newproduct", {
       method: "POST",
       body: JSON.stringify(enteredMeetupData),
     })
 
-    const ff = await responce.json()
+    const result = await responce.json()
 
-    console.log(ff)
+    console.log(result)
+    router.push("/home")
   }
-  // dispatch(productsActions.addProduct())
-  // router.push("/home")
   return <NewProductForm onAddMeetup={addMeetupHadler} />
 }
 

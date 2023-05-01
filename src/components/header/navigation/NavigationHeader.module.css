@@ -1,12 +1,15 @@
 .top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #5a616e;
   /* border: 1px solid red; */
 }
 
 .top_info_list {
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 5px;
 }
 
@@ -27,4 +30,11 @@
   line-height: 1;
   font-weight: 400;
   text-decoration: none;
+}
+
+.top_info_href button {
+  border: 1px solid black;
+  background-color: white;
+  padding: 3px;
+  border-radius: 5px;
 }
