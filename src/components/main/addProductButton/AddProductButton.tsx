@@ -7,8 +7,10 @@ interface AddProductButtonProps {}
 const AddProductButton: FunctionComponent<AddProductButtonProps> = () => {
   return (
     <div className={classes.add_block}>
-      <Link href="/addproduct">
-        <button className={classes.add_button}>Додати товар</button>
+      <Link href="/addproduct" className={classes.link}>
+        <button className={classes.add_button}>
+          <span>Додати товар</span>
+        </button>
       </Link>
     </div>
   )

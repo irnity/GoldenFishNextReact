@@ -17,38 +17,116 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 5px solid rgba(128, 128, 128, 0.438);
 }
 
 .products_list_name {
-  width: 70%;
-  margin: 15px;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* border-bottom: 1px solid red; */
+}
+.products_list_button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .products_list_name_text {
   width: 100%;
-  padding: 15px;
-  font-size: 5vh;
-  font-family: "Dancing Script", cursive;
-  font-weight: 700;
-  border-bottom: 5px solid rgba(128, 128, 128, 0.438);
+  font-size: 3em;
+  font-family: "Dancing Script";
+  font-weight: 500;
 }
 
 /* main products */
 
 .products_list_products {
   width: 100%;
+  margin-top: 25px;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  /* border: 1px solid red; */
+  justify-content: flex-start;
 }
 
-/* placeholder */
+.find {
+  width: 20%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
 
+.find_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
+  border-radius: 5px;
+}
+.find_box_text {
+  display: flex;
+  width: 75%;
+  margin: 10px 0 0 2px;
+  color: rgb(0, 170, 255);
+  font-weight: 600;
+}
+.find_box_option {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 75%;
+  margin: 0 0 10px 2px;
+}
+
+.find_box_option div span {
+  margin-left: 5px;
+}
+
+.list {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+}
+.sort_box {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.sort {
+  width: 100%;
+  margin-left: 5%;
+  padding: 5px 0 5px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.438);
+  border-top: 2px solid rgba(128, 128, 128, 0.438);
+}
+
+.sort_left {
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+}
+.sort_right {
+  display: flex;
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.products {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
 .product {
   margin: 15px 15px 15px 15px;
   width: 30%;
@@ -60,7 +138,10 @@
   background-color: white;
   border-radius: 3px;
   box-shadow: 0px 1px 3px rgba(37, 35, 35, 0.651);
-  /* border: 1px solid grey; */
+}
+
+.product:nth-child(3n) {
+  margin: 15px 0 15px 15px;
 }
 
 .product_image {
@@ -77,7 +158,7 @@
 
 .image {
   width: 100%;
-  height: 100%;
+  height: 125%;
 }
 
 .link {
