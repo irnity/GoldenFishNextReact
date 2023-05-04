@@ -1,0 +1,26 @@
+.cart {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 5px solid rgba(128, 128, 128, 0.438);
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.title p {
+  width: 100%;
+  font-size: 3em;
+  font-family: "Dancing Script";
+  font-weight: 500;
+}
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

@@ -23,9 +23,9 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
     if (JSON.stringify(list) !== JSON.stringify(data)) {
       setToggleNavigation((prevState) => (prevState = true))
       setList(data)
-      return
-      // if new data === old data then catalog will be closed
-    } else {
+    }
+    // if new data === old data then catalog will be closed
+    else {
       fadeOut()
     }
   }
@@ -55,9 +55,9 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
         mountOnEnter
         unmountOnExit
         classNames={{
-          enter: classes.fade_slide_enter,
+          // enter: classes.fade_slide_enter,
           enterActive: classes.fade_slide_enter_active,
-          exit: classes.fade_slide_exit,
+          // exit: classes.fade_slide_exit,
           exitActive: classes.fade_slide_exit_active,
         }}
       >
@@ -67,7 +67,7 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
             {list.map((catalog, index) => (
               <div className={classes.catalog_link_text} key={index}>
                 <Link
-                  href={`/${catalog}`}
+                  href={`/products/${catalog}`}
                   className={classes.link}
                   onClick={fadeOut}
                 >
@@ -83,14 +83,3 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
 }
 
 export default Catalog
-// style={{
-//   position: "absolute",
-//   top: "30%",
-//   display: "flex",
-//   justifyContent: "space-around",
-//   width: "90%",
-//   height: "65%",
-//   boxShadow: "0px 0px 10px 0px black",
-//   backgroundColor: " white",
-
-// }
