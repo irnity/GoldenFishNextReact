@@ -4,17 +4,18 @@ import AddProductButton from "../../addProductButton/AddProductButton"
 
 interface InformationProps {
   isAdmin: boolean
-  categoryId: string | string[] | undefined
+  categoryId: string
 }
 
 const Information: FunctionComponent<InformationProps> = ({
   isAdmin,
   categoryId,
 }) => {
+  const capitalized = categoryId.charAt(0).toUpperCase() + categoryId.slice(1)
   return (
     <div className={classes.cart}>
       <div className={classes.title}>
-        <p>{categoryId}</p>
+        <p>{capitalized}</p>
       </div>
       <div className={classes.button}>{isAdmin && <AddProductButton />}</div>
     </div>

@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 5px solid rgba(128, 128, 128, 0.438);
+  border-bottom: 4px solid rgba(128, 128, 128, 0.355);
 }
 
 .title {

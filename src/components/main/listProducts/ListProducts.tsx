@@ -33,7 +33,7 @@ const ListProducts: FunctionComponent<ListProductsProps> = (props) => {
 
   const router = useRouter()
 
-  const { categoryId } = router.query
+  const { categoryId } = router.query as { categoryId: string }
 
   return (
     <div className={classes.cart}>
