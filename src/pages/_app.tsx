@@ -1,5 +1,5 @@
 import Footer from "@/components/footer/Footer"
-import Header from "@/components/header/headerBox/Header"
+import Header from "@/components/header/header/Header"
 import "@/styles/globals.css"
 import type { AppProps } from "next/app"
 import { Provider, useDispatch } from "react-redux"

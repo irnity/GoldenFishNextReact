@@ -1,0 +1,29 @@
+.cart::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  min-height: 7.5em;
+  max-height: 7.5em;
+  top: 18%;
+  left: 100%;
+  z-index: 0;
+  background-color: rgba(3, 196, 255, 1);
+}
+.cart::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  min-height: 7.5em;
+  max-height: 7.5em;
+  top: 18%;
+  left: -100%;
+  z-index: 0;
+  background-color: rgba(3, 196, 255, 1);
+}
+
+.cart {
+  width: 100%;
+  background-color: rgba(3, 196, 255, 1);
+  position: relative;
+  z-index: 2;
+}
