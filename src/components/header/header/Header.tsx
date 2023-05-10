@@ -18,10 +18,16 @@ const Header = () => {
   }, [dispatch])
 
   return (
-    <header className={classes.cart}>
-      <CartNavigation />
-      <Catalog />
-    </header>
+    <>
+      <header className={classes.cart}>
+        <CartNavigation />
+        <Catalog />
+      </header>
+      <header className={classes.mobile}>
+        <div className={classes.left}>s</div>
+        <div className={classes.right}>s</div>
+      </header>
+    </>
   )
 }
 

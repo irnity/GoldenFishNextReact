@@ -38,6 +38,7 @@
   border-right: 1px solid rgba(0, 0, 0, 0.582);
   border-left: 1px solid rgba(0, 0, 0, 0.521);
   user-select: none;
+  z-index: 5;
 }
 
 /* need fix */
