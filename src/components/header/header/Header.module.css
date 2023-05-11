@@ -46,17 +46,32 @@
 .mobile {
   display: flex;
   width: 100%;
-  min-height: 7em;
+  min-height: 56px;
+  background-color: rgba(3, 196, 255, 1);
 }
 .left {
-  width: 15%;
+  width: 10%;
   display: flex;
-  border: 1px solid red;
-  background-color: grey;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid red;
+  background-color: #5a616e;
+  cursor: pointer;
 }
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .right {
-  width: 85%;
-  border: 1px solid red;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid red;
 }
 
 @media (min-width: 700px) {
@@ -74,5 +89,54 @@
 @media (min-width: 1230px) {
   .mobile {
     display: none;
+  }
+}
+.background {
+  position: fixed;
+  background-color: rgba(26, 28, 28, 0.444);
+  /* top: 0; */
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.catalog {
+  background-color: white;
+  width: 30%;
+  height: 100vh;
+  overflow-y: scroll;
+  position: absolute;
+  /* top: 0; */
+  left: 0;
+  z-index: 2;
+}
+.catalog div {
+  height: 150vh;
+}
+
+.fade_slide_enter_active {
+  animation: fadeIn 0.3s ease-out;
+}
+@keyframes fadeIn {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.fade_slide_exit_active {
+  animation: fadeOut 0.3s ease-out;
+}
+@keyframes fadeOut {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
   }
 }

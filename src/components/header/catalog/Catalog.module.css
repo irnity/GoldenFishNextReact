@@ -73,11 +73,11 @@
 
 .catalog_block {
   position: absolute;
-  top: 30%;
   display: flex;
   justify-content: space-around;
-  width: 75%;
-  height: 65%;
+  margin-top: 25px;
+  width: 100%;
+  height: 250%;
   box-shadow: 0px 0px 10px 1px black;
   background-color: white;
 }

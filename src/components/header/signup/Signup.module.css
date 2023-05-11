@@ -1,6 +1,11 @@
 .signup {
   margin: 5px;
   padding: 15px;
+  /* width: 25%; */
+  /* height: 25%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mainbox {

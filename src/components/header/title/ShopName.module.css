@@ -1,31 +1,16 @@
 .shop {
+  width: 50%;
   margin: 5px;
   padding: 10px;
   /* border: 1px solid red; */
+  flex-grow: 1;
 }
 
 .shop span {
   display: flex;
-  font-size: 5vh;
+  font-size: 2em;
   font-family: "Dancing Script", cursive;
   font-weight: 700;
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-/* @media (min-width: 700px) {
-  .shop span {
-    font-size: 2em;
-  }
-}
-
-@media (min-width: 1055px) {
-  .shop span {
-    font-size: 0.8em;
-  }
-}
-
-@media (min-width: 1230px) {
-  .shop span {
-    font-size: 1em;
-  }
-} */
