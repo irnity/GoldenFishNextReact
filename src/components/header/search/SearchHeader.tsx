@@ -6,7 +6,7 @@ interface SearchHeaderProps {}
 const SearchHeader: FunctionComponent<SearchHeaderProps> = () => {
   return (
     <div className={classes.search}>
-      <input type="text" defaultValue="Search..." />
+      <input type="text" placeholder="Search..." />
     </div>
   )
 }

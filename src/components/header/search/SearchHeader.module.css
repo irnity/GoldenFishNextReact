@@ -6,4 +6,14 @@
 }
 .search input {
   width: 85%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  border: none;
+  background-color: white;
+  outline: none;
+  transition: scale 0.2s ease-in-out;
+}
+.search input:focus {
+  scale: 1.1;
 }

@@ -6,6 +6,8 @@ import { Provider, useDispatch } from "react-redux"
 import store from "../store"
 import classes from "./RootLayout.module.css"
 
+import "./Style.css"
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={classes.page}>

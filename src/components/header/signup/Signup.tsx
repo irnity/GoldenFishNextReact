@@ -8,6 +8,7 @@ import classes from "./Signup.module.css"
 import { useSelector } from "react-redux"
 // custom hook
 import useAuth from "../../../hooks/auth-hook"
+import AccountSVG from "@/svg/AccountSVG"
 
 interface SighupProps {}
 
@@ -25,14 +26,16 @@ const Sighup: FunctionComponent<SighupProps> = () => {
         <div className={classes.mainbox}>
           <div className={classes.login}>
             <Link href="/login">
-              <button>Увійти</button>
+              <button>
+                <AccountSVG />
+              </button>
             </Link>
           </div>
-          <div>
+          {/* <div>
             <Link href="/signin" className={classes.login}>
               <button>Зареєструватися</button>
             </Link>
-          </div>
+          </div> */}
         </div>
       ) : (
         <div>

@@ -6,7 +6,7 @@ interface ShopNameProps {}
 const ShopName: FunctionComponent<ShopNameProps> = () => {
   return (
     <div className={classes.shop}>
-      <span>Golden Fish</span>
+      <span className={classes.text}>Golden Fish</span>
     </div>
   )
 }

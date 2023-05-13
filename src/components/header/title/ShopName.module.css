@@ -1,16 +1,28 @@
 .shop {
   width: 50%;
-  margin: 5px;
-  padding: 10px;
-  /* border: 1px solid red; */
-  flex-grow: 1;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.shop span {
+.text {
+  width: 100%;
+  height: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
   font-size: 2em;
   font-family: "Dancing Script", cursive;
   font-weight: 700;
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+@media (max-width: 965px) {
+  .text {
+    font-size: 1.3em;
+  }
 }
