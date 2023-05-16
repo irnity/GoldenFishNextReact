@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react"
-import classes from "./HomePage.module.css"
+import classes from "./index.module.css"
 
 interface HomePageProps {}
 

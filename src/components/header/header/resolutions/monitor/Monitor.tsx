@@ -1,8 +1,8 @@
 import { FunctionComponent, useEffect, useState } from "react"
 
-import Catalog from "../catalog/Catalog"
-import CartNavigation from "../cart/CartNavigation"
-import classes from "./Header.module.css"
+import Catalog from "./catalog/Catalog"
+import CartNavigation from "./cartNavigation/CartNavigation"
+import classes from "./Monitor.module.css"
 
 interface MonitorProps {}
 

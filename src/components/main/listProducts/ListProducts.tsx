@@ -16,7 +16,7 @@ import Image from "next/image"
 
 import { ProductList } from "../../../store/model"
 import Find from "./filter/Find"
-import Information from "./information/Information"
+import Information from "../information/Information"
 import Products from "./products/Products"
 import Sort from "./sort/Sort"
 

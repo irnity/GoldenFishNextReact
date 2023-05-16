@@ -1,4 +1,4 @@
-export const catalogList: {
+export const Information: {
   name: string
   catalog: string[]
 }[] = [

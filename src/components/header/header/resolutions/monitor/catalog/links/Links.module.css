@@ -1,0 +1,19 @@
+.catalog_link_text {
+  /* border: 1px solid red; */
+  width: 20%;
+  height: 10%;
+  margin: 0px 25px;
+  font-size: 1.1em;
+  font-weight: 500;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+.link:hover {
+  color: rgb(3, 103, 253);
+}

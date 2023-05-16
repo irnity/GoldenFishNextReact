@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux"
 import { authActions } from "@/store/authSlice"
 import { info } from "@/store/authActions"
 
-import Monitor from "./Monitor"
-import Mobile from "./Mobile"
+import Monitor from "./resolutions/monitor/Monitor"
+import Mobile from "./resolutions/mobile/Mobile"
 
 const Header = () => {
   const dispatch = useDispatch()

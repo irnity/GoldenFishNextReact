@@ -46,7 +46,7 @@ const Products: FunctionComponent<ProductsProps> = ({
                   </Link>
                 </div>
                 <div className={classes.price}>
-                  <span>{product.price} грн.</span>
+                  <span>{product.price} &#8372; </span>
                 </div>
               </div>
             </div>

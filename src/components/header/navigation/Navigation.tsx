@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
 import Link from "next/link"
 import classes from "./Navigation.module.css"
-import NavLink from "./NavLink"
+import NavLink from "./links/NavLink"
 
 interface NavigationHeaderProps {}
 
@@ -11,7 +11,7 @@ const NavigationHeader: FunctionComponent<NavigationHeaderProps> = () => {
       {/*  */}
       <div className={classes.left}>
         <NavLink url={"/"} text={"Home"} />
-        <NavLink url={"/"} text={"Удочки"} />
+        <NavLink url={"/products/fishingrod"} page={"1"} text={"Удочки"} />
         <NavLink url={"/"} text={"Гачки"} />
         <NavLink url={"/"} text={"Бренди"} />
         <NavLink url={"/"} text={"Контакти"} />

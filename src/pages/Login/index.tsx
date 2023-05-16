@@ -3,6 +3,8 @@ import { FunctionComponent } from "react"
 import classes from "./LoginPage.module.css"
 
 import useAuth from "../../hooks/auth-hook"
+import Link from "next/link"
+import GoogleSVG from "@/svg/GoogleSVG"
 
 interface LoginPageProps {}
 
@@ -48,8 +50,11 @@ const LoginPage: FunctionComponent<LoginPageProps> = () => {
           onClick={loginWithGoogleHandler}
           className={classes.enter_google}
         >
-          Увійти за допомогою Google
+          <GoogleSVG /> <span>Google</span>
         </button>
+        <Link href="/signin" className={classes.link}>
+          <span>Зареєструватися</span>
+        </Link>
       </div>
     </div>
   )

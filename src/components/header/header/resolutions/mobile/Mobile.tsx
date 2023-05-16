@@ -1,11 +1,10 @@
 import { FunctionComponent, useEffect, useState } from "react"
-import {} from "react"
 
-import classes from "./Header.module.css"
-import ShopName from "../title/ShopName"
-import SearchHeader from "../search/SearchHeader"
-import Sighup from "../signup/Signup"
-import Basket from "../basket/Basket"
+import classes from "./Mobile.module.css"
+import ShopName from "../../../shopName/ShopName"
+import SearchHeader from "../../../search/SearchHeader"
+import Sighup from "../../../signup/Signup"
+import Basket from "../../../basket/Basket"
 
 import Menu from "@/svg/Menu"
 import { CSSTransition } from "react-transition-group"

@@ -1,5 +1,5 @@
 import Footer from "../../components/footer/Footer"
-import Header from "../../components/header/header/Header"
+import Header from "../../components/header/header/resolutions/Header"
 import classes from "./RootLayout.module.css"
 
 import { FunctionComponent } from "react"

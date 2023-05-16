@@ -1,10 +1,10 @@
 import { useState, FunctionComponent } from "react"
-import Link from "next/link"
-import CatalogList from "./CatalogList"
+import Category from "./category/Category"
 import classes from "./Catalog.module.css"
 import { CSSTransition } from "react-transition-group"
 
-import { catalogList as information } from "./Info"
+import { Information } from "./Information"
+import Links from "./links/Links"
 
 interface CatalogProps {}
 
@@ -38,9 +38,9 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
   return (
     <>
       <div className={classes.catalog}>
-        {/* catalog section */}
-        {information.map((data) => (
-          <CatalogList
+        {/* categorys */}
+        {Information.map((data) => (
+          <Category
             key={data.name}
             toggleNavigationHandler={toggleNavigationHandler}
             title={data.name}
@@ -48,32 +48,21 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
           />
         ))}
       </div>
-      {/* list one of section  */}
       <CSSTransition
         in={toggleNavigation}
         timeout={animationTiming}
         mountOnEnter
         unmountOnExit
         classNames={{
-          // enter: classes.fade_slide_enter,
           enterActive: classes.fade_slide_enter_active,
-          // exit: classes.fade_slide_exit,
           exitActive: classes.fade_slide_exit_active,
         }}
       >
         <div className={classes.catalog_block}>
           <div className={classes.catalog_link}>
-            {/* need keys for catalog */}
+            {/* links  */}
             {list.map((catalog, index) => (
-              <div className={classes.catalog_link_text} key={index}>
-                <Link
-                  href={`/products/${catalog}`}
-                  className={classes.link}
-                  onClick={fadeOut}
-                >
-                  {catalog}
-                </Link>
-              </div>
+              <Links key={index} fadeOut={fadeOut} catalog={catalog} />
             ))}
           </div>
         </div>

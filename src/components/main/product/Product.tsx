@@ -12,16 +12,12 @@ import AboutProduct from "../about/AboutProduct"
 // TS
 import { FunctionComponent } from "react"
 import { useDispatch } from "react-redux"
+import { ProductList } from "@/store/model"
+import Information from "../information/Information"
+import { useRouter } from "next/router"
 
 interface ProductProps {
-  product: {
-    description: string
-    title: string
-    image: string
-    price: number
-    code: string
-    inStock: string
-  }
+  product: ProductList
 }
 
 const Product: FunctionComponent<ProductProps> = ({ product }) => {
@@ -37,6 +33,12 @@ const Product: FunctionComponent<ProductProps> = ({ product }) => {
       dispatch(productsActions.removeProduct())
     }
   }
+  const router = useRouter()
+
+  const { categoryId, itemId } = router.query as {
+    categoryId: string
+    itemId: string
+  }
 
   const addProductToBasket = () => {
     dispatch(basketActions.addToBasket(product))
@@ -44,6 +46,7 @@ const Product: FunctionComponent<ProductProps> = ({ product }) => {
 
   return (
     <div className={classes.product_box}>
+      <Information itemId={itemId} categoryId={categoryId} />
       <div className={classes.product_top}>
         <div className={classes.product_image}>
           <img src={product.image} alt="" className={classes.image} />

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import classes from "./Catalog.module.css"
+import classes from "./Category.module.css"
 
 interface CatalogListProps {
   toggleNavigationHandler: (data: string[]) => void
@@ -18,7 +18,7 @@ const CatalogList: FunctionComponent<CatalogListProps> = ({
 
   return (
     <div className={classes.catalog_section} onClick={dataHandler}>
-      <span className={classes.toggle}>{title}</span>
+      <span className={classes.text}>{title}</span>
     </div>
   )
 }
