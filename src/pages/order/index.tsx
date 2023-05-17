@@ -1,14 +1,14 @@
 import { FunctionComponent } from "react"
 import { useSelector } from "react-redux"
 import Order from "../../components/order/Order"
-import { BasketSliceProps } from "../../store/model"
+import { IBasketSliceProps } from "../../store/model"
 import classes from "./orderPage.module.css"
 
 interface OrderPageProps {}
 
 const OrderPage: FunctionComponent<OrderPageProps> = () => {
   const basket = useSelector(
-    (state: { basket: BasketSliceProps }) => state.basket.basket
+    (state: { basket: IBasketSliceProps }) => state.basket.basket
   )
 
   const formHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -27,7 +27,7 @@ const OrderPage: FunctionComponent<OrderPageProps> = () => {
           </div>
 
           <div className={classes.input}>
-            <label htmlFor="name">Прізвище Ім'я</label>
+            <label htmlFor="name">Прізвище Ім&apos;я</label>
             <input type="text" name="name" id="name" />
           </div>
 

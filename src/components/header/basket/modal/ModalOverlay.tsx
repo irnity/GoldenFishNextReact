@@ -1,10 +1,10 @@
-import classes from "./Basket.module.css"
+import classes from "./ModalOverlay.module.css"
 import React, { FunctionComponent } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { BasketSliceProps } from "../../../store/model"
-import { basketActions } from "../../../store/basketSlice"
+import { IBasketSliceProps } from "../../../../store/model"
+import { basketActions } from "../../../../store/basketSlice"
 import Link from "next/link"
-import Order from "../../order/Order"
+import Order from "../../../order/Order"
 
 interface ModalOverlayProps {
   onConfirm: () => void
@@ -14,7 +14,7 @@ const ModalOverlay: FunctionComponent<ModalOverlayProps> = () => {
   const dispatch = useDispatch()
 
   const basket = useSelector(
-    (state: { basket: BasketSliceProps }) => state.basket.basket
+    (state: { basket: IBasketSliceProps }) => state.basket.basket
   )
   const totalPrice = useSelector(
     (state: { basket: { totalPrice: number } }) => state.basket.totalPrice

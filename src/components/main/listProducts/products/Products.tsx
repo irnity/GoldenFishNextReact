@@ -1,11 +1,11 @@
 import Image from "next/image"
 import classes from "./Products.module.css"
 import { FunctionComponent } from "react"
-import { ProductList } from "@/store/model"
+import { IProduct } from "@/store/model"
 import Link from "next/link"
 
 interface ProductsProps {
-  products: ProductList[]
+  products: IProduct[]
   categoryId: string | string[] | undefined
 }
 

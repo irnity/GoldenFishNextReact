@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react"
-import { BasketSliceProps } from "../../store/model"
+import { IBasketSliceProps } from "../../store/model"
 import classes from "./Order.module.css"
 
 interface OrderProps {
-  basket: BasketSliceProps["basket"]
+  basket: IBasketSliceProps["basket"]
 }
 
 const Order: FunctionComponent<OrderProps> = (props) => {

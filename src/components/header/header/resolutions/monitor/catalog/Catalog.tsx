@@ -48,6 +48,9 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
           />
         ))}
       </div>
+      {toggleNavigation && (
+        <div className={classes.background} onClick={fadeOut}></div>
+      )}
       <CSSTransition
         in={toggleNavigation}
         timeout={animationTiming}

@@ -1,0 +1,49 @@
+.modal {
+  background-color: white;
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  width: 50%;
+  /* min-height: 70%; */
+  z-index: 100;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  margin: 15px 0;
+  font-size: larger;
+  font-weight: 600;
+}
+
+.main {
+  width: 90%;
+  margin: 15px 0;
+  border: 1px solid red;
+}
+
+.footer {
+  width: 84%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.footer div {
+  margin: 15px 0;
+}
+.footer_continue,
+.footer_continue span,
+.footer_continue button {
+  margin: 0 25px;
+}

@@ -1,4 +1,4 @@
-import classes from "./Basket.module.css"
+import classes from "./Backdrop.module.css"
 import React, { FunctionComponent } from "react"
 interface BackdropProps {
   onConfirm: () => void

@@ -10,14 +10,16 @@ interface LinksProps {
 
 const Links: FunctionComponent<LinksProps> = ({ fadeOut, catalog }) => {
   return (
-    <div className={classes.catalog_link_text}>
-      <Link
-        href={`/products/${catalog}`}
-        className={classes.link}
-        onClick={fadeOut}
-      >
-        {catalog}
-      </Link>
+    <div className={classes.cart}>
+      <div className={classes.block}>
+        <Link
+          href={`/products/${catalog}`}
+          className={classes.link}
+          onClick={fadeOut}
+        >
+          {catalog}
+        </Link>
+      </div>
     </div>
   )
 }

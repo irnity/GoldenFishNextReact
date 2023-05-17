@@ -12,12 +12,12 @@ import AboutProduct from "../about/AboutProduct"
 // TS
 import { FunctionComponent } from "react"
 import { useDispatch } from "react-redux"
-import { ProductList } from "@/store/model"
+import { IProduct } from "@/store/model"
 import Information from "../information/Information"
 import { useRouter } from "next/router"
 
 interface ProductProps {
-  product: ProductList
+  product: IProduct
 }
 
 const Product: FunctionComponent<ProductProps> = ({ product }) => {

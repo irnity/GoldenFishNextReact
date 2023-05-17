@@ -1,4 +1,4 @@
-import { useEffect, FunctionComponent } from "react"
+import { FunctionComponent } from "react"
 
 import { db } from "../../../config/firebase"
 import {
@@ -7,17 +7,22 @@ import {
   limit,
   collection,
   startAfter,
+  getCountFromServer,
 } from "firebase/firestore"
 
-import { ProductList } from "@/store/model"
+import { IProduct } from "@/store/model"
 import ListProducts from "@/components/main/listProducts/ListProducts"
 
 interface ProductsListProps {
-  data: ProductList[]
+  data: IProduct[]
+  totalPages: number
 }
 
-const ProductsList: FunctionComponent<ProductsListProps> = (props) => {
-  return <ListProducts data={props.data} />
+const ProductsList: FunctionComponent<ProductsListProps> = ({
+  data,
+  totalPages,
+}) => {
+  return <ListProducts products={data} totalPages={totalPages} />
 }
 
 // export async function getStaticPaths() {
@@ -46,11 +51,22 @@ export async function getServerSideProps(context: any) {
 
   let data
 
+  let totalPages
+
+  try {
+    const coll = collection(db, `store`, `${id}`, "items")
+    const snapshot = await getCountFromServer(coll)
+
+    totalPages = snapshot.data().count
+  } catch (error) {
+    console.log(error)
+  }
+
   try {
     // get collection
     // first page
-    if (page <= 1) {
-      const productsCollectionRef = await query(
+    if (page <= 1 || Number.isNaN(page)) {
+      const productsCollectionRef = query(
         collection(db, `store`, `${id}`, "items"),
         limit(9)
       )
@@ -60,17 +76,17 @@ export async function getServerSideProps(context: any) {
       // second page
 
       // get previes collection
-      const previesProductsCollectionRef = await query(
+      const previesProductsCollectionRef = query(
         collection(db, `store`, `${id}`, "items"),
         limit(9 * (page - 1))
       )
 
       const previesData = await getDocs(previesProductsCollectionRef)
 
-      const lastVisible = await previesData.docs[previesData.docs.length - 1]
+      const lastVisible = previesData.docs[previesData.docs.length - 1]
 
       // get new collection
-      const productsCollectionRef = await query(
+      const productsCollectionRef = query(
         collection(db, `store`, `${id}`, "items"),
         startAfter(lastVisible),
         limit(9)
@@ -88,6 +104,7 @@ export async function getServerSideProps(context: any) {
     return {
       props: {
         data: filteredData,
+        totalPages: totalPages,
       },
       // revalidate: 30,
     }

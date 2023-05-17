@@ -2,13 +2,7 @@ import { initializeApp } from "firebase/app"
 
 import { getAuth, GoogleAuthProvider } from "firebase/auth"
 
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-} from "firebase/firestore"
+import { getFirestore } from "firebase/firestore"
 
 import { getFunctions } from "firebase/functions"
 
@@ -38,33 +32,3 @@ export const googleProvider = new GoogleAuthProvider()
 // data
 
 export const db = getFirestore(app)
-
-// async function name() {
-//   const collectionRef = await collection(db, "store")
-//   const collectionSnap = await getDocs(collectionRef)
-
-//   const documentsData = collectionSnap.docs.map((doc) => doc.id)
-//   const dataslents = documentsData.map((data) => data.id)
-
-//   const path = []
-
-//   documentsData.forEach(async (doc) => {
-//     const itemsRef = await collection(db, "store", `${doc}`, "items")
-//     const itemsSnap = await getDocs(itemsRef)
-//     const itemsData = itemsSnap.docs.map((data) => data.id)
-
-//     // console.log(itemsData)
-
-//     itemsData.forEach((item) => {
-//       path.push({
-//         params: {
-//           categoryId: doc,
-//           itemId: item,
-//         },
-//       })
-//     })
-//   })
-//   console.log(path)
-// }
-
-// name()

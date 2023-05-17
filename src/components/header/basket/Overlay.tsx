@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react"
 import ReactDOM from "react-dom"
-import Backdrop from "./Backdrop"
-import ModalOverlay from "./ModalOverlay"
+import Backdrop from "./backdrop/Backdrop"
+import ModalOverlay from "./modal/ModalOverlay"
 
 interface BasketOverlayProps {
   onConfirm: () => void

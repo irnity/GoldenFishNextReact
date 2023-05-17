@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { BasketSliceProps } from "./model"
+import { IBasketSliceProps, IProduct } from "./model"
 
-const initialBasketState: BasketSliceProps = {
+const initialBasketState: IBasketSliceProps = {
   basket: [],
   totalPrice: 0,
+  totalNumber: 0,
 }
 
 const basketSlice = createSlice({
@@ -15,20 +16,14 @@ const basketSlice = createSlice({
       {
         payload: { description, title, image, price, code, inStock },
       }: {
-        payload: {
-          description: string
-          title: string
-          image: string
-          price: number
-          code: string
-          inStock: string
-        }
+        payload: IProduct
       }
     ) {
       const existedProductIndex = state.basket.findIndex(
         (product) => product.code === code
       )
-      state.totalPrice = state.totalPrice + price
+      state.totalPrice += price
+      state.totalNumber++
 
       if (existedProductIndex < 0) {
         const newProduct = {
@@ -36,7 +31,6 @@ const basketSlice = createSlice({
           description,
           image,
           amountToBuy: 1,
-          piecePrice: price,
           totalPrice: price,
           title,
         }
@@ -47,8 +41,8 @@ const basketSlice = createSlice({
         // change values in existed product
         const updatedProduct = {
           ...existingProduct,
-          amountToBuy: existingProduct.amountToBuy + 1,
-          totalPrice: existingProduct.totalPrice + existingProduct.piecePrice,
+          amountToBuy: existingProduct.amountToBuy++,
+          totalPrice: existingProduct.totalPrice + price,
         }
         // change existed product
         state.basket[existedProductIndex] = updatedProduct
@@ -57,6 +51,7 @@ const basketSlice = createSlice({
     clearBasket(state) {
       state.basket = []
       state.totalPrice = 0
+      state.totalNumber = 0
     },
 
     createOrder(state) {

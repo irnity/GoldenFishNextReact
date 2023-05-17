@@ -10,23 +10,26 @@ import AddProductButton from "../addProductButton/AddProductButton"
 
 import classes from "./ListProducts.module.css"
 
-import { ProductSliceProps } from "../../../store/model"
+import { IProductSliceProps } from "../../../store/model"
 import { useRouter } from "next/router"
 import Image from "next/image"
 
-import { ProductList } from "../../../store/model"
+import { IProduct } from "../../../store/model"
 import Find from "./filter/Find"
 import Information from "../information/Information"
 import Products from "./products/Products"
 import Sort from "./sort/Sort"
+import PagesNumber from "./pagesNumber/PagesNumber"
 
 interface ListProductsProps {
-  data: ProductList[]
+  products: IProduct[]
+  totalPages: number
 }
 
-const ListProducts: FunctionComponent<ListProductsProps> = (props) => {
-  const products = props.data
-
+const ListProducts: FunctionComponent<ListProductsProps> = ({
+  products,
+  totalPages,
+}) => {
   const { isAdmin } = useSelector(
     (state: { auth: { isLogedIn: boolean; isAdmin: boolean } }) => state.auth
   )
@@ -34,7 +37,6 @@ const ListProducts: FunctionComponent<ListProductsProps> = (props) => {
   const router = useRouter()
 
   const { categoryId } = router.query as { categoryId: string }
-
   return (
     <div className={classes.cart}>
       <Information isAdmin={isAdmin} categoryId={categoryId} />
@@ -43,7 +45,14 @@ const ListProducts: FunctionComponent<ListProductsProps> = (props) => {
         <Find />
         <div className={classes.products_box}>
           <Sort />
-          <Products products={products} categoryId={categoryId} />
+          {products.length > 0 ? (
+            <>
+              <Products products={products} categoryId={categoryId} />
+              <PagesNumber totalPages={totalPages} />
+            </>
+          ) : (
+            <div className={classes.empty}>На данний час товари відсутні</div>
+          )}
         </div>
       </div>
     </div>

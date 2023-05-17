@@ -1,19 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { ProductSliceProps } from "./model"
+import { IProduct } from "./model"
 
-const initialProductsState: ProductSliceProps = {
+const initialProductsState: {
+  products: IProduct[]
+  loaded: boolean
+} = {
   products: [],
   loaded: false,
-}
-
-interface Product {
-  id: string
-  code: string
-  title: string
-  image: string
-  price: number
-  description: string
-  inStock: number
 }
 
 const productSlice = createSlice({
@@ -31,7 +24,7 @@ const productSlice = createSlice({
       const data = actions.payload
       // console.log(data)
 
-      state.products = data.map((product: Product) => ({
+      state.products = data.map((product: IProduct) => ({
         id: product.id,
         code: product.code,
         title: product.title,

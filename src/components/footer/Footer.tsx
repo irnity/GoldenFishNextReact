@@ -46,7 +46,9 @@ function Footer() {
       </div>
 
       <div className={classes.footer_bottom}>
-        <span>© 2023, Інтернет-магазин «Golden Fish»</span>
+        <span className={classes.text}>
+          © 2023, Інтернет-магазин «Golden Fish»
+        </span>
       </div>
     </footer>
   )

@@ -1,16 +1,16 @@
 import Product from "@/components/main/product/Product"
 import { db } from "@/config/firebase"
-import { ProductList } from "@/store/model"
+import { IProduct } from "@/store/model"
 import { collection, doc, getDoc, getDocs } from "firebase/firestore"
 import { useRouter } from "next/router"
 import { FunctionComponent } from "react"
 
-interface ItemProps {}
+interface ItemProps {
+  data: IProduct
+}
 
-const Item: FunctionComponent<ItemProps> = (props: any) => {
+const Item: FunctionComponent<ItemProps> = ({ data }) => {
   const router = useRouter()
-
-  const data: ProductList = props.data
 
   const { categoryId, itemId } = router.query
   return (
