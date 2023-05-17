@@ -10,7 +10,6 @@ import AddProductButton from "../addProductButton/AddProductButton"
 
 import classes from "./ListProducts.module.css"
 
-import { IProductSliceProps } from "../../../store/model"
 import { useRouter } from "next/router"
 import Image from "next/image"
 
