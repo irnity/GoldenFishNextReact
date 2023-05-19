@@ -2,9 +2,10 @@ import { FunctionComponent } from "react"
 import classes from "./Category.module.css"
 
 interface CatalogListProps {
-  toggleNavigationHandler: (data: string[]) => void
+  toggleNavigationHandler: (data: { name: string; url: string }[]) => void
   title: string
-  catalog: string[]
+
+  catalog: { name: string; url: string }[]
 }
 
 const CatalogList: FunctionComponent<CatalogListProps> = ({

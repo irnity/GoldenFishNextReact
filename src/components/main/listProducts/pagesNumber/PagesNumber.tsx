@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 
 interface PagesNumberProps {
-  totalPages: number
+  totalPages: number | undefined
 }
 
 const PagesNumber: FunctionComponent<PagesNumberProps> = ({ totalPages }) => {
@@ -18,7 +18,7 @@ const PagesNumber: FunctionComponent<PagesNumberProps> = ({ totalPages }) => {
   const [pages, setPages] = useState<number[]>([1])
 
   useEffect(() => {
-    const num = Math.ceil(totalPages / 9)
+    const num = Math.ceil(totalPages! / 9) | 0
 
     setPages(Array.from({ length: num }, (_, index) => index + 1))
   }, [totalPages])

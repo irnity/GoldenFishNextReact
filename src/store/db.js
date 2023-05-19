@@ -39,3 +39,12 @@ console.log(
   "inStock",
   typeof data[key].inStock
 )
+
+async function star() {
+  const responce = await fetch("https://swapi.dev/api/people")
+  const data = await responce.json()
+
+  console.log(data)
+}
+
+star()

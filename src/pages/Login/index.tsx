@@ -52,7 +52,7 @@ const LoginPage: FunctionComponent<LoginPageProps> = () => {
         >
           <GoogleSVG /> <span>Google</span>
         </button>
-        <Link href="/signin" className={classes.link}>
+        <Link href="/signup" className={classes.link}>
           <span>Зареєструватися</span>
         </Link>
       </div>

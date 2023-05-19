@@ -22,7 +22,7 @@ import PagesNumber from "./pagesNumber/PagesNumber"
 
 interface ListProductsProps {
   products: IProduct[]
-  totalPages: number
+  totalPages?: number | undefined
 }
 
 const ListProducts: FunctionComponent<ListProductsProps> = ({

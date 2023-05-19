@@ -10,6 +10,7 @@ import { signGoogle } from "../store/authActions"
 import { authActions } from "../store/authSlice"
 
 import { getFunctions, httpsCallable } from "firebase/functions"
+import { useRouter } from "next/router"
 // import { useNavigate } from "react-router-dom"
 
 // user.uid - User UID
@@ -22,6 +23,7 @@ const useAuth = () => {
   // const navigate = useNavigate()
 
   const dispatch = useDispatch()
+  const router = useRouter()
 
   // email value
   const emailHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +52,8 @@ const useAuth = () => {
 
       dispatch(authActions.logInWithPassword(admin))
 
+      router.push("/")
+
       // navigate("/")
     } catch (err) {
       console.error(err)
@@ -58,16 +62,20 @@ const useAuth = () => {
 
   // create user with email & password
   const registrationHandler = async () => {
-    const cred = await createUserWithEmailAndPassword(auth, email, password)
-    // setDoc create new document if its not existed with custom id
-    setDoc(doc(db, "users", cred.user.uid), {
-      // user information
-      email: email,
-      userId: cred.user.uid,
-    })
-    const functions = getFunctions()
-    const addAdminRole = httpsCallable(functions, "addAdminRole")
-    addAdminRole({ email }).then((result) => console.log(result))
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, password)
+      // setDoc create new document if its not existed with custom id
+      setDoc(doc(db, "users", email), {
+        // user information
+        email: email,
+        userId: cred.user.uid,
+      })
+      const functions = getFunctions()
+      const addAdminRole = httpsCallable(functions, "addAdminRole")
+      addAdminRole({ email }).then((result) => console.log(result))
+    } catch (error) {
+      console.log("Ця пошта вже використовується")
+    }
   }
 
   // logout

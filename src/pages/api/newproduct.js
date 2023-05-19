@@ -21,19 +21,13 @@ async function handler(req, res) {
       userId: data.userId,
     }
 
-    const productsCollectionRef = doc(
-      db,
-      "store",
-      productData.category,
-      "items",
-      productData.code
-    )
-
     try {
       // addDoc createNew elemets with auto id
 
-      // await setDoc(doc(db, "store", `hooks`, "items", `5`), productData)
-      const responce = await setDoc(productsCollectionRef, productData)
+      const responce = await setDoc(
+        doc(db, "store", productData.category, "items", productData.code),
+        productData
+      )
       res.status(201).json({ message: "Meetup inserted" })
     } catch (err) {
       // console.error(err)

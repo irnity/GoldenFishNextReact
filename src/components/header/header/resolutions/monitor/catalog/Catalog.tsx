@@ -15,9 +15,9 @@ const animationTiming = {
 
 const Catalog: FunctionComponent<CatalogProps> = () => {
   const [toggleNavigation, setToggleNavigation] = useState(false)
-  const [list, setList] = useState<string[]>([])
+  const [list, setList] = useState<{ name: string; url: string }[]>([])
 
-  const toggleNavigationHandler = (data: string[]) => {
+  const toggleNavigationHandler = (data: { name: string; url: string }[]) => {
     // check if list has data or its new data
     // if new then update list
     if (JSON.stringify(list) !== JSON.stringify(data)) {

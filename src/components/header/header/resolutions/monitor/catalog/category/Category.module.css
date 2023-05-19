@@ -9,16 +9,17 @@
   border-right: 1px solid rgba(0, 0, 0, 0.582);
   border-left: 1px solid rgba(0, 0, 0, 0.521);
   user-select: none;
-  z-index: 5;
+  z-index: 50;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
 /* need fix */
-.catalog_section:hover span {
-  color: yellow;
+.catalog_section:hover {
+  color: rgba(3, 196, 255, 1);
 }
 
-.catalog_section:active span {
-  color: red;
+.text:active {
 }
 
 .catalog_section:first-child {

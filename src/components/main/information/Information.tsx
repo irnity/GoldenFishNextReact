@@ -13,7 +13,7 @@ const Information: FunctionComponent<InformationProps> = ({
   categoryId,
   itemId,
 }) => {
-  const capitalized = categoryId.charAt(0).toUpperCase() + categoryId.slice(1)
+  // const capitalized = categoryId.charAt(0).toUpperCase() + categoryId.slice(1)
   return (
     <div className={classes.cart}>
       <div className={classes.title}>

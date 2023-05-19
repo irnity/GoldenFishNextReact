@@ -25,7 +25,7 @@ const NavigationHeader: FunctionComponent<NavigationHeaderProps> = () => {
           <span className={classes.text}>098800553535</span>
         </div>
         <div className={classes.link}>
-          <button>
+          <button className={classes.call}>
             <span className={classes.text}>Замовивити дзвінок</span>
           </button>
         </div>

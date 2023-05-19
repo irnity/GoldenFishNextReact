@@ -6,7 +6,7 @@ import Link from "next/link"
 
 interface ProductsProps {
   products: IProduct[]
-  categoryId: string | string[] | undefined
+  categoryId?: string | string[] | undefined
 }
 
 const Products: FunctionComponent<ProductsProps> = ({

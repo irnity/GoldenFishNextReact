@@ -5,7 +5,7 @@ import classes from "./Links.module.css"
 interface LinksProps {
   fadeOut: () => void
 
-  catalog: string
+  catalog: { name: string; url: string }
 }
 
 const Links: FunctionComponent<LinksProps> = ({ fadeOut, catalog }) => {
@@ -13,11 +13,14 @@ const Links: FunctionComponent<LinksProps> = ({ fadeOut, catalog }) => {
     <div className={classes.cart}>
       <div className={classes.block}>
         <Link
-          href={`/products/${catalog}`}
+          href={{
+            pathname: `/products/${catalog.url}`,
+            query: { page: 1 },
+          }}
           className={classes.link}
           onClick={fadeOut}
         >
-          {catalog}
+          &#x2022; {catalog.name}
         </Link>
       </div>
     </div>
