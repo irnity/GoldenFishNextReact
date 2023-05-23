@@ -6,13 +6,10 @@ import Link from "next/link"
 
 interface ProductsProps {
   products: IProduct[]
-  categoryId?: string | string[] | undefined
 }
 
-const Products: FunctionComponent<ProductsProps> = ({
-  products,
-  categoryId,
-}) => {
+const Products: FunctionComponent<ProductsProps> = ({ products }) => {
+  console.log(products)
   return (
     <div className={classes.cart}>
       {products.map((product) => {
@@ -21,12 +18,16 @@ const Products: FunctionComponent<ProductsProps> = ({
             <div className={classes.overflow}>
               <div className={classes.image_box}>
                 <Link
-                  href={`${categoryId}/${product.id}`}
+                  // /product/fishingrod/1usplQtRf062sApo5ba2
+                  // /products/fishingrod/1usplQtRf062sApo5ba2
+                  href={`/products/${product.category}/${product.id}`}
                   className={classes.link}
                 >
                   <Image
                     src={product.image}
-                    alt={`${product.id}`}
+                    alt={
+                      "https://cdn.shopify.com/s/files/1/0060/3770/0678/articles/how_to_cast_rod_1200x1200.png?v=1621296605"
+                    }
                     className={classes.image}
                     width={185}
                     height={185}
@@ -39,7 +40,7 @@ const Products: FunctionComponent<ProductsProps> = ({
                 <div className={classes.code}>Code: {product.code}</div>
                 <div className={classes.title}>
                   <Link
-                    href={`${categoryId}/${product.id}`}
+                    href={`/products/${product.category}/${product.id}`}
                     className={classes.link}
                   >
                     <span>{product.title}</span>

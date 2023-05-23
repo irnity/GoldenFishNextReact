@@ -1,0 +1,70 @@
+.buy {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.image {
+  width: 75%;
+  border: 1px solid gainsboro;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.image_text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  margin-top: 5px;
+  margin-left: 15px;
+  padding: 5px;
+}
+
+.image_text span {
+  font-size: 1.2em;
+}
+
+.but_bot {
+  width: 75%;
+  border: 1px solid gainsboro;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-radius: 5px;
+}
+.top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.bottom button {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+}

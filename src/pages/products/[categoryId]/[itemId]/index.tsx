@@ -10,9 +10,6 @@ interface ItemProps {
 }
 
 const Item: FunctionComponent<ItemProps> = ({ data }) => {
-  const router = useRouter()
-
-  const { categoryId, itemId } = router.query
   return (
     <>
       <Product product={data} />

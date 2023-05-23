@@ -38,7 +38,7 @@ const ListProducts: FunctionComponent<ListProductsProps> = ({
   const { categoryId } = router.query as { categoryId: string }
   return (
     <div className={classes.cart}>
-      <Information isAdmin={isAdmin} categoryId={categoryId} />
+      <Information isAdmin={isAdmin} />
 
       <div className={classes.info_box}>
         <Find />
@@ -46,7 +46,7 @@ const ListProducts: FunctionComponent<ListProductsProps> = ({
           <Sort />
           {products.length > 0 ? (
             <>
-              <Products products={products} categoryId={categoryId} />
+              <Products products={products} />
               <PagesNumber totalPages={totalPages} />
             </>
           ) : (

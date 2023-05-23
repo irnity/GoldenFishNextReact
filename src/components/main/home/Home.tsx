@@ -10,30 +10,10 @@ interface HomeProps {
 }
 
 const Home: FunctionComponent<HomeProps> = ({ products, categoryId }) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? products.length - 3 : prevIndex - 1
-    )
-  }
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === products.length - 3 ? 0 : prevIndex + 1
-    )
-  }
   return (
     <>
-      <div>
-        <button onClick={prevSlide}>-</button>
-        <button onClick={nextSlide}>+</button>
-      </div>
-      <div
-        className={classes.cart}
-        style={{ transform: `translateX(-${currentIndex * 33.33}%)` }}
-      >
-        {products.slice(currentIndex, currentIndex + 3).map((product) => {
+      <div className={classes.cart}>
+        {products.map((product) => {
           return (
             <div className={classes.product_box} key={product.id}>
               <div className={classes.overflow}>

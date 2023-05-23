@@ -53,6 +53,9 @@
   text-decoration: none;
   color: black;
 }
+.link:hover {
+  color: red;
+}
 
 .info_box {
   width: 90%;

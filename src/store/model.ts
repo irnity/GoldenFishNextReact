@@ -6,6 +6,7 @@ export interface IProduct {
   price: number
   description: string
   inStock: string
+  category: string
 }
 
 export interface IBasketSliceProps {

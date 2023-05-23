@@ -7,7 +7,7 @@ import { productsActions } from "../../../store/productsSlice"
 import { basketActions } from "../../../store/basketSlice"
 
 // Components
-import AboutProduct from "../about/AboutProduct"
+import AboutProduct from "./about/AboutProduct"
 
 // TS
 import { FunctionComponent } from "react"
@@ -33,12 +33,6 @@ const Product: FunctionComponent<ProductProps> = ({ product }) => {
       dispatch(productsActions.removeProduct())
     }
   }
-  const router = useRouter()
-
-  const { categoryId, itemId } = router.query as {
-    categoryId: string
-    itemId: string
-  }
 
   const addProductToBasket = () => {
     dispatch(basketActions.addToBasket(product))
@@ -46,7 +40,9 @@ const Product: FunctionComponent<ProductProps> = ({ product }) => {
 
   return (
     <div className={classes.product_box}>
-      <Information itemId={itemId} categoryId={categoryId} />
+      <Information />
+      <AboutProduct />
+
       <div className={classes.product_top}>
         <div className={classes.product_image}>
           <img src={product.image} alt="" className={classes.image} />
@@ -85,7 +81,6 @@ const Product: FunctionComponent<ProductProps> = ({ product }) => {
           </div>
         </div>
       </div>
-      <AboutProduct />
     </div>
   )
 }

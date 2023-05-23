@@ -14,11 +14,15 @@ interface HomePageProps {
 
 const HomePage: FunctionComponent<HomePageProps> = ({ fishingrod, hooks }) => {
   return (
-    <div style={{ width: "90%" }}>
-      <div>удочки</div>
-      <Home products={fishingrod} />
-      <div>крючки</div>
-      <Home products={hooks} />
+    <div className={classes.cart}>
+      <div className={classes.list}>
+        <h1>Вудки</h1>
+        <Products products={fishingrod} />
+      </div>
+      <div className={classes.list}>
+        <h1>Гачки</h1>
+        <Products products={hooks} />
+      </div>
     </div>
   )
 }
@@ -32,7 +36,7 @@ export async function getServerSideProps(context: any) {
 
     const fishingrodCollectionRef = query(
       collection(db, `store`, `fishingrod`, "items"),
-      limit(9)
+      limit(3)
     )
 
     const fishingrod = await getDocs(fishingrodCollectionRef)
@@ -45,7 +49,7 @@ export async function getServerSideProps(context: any) {
 
     const hooksCollectionRef = query(
       collection(db, `store`, `hooks`, "items"),
-      limit(9)
+      limit(3)
     )
 
     const hooks = await getDocs(hooksCollectionRef)
