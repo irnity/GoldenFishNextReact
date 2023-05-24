@@ -14,11 +14,10 @@
   align-items: center;
 }
 .bottom_block_text {
-  /* width: calc(100% / 6); */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 15px 0 15px;
+  margin: 0 10px 0 10px;
 }
 
 .link {
@@ -31,7 +30,7 @@
   text-decoration: none;
   color: black;
   border-radius: 10px;
-  padding: 5px;
+  padding: 0 5px;
 
   transition: 0.5s;
 }

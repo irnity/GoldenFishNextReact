@@ -1,13 +1,13 @@
 import { FunctionComponent } from "react"
 import Cart from "@/components/main/product/about/cart/Cart"
-import Characteristics from "@/components/main/product/about/info/Characteristics"
+import Comments from "@/components/main/product/about/tabs/comments/Comments"
 
 interface CommentsPageProps {}
 
 const CommentsPage: FunctionComponent<CommentsPageProps> = () => {
   return (
     <Cart>
-      <Characteristics />
+      <Comments />
     </Cart>
   )
 }

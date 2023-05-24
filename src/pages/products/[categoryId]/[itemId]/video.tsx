@@ -1,14 +1,14 @@
 import { FunctionComponent } from "react"
 
 import Cart from "@/components/main/product/about/cart/Cart"
-import Characteristics from "@/components/main/product/about/info/Characteristics"
+import Video from "@/components/main/product/about/tabs/video/Video"
 
 interface VideoPageProps {}
 
 const VideoPage: FunctionComponent<VideoPageProps> = () => {
   return (
     <Cart>
-      <Characteristics />
+      <Video />
     </Cart>
   )
 }

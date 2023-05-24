@@ -2,7 +2,7 @@ import { FunctionComponent, ReactNode } from "react"
 import classes from "./Cart.module.css"
 import Information from "@/components/main/information/Information"
 import AboutProduct from "../AboutProduct"
-import Buy from "../../buy/Buy"
+import Buy from "../buy/Buy"
 interface CartProps {
   children: ReactNode
 }
