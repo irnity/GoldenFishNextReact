@@ -12,6 +12,7 @@ const AboutProduct: FunctionComponent<AboutProductProps> = () => {
     itemId: string
   }
   const name = router.asPath.split("/")[4]
+  let a: RegExp
   return (
     <div className={classes.cart}>
       <div className={classes.block}>
