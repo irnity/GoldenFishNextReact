@@ -6,19 +6,11 @@ import Link from "next/link"
 interface LinkProps {
   url: string
   text: string
-  page?: string | undefined
 }
-
-const NavLink: FunctionComponent<LinkProps> = ({ url, page, text }) => {
+const NavLink: FunctionComponent<LinkProps> = ({ url, text }) => {
   return (
     <div className={classes.box}>
-      <Link
-        href={{
-          pathname: `${url}`,
-          query: { page: `${page}` },
-        }}
-        className={classes.text}
-      >
+      <Link href={url} className={classes.text}>
         <span>{text}</span>
       </Link>
     </div>

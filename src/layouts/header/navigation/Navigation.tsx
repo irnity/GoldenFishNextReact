@@ -11,8 +11,8 @@ const NavigationHeader: FunctionComponent<NavigationHeaderProps> = () => {
       {/*  */}
       <div className={classes.left}>
         <NavLink url={"/"} text={"Home"} />
-        <NavLink url={"/products/fishingrod"} page={"1"} text={"Удочки"} />
-        <NavLink url={"/"} text={"Гачки"} />
+        <NavLink url={"/"} text={"Доставка"} />
+        <NavLink url={"/"} text={"Знижки"} />
         <NavLink url={"/"} text={"Бренди"} />
         <NavLink url={"/"} text={"Контакти"} />
         <NavLink url={"/"} text={"Магазин"} />
@@ -21,9 +21,6 @@ const NavigationHeader: FunctionComponent<NavigationHeaderProps> = () => {
       </div>
       {/*  */}
       <div className={classes.right}>
-        <div className={classes.link}>
-          <span className={classes.text}>098800553535</span>
-        </div>
         <div className={classes.link}>
           <button className={classes.call}>
             <span className={classes.text}>Замовивити дзвінок</span>
