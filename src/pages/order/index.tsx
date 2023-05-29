@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
 import { useSelector } from "react-redux"
-import Order from "../../components/order/Order"
+import Order from "../../features/order/Order"
 import { IBasketSliceProps } from "../../store/model"
 import classes from "./orderPage.module.css"
 

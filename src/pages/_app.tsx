@@ -1,12 +1,13 @@
-import Footer from "@/components/footer/Footer"
-import Header from "@/components/header/header/Header"
-import "@/styles/globals.css"
+import Footer from "@/layouts/footer/Footer"
+import Header from "@/layouts/header/Header"
+// import "@/styles/globals.css"
+import "@/assets/styles/globals.css"
 import type { AppProps } from "next/app"
 import { Provider, useDispatch } from "react-redux"
 import store from "../store"
 import classes from "./_app.module.css"
 
-import "./Style.css"
+import "../assets/styles/Style.css"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

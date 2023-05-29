@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-import { auth } from "../config/firebase"
+import { auth } from "../services/firebase/firebase"
 import { signOut } from "firebase/auth"
 
 const initialAuthState: {

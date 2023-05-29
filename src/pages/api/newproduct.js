@@ -1,7 +1,7 @@
 //
 // post /api/
 
-import { db } from "../../config/firebase"
+import { db } from "../../services/firebase/firebase"
 import { nanoid } from "@reduxjs/toolkit"
 import { addDoc, collection, doc, setDoc } from "firebase/firestore"
 

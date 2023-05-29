@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
 
-import { db } from "../../../config/firebase"
+import { db } from "../../../services/firebase/firebase"
 import {
   getDocs,
   query,
@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore"
 
 import { IProduct } from "@/store/model"
-import ListProducts from "@/components/main/listProducts/ListProducts"
+import ListProducts from "@/features/listProducts/ListProducts"
 
 interface ProductsListProps {
   data: IProduct[]

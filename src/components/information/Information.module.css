@@ -1,0 +1,41 @@
+.cart {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid rgba(128, 128, 128, 0.355);
+}
+
+.link {
+  text-decoration: none;
+}
+.title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  margin: 5px 0 5px 0;
+}
+.text {
+  width: 100%;
+  font-size: 2.3em;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 5px;
+  color: #0994bc;
+  background-color: #dedcdc;
+  border-radius: 5px;
+  text-transform: capitalize;
+  transition: all 0.3s;
+}
+.text:hover {
+  background-color: #c6c4c4;
+}
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

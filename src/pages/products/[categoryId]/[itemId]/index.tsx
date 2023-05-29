@@ -1,5 +1,5 @@
-import Product from "@/components/main/product/Product"
-import { db } from "@/config/firebase"
+import Product from "@/features/product/Product"
+import { db } from "@/services/firebase/firebase"
 import { IProduct } from "@/store/model"
 import { collection, doc, getDoc, getDocs } from "firebase/firestore"
 import { useRouter } from "next/router"

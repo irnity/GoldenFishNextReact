@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react"
-import NewProductForm from "../../components/main/newProductForm/NewProductForm"
+import NewProductForm from "../../features/newProductForm/NewProductForm"
 import { useRouter } from "next/router"
 
 interface NewProductPageProps {}

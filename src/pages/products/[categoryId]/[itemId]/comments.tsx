@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import Cart from "@/components/main/product/about/cart/Cart"
-import Comments from "@/components/main/product/about/tabs/comments/Comments"
+import Cart from "@/features/product/about/cart/Cart"
+import Comments from "@/features/product/about/tabs/comments/Comments"
 
 interface CommentsPageProps {}
 

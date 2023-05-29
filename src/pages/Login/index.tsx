@@ -4,7 +4,7 @@ import classes from "./LoginPage.module.css"
 
 import useAuth from "../../hooks/auth-hook"
 import Link from "next/link"
-import GoogleSVG from "@/svg/GoogleSVG"
+import GoogleSVG from "@/assets/svg/GoogleSVG"
 
 interface LoginPageProps {}
 

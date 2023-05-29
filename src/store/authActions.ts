@@ -1,6 +1,6 @@
 import { signInWithPopup } from "firebase/auth"
 import { Dispatch, AnyAction } from "redux"
-import { auth, googleProvider } from "../config/firebase"
+import { auth, googleProvider } from "../services/firebase/firebase"
 import { authActions } from "./authSlice"
 
 export const info = (): any => {

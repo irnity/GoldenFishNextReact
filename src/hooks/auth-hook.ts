@@ -5,7 +5,7 @@ import {
 import { doc, setDoc } from "firebase/firestore"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { auth, db } from "../config/firebase"
+import { auth, db } from "../services/firebase/firebase"
 import { signGoogle } from "../store/authActions"
 import { authActions } from "../store/authSlice"
 
