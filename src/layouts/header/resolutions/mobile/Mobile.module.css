@@ -61,9 +61,9 @@
 .catalog {
   background-color: white;
   width: 50%;
-  height: 100vh;
   overflow-y: scroll;
   position: absolute;
+  height: 100vh;
   left: 0;
   z-index: 2;
 }

@@ -1,7 +1,7 @@
 import Image from "next/image"
 import classes from "./Products.module.css"
 import { FunctionComponent } from "react"
-import { IProduct } from "@/store/model"
+import { IProduct } from "@/redux/model"
 import Link from "next/link"
 
 interface ProductsProps {
@@ -9,7 +9,6 @@ interface ProductsProps {
 }
 
 const Products: FunctionComponent<ProductsProps> = ({ products }) => {
-  console.log(products)
   return (
     <div className={classes.cart}>
       {products.map((product) => {

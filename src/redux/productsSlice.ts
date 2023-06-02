@@ -2,37 +2,34 @@ import { createSlice } from "@reduxjs/toolkit"
 import { IProduct } from "./model"
 
 const initialProductsState: {
-  products: IProduct[]
+  product: IProduct
   loaded: boolean
 } = {
-  products: [],
+  product: {
+    id: "Id",
+    code: "Code",
+    title: "Title",
+    image:
+      "https://cdn.shopify.com/s/files/1/0610/6159/5188/files/AdobeStock_101945493_750x.jpg?v=1663607967",
+    price: 5,
+    description: "Description",
+    inStock: "InStock",
+    category: "Category",
+  },
   loaded: false,
 }
 
 const productSlice = createSlice({
-  name: "Products",
+  name: "Product",
   initialState: initialProductsState,
   reducers: {
-    replaceProducts(state, actions) {
+    replaceProduct(state, actions) {
       // our data from fetch firebase
 
-      // check if data is loaded
-      // delete data if we have one
-
-      state.products = []
       // get fetch data from payload
-      const data = actions.payload
-      // console.log(data)
+      const data = actions.payload as IProduct
 
-      state.products = data.map((product: IProduct) => ({
-        id: product.id,
-        code: product.code,
-        title: product.title,
-        image: product.image,
-        price: product.price,
-        description: product.description,
-        isStock: product.inStock,
-      }))
+      state.product = data
     },
     // should delete this
     addProduct(state) {

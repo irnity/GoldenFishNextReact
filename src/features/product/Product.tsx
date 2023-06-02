@@ -1,83 +1,82 @@
 // css
 import classes from "./Product.module.css"
 
-// Redux
+// react
+import { FunctionComponent } from "react"
 
-import { productsActions } from "@/store/productsSlice"
-import { basketActions } from "@/store/basketSlice"
+// Redux
+import { productsActions } from "@/redux/productsSlice"
+import { basketActions } from "@/redux/basketSlice"
+import { IProduct } from "@/redux/model"
+import { useDispatch, useSelector } from "react-redux"
 
 // Components
 import AboutProduct from "./about/AboutProduct"
-
-// TS
-import { FunctionComponent } from "react"
-import { useDispatch } from "react-redux"
-import { IProduct } from "@/store/model"
 import Information from "@/components/information/Information"
-import { useRouter } from "next/router"
+import useBasket from "@/hooks/basket-hook"
+import Image from "next/image"
+import LinkProductButton from "@/components/linkProductButton/LinkProductButton"
 
-interface ProductProps {
-  product: IProduct
-}
-
-const Product: FunctionComponent<ProductProps> = ({ product }) => {
-  console.log(product)
+interface ProductProps {}
+const Product: FunctionComponent<ProductProps> = () => {
   const dispatch = useDispatch()
+
+  const product = useSelector(
+    (state: { product: { product: IProduct } }) => state.product.product
+  )
+
+  const { addProductToBasket } = useBasket()
 
   function startDeleteHandler() {
     const procced = window.confirm("Are you sure?")
-
-    // submit delete
-    // dispath update
     if (procced) {
       dispatch(productsActions.removeProduct())
     }
   }
 
-  const addProductToBasket = () => {
-    dispatch(basketActions.addToBasket(product))
-  }
-
   return (
-    <div className={classes.product_box}>
+    <div className={classes.cart}>
       <Information />
       <AboutProduct />
 
-      <div className={classes.product_top}>
-        <div className={classes.product_image}>
-          <img src={product.image} alt="" className={classes.image} />
+      <div className={classes.block}>
+        <div className={classes.cart_image}>
+          <Image
+            src={product.image}
+            width={400}
+            height={400}
+            alt="fishing product image"
+            className={classes.image}
+          />
         </div>
 
-        <div className={classes.product_text}>
-          <div className={classes.product_text_top}>
-            <div>
-              {/* product name */}
+        <div className={classes.cart_text}>
+          <div className={classes.text_block}>
+            <div className={classes.text}>
               <p>{product.title}</p>
             </div>
-            <div className={classes.product_text_top_code}>
-              {/* id */}
-              <p>Код товару: {product.code || "code"}</p>
+            <div className={classes.text}>
+              <span>Код товару: {product.code || "code"}</span>
             </div>
           </div>
-          <div className={classes.product_text_mid}>
-            <div className={classes.product_text_mid_top}>
-              {/* check if in stock */}
+          <div className={classes.text_block}>
+            <div className={classes.text}>
               {product.inStock >= "1" ? (
                 <span>В наявності</span>
               ) : (
                 <span>Немає в наявності</span>
               )}
             </div>
-            <div className={classes.product_text_mid_top}>
+            <div className={classes.text}>
               <span>Ціна: {product.price}₴</span>
             </div>
-            <div className={classes.product_text_mid_top}>
-              <button onClick={addProductToBasket}>Додати В кошик</button>
-              <button onClick={startDeleteHandler}>Видалити</button>
+            <div className={classes.buttons}>
+              <LinkProductButton
+                button={() => addProductToBasket(product)}
+                text="Додати В кошик"
+              />
+              <LinkProductButton button={startDeleteHandler} text="Видалити" />
             </div>
-          </div>
-          <div className={classes.product_text_bottom}>
-            <div>Опис: {product.description}</div>
           </div>
         </div>
       </div>

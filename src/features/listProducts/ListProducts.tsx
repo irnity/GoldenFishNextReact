@@ -6,14 +6,14 @@ import { useSelector } from "react-redux"
 
 // route
 import Link from "next/link"
-import AddProductButton from "@/components/addProductButton/AddProductButton"
+import AddProductButton from "@/components/linkProductButton/LinkProductButton"
 
 import classes from "./ListProducts.module.css"
 
 import { useRouter } from "next/router"
 import Image from "next/image"
 
-import { IProduct } from "../../store/model"
+import { IProduct } from "../../redux/model"
 import Find from "./filter/Find"
 import Information from "@/components/information/Information"
 import Products from "./products/Products"
@@ -29,13 +29,14 @@ const ListProducts: FunctionComponent<ListProductsProps> = ({
   products,
   totalPages,
 }) => {
-  const { isAdmin } = useSelector(
-    (state: { auth: { isLogedIn: boolean; isAdmin: boolean } }) => state.auth
+  const { isLogedIn, isAdmin, userInfo } = useSelector(
+    (state: {
+      auth: { isLogedIn: boolean; isAdmin: boolean; userInfo: string }
+    }) => state.auth
   )
 
-  const router = useRouter()
+  console.log(isLogedIn, isAdmin, userInfo)
 
-  const { categoryId } = router.query as { categoryId: string }
   return (
     <div className={classes.cart}>
       <Information isAdmin={isAdmin} />

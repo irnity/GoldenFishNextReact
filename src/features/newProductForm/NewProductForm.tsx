@@ -3,7 +3,7 @@ import { nanoid } from "@reduxjs/toolkit"
 import { useRef } from "react"
 
 import { useDispatch, useSelector } from "react-redux"
-import { productsActions } from "../../store/productsSlice"
+import { productsActions } from "../../redux/productsSlice"
 import { FunctionComponent, useEffect, useState } from "react"
 import { auth, db } from "../../services/firebase/firebase"
 

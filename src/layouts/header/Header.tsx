@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { authActions } from "@/store/authSlice"
-import { info } from "@/store/authActions"
+import { authActions } from "@/redux/authSlice"
+import { info } from "@/redux/authActions"
 
 import Monitor from "./resolutions/monitor/Monitor"
 import Mobile from "./resolutions/mobile/Mobile"

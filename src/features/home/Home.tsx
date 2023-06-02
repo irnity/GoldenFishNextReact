@@ -1,7 +1,7 @@
 import Image from "next/image"
 import classes from "./Home.module.css"
 import { FunctionComponent, useState } from "react"
-import { IProduct } from "@/store/model"
+import { IProduct } from "@/redux/model"
 import Link from "next/link"
 
 interface HomeProps {

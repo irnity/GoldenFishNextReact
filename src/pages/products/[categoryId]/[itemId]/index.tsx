@@ -1,18 +1,32 @@
+// components
 import Product from "@/features/product/Product"
+
+// react
+import { FunctionComponent, useEffect } from "react"
+
+// redux
+import { IProduct } from "@/redux/model"
+
+// firebase
 import { db } from "@/services/firebase/firebase"
-import { IProduct } from "@/store/model"
-import { collection, doc, getDoc, getDocs } from "firebase/firestore"
-import { useRouter } from "next/router"
-import { FunctionComponent } from "react"
+import { doc, getDoc } from "firebase/firestore"
+import { useDispatch } from "react-redux"
+import { productsActions } from "@/redux/productsSlice"
 
 interface ItemProps {
   data: IProduct
 }
 
 const Item: FunctionComponent<ItemProps> = ({ data }) => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(productsActions.replaceProduct(data))
+  }, [data, dispatch])
+
   return (
     <>
-      <Product product={data} />
+      <Product />
     </>
   )
 }

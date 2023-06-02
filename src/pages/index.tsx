@@ -3,7 +3,7 @@ import classes from "./index.module.css"
 import ListProducts from "@/features/listProducts/ListProducts"
 import { collection, getDocs, limit, query } from "firebase/firestore"
 import { db } from "@/services/firebase/firebase"
-import { IProduct } from "@/store/model"
+import { IProduct } from "@/redux/model"
 import Products from "@/features/listProducts/products/Products"
 import Home from "@/features/home/Home"
 

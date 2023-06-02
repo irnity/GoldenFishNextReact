@@ -1,9 +1,14 @@
 import React, { FunctionComponent } from "react"
 import classes from "./Characteristics.module.css"
+import { IProduct } from "@/redux/model"
+import { useSelector } from "react-redux"
 
 interface CharacteristicsProps {}
 
 const Characteristics: FunctionComponent<CharacteristicsProps> = () => {
+  const product = useSelector(
+    (state: { product: { product: IProduct } }) => state.product.product
+  )
   return (
     <div className={classes.characteristics}>
       <div className={classes.name}>
@@ -11,16 +16,8 @@ const Characteristics: FunctionComponent<CharacteristicsProps> = () => {
       </div>
       <div className={classes.info}>
         <div className={classes.row}>
-          <span>Довжина:</span>
-          <span>3м</span>
-        </div>
-        <div className={classes.row}>
-          <span>Кількість секцій:</span>
-          <span>2</span>
-        </div>
-        <div className={classes.row}>
-          <span>Матеріал бланка:</span>
-          <span>Графит (карбон)</span>
+          <p>Опис: </p>
+          <p>{product.description}</p>
         </div>
       </div>
     </div>

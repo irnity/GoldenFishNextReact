@@ -5,7 +5,7 @@ import productsSlice from "./productsSlice"
 
 const store = configureStore({
   reducer: {
-    products: productsSlice,
+    product: productsSlice,
     basket: basketSlice,
     auth: authSlice,
   },

@@ -4,7 +4,7 @@ import Header from "@/layouts/header/Header"
 import "@/assets/styles/globals.css"
 import type { AppProps } from "next/app"
 import { Provider, useDispatch } from "react-redux"
-import store from "../store"
+import store from "../redux"
 import classes from "./_app.module.css"
 
 import "../assets/styles/Style.css"

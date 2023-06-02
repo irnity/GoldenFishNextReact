@@ -1,4 +1,7 @@
+// react
 import { FunctionComponent } from "react"
+
+// redux
 import { useSelector } from "react-redux"
 
 interface ProfilePageProps {}

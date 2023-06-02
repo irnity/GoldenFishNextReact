@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { IBasketSliceProps } from "../../store/model"
+import { IBasketSliceProps } from "../../redux/model"
 import classes from "./Order.module.css"
 
 interface OrderProps {

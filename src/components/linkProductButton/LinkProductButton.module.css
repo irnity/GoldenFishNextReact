@@ -1,0 +1,30 @@
+.add_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border: none;
+  color: #0994bc;
+  background-color: #dedcdc;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s;
+  width: 100%;
+}
+.add_button:hover {
+  background-color: #c6c4c4;
+}
+.add_button span {
+  font-size: 2.3em;
+  text-transform: capitalize;
+}
+
+.link {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0 5px 0;
+  text-decoration: none;
+  border: none;
+}

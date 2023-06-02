@@ -3,7 +3,7 @@ import BasketOverlay from "./Overlay"
 import classes from "./Basket.module.css"
 import BasketSVG from "@/assets/svg/BasketSVG"
 import { useSelector } from "react-redux"
-import { IBasketSliceProps } from "@/store/model"
+import { IBasketSliceProps } from "@/redux/model"
 
 interface BasketProps {}
 

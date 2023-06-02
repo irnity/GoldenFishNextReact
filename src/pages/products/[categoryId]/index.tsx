@@ -1,5 +1,7 @@
+// react
 import { FunctionComponent } from "react"
 
+// firebase
 import { db } from "../../../services/firebase/firebase"
 import {
   getDocs,
@@ -10,7 +12,7 @@ import {
   getCountFromServer,
 } from "firebase/firestore"
 
-import { IProduct } from "@/store/model"
+import { IProduct } from "@/redux/model"
 import ListProducts from "@/features/listProducts/ListProducts"
 
 interface ProductsListProps {

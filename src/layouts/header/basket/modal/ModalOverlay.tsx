@@ -1,10 +1,11 @@
 import classes from "./ModalOverlay.module.css"
 import React, { FunctionComponent } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { IBasketSliceProps } from "../../../../store/model"
-import { basketActions } from "../../../../store/basketSlice"
+import { IBasketSliceProps } from "../../../../redux/model"
+import { basketActions } from "../../../../redux/basketSlice"
 import Link from "next/link"
 import Order from "@/features/order/Order"
+import LinkProductButton from "@/components/linkProductButton/LinkProductButton"
 
 interface ModalOverlayProps {
   onConfirm: () => void
@@ -36,11 +37,12 @@ const ModalOverlay: FunctionComponent<ModalOverlayProps> = () => {
             <span>Всього: {totalPrice}</span>
           </div>
           <div className={classes.footer_continue}>
-            <button>Продовжити покупки</button>
-            <button onClick={clearBasketHandler}>Очистити корзину</button>
-            <Link href="/order">
-              <button>Оформити</button>
-            </Link>
+            <LinkProductButton href="/home" text="Продовжити покупки" />
+            <LinkProductButton
+              button={clearBasketHandler}
+              text="Очистити корзину"
+            />
+            <LinkProductButton href="/order" text="Оформити замовлення" />
           </div>
         </div>
       </div>
