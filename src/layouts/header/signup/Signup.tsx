@@ -31,22 +31,16 @@ const Sighup: FunctionComponent<SighupProps> = () => {
               </button>
             </Link>
           </div>
-          {/* <div>
-            <Link href="/signin" className={classes.login}>
-              <button>Зареєструватися</button>
-            </Link>
-          </div> */}
         </div>
       ) : (
-        <div>
-          <div></div>
-          <div>
-            <button onClick={logout}>Logout</button>
+        <div className={classes.mainbox}>
+          <div className={classes.login}>
+            <Link href="/cabinet/personal-information">
+              <button>
+                <AccountSVG />
+              </button>
+            </Link>
           </div>
-
-          <Link href="/profile">
-            <button>Profile</button>
-          </Link>
         </div>
       )}
     </div>

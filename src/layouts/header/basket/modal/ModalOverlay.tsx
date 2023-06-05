@@ -11,7 +11,7 @@ interface ModalOverlayProps {
   onConfirm: () => void
 }
 
-const ModalOverlay: FunctionComponent<ModalOverlayProps> = () => {
+const ModalOverlay: FunctionComponent<ModalOverlayProps> = ({ onConfirm }) => {
   const dispatch = useDispatch()
 
   const basket = useSelector(
@@ -37,12 +37,16 @@ const ModalOverlay: FunctionComponent<ModalOverlayProps> = () => {
             <span>Всього: {totalPrice}</span>
           </div>
           <div className={classes.footer_continue}>
-            <LinkProductButton href="/home" text="Продовжити покупки" />
+            <LinkProductButton button={onConfirm} text="Продовжити покупки" />
             <LinkProductButton
               button={clearBasketHandler}
               text="Очистити корзину"
             />
-            <LinkProductButton href="/order" text="Оформити замовлення" />
+            <LinkProductButton
+              href="/order"
+              button={onConfirm}
+              text="Оформити замовлення"
+            />
           </div>
         </div>
       </div>

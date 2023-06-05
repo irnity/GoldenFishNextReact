@@ -48,7 +48,7 @@ const useAuth = () => {
 
       dispatch(authActions.logInWithPassword(admin))
 
-      router.push("/")
+      router.back()
     } catch (err) {
       console.error(err)
     }

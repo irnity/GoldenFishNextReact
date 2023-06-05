@@ -18,7 +18,7 @@ const LinkProductButton: FunctionComponent<LinkProductButtonProps> = ({
     <>
       {href !== undefined ? (
         <Link href={href} className={classes.link}>
-          <button className={classes.add_button}>
+          <button className={classes.add_button} onClick={button}>
             <span>{text}</span>
           </button>
         </Link>

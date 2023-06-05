@@ -3,11 +3,11 @@
 
 import { db } from "../../services/firebase/firebase"
 import { nanoid } from "@reduxjs/toolkit"
-import { addDoc, collection, doc, setDoc } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, setDoc } from "firebase/firestore"
 
 async function handler(req, res) {
+  const data = JSON.parse(req.body)
   if (req.method === "POST") {
-    const data = JSON.parse(req.body)
     // edit
     const productData = {
       // new update code creator
@@ -37,6 +37,24 @@ async function handler(req, res) {
     } catch (err) {
       // console.error(err)
       // res.json(err, data)
+      res.json(err)
+    }
+  }
+  if (req.method === "PUT") {
+    try {
+      await deleteDoc(
+        doc(
+          db,
+          "store",
+          data.categoryId,
+          "items",
+          data.itemId,
+          "comments",
+          data.id
+        )
+      )
+      res.send({ status: 200, message: "Comment Deleted" })
+    } catch (error) {
       res.json(err)
     }
   }

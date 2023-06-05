@@ -37,14 +37,15 @@
 
 .footer_top_block {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+
   justify-content: flex-start;
   flex-direction: column;
   color: white;
 }
 .footer_top_block_text {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   padding: 5px;
@@ -52,7 +53,7 @@
 
 .footer_top_block_text span {
   color: white;
-  padding: 5px;
+  padding: 5px 5px 5px 0;
 }
 
 .footer_bottom {
