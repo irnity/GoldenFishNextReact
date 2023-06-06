@@ -3,16 +3,15 @@ import classes from "./Cabinet.module.css"
 import useAuth from "@/hooks/auth-hook"
 import { useSelector } from "react-redux"
 import { auth } from "@/services/firebase/firebase"
-import Tab from "./components/userInfo/Tab"
-import Links from "../../components/cart/links/Links"
 import { useRouter } from "next/router"
 import Cart from "@/components/cart/Cart"
+import Links from "../../components/cart/links/Links"
 
-interface CabinetProps {
+interface InformationProps {
   children: ReactNode
 }
 
-const Cabinet: FunctionComponent<CabinetProps> = (props) => {
+const Information: FunctionComponent<InformationProps> = (props) => {
   const router = useRouter()
 
   const { isLogedIn, isAdmin, userInfo } = useSelector(
@@ -27,7 +26,7 @@ const Cabinet: FunctionComponent<CabinetProps> = (props) => {
     }
   }, [isLogedIn, router])
 
-  return <Cart type="cabinet" right={props.children} />
+  return <Cart type="information" right={props.children} />
 }
 
-export default Cabinet
+export default Information

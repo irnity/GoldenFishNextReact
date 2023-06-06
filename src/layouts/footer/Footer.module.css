@@ -32,16 +32,16 @@
 .footer_top {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .footer_top_block {
   display: flex;
   align-items: flex-start;
-
   justify-content: flex-start;
   flex-direction: column;
   color: white;
+  margin-top: 25px;
 }
 .footer_top_block_text {
   display: flex;

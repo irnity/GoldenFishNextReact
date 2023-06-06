@@ -35,8 +35,6 @@ async function handler(req, res) {
       )
       res.status(201).json({ message: "Meetup inserted" })
     } catch (err) {
-      // console.error(err)
-      // res.json(err, data)
       res.json(err)
     }
   }
@@ -55,9 +53,36 @@ async function handler(req, res) {
       )
       res.send({ status: 200, message: "Comment Deleted" })
     } catch (error) {
-      res.json(err)
+      res.send({ status: 500, message: "Comment not Deleted" })
     }
   }
 }
+
+///  test for handler function
+// let test = async () => {
+//   let req = {
+//     body: JSON.stringify({
+//       name: "test",
+//       email: "",
+//       rate: 5,
+//       positive: "",
+//       negative: "",
+//       comment: "",
+//       categoryId: "test",
+//       itemId: "test",
+//     }),
+//     method: "POST",
+//   }
+//   let res = {
+//     status: (code) => {
+//       console.log(code)
+//       return res
+//     },
+//   }
+//   await handler(req, res)
+//   console.log("test")
+// }
+
+// test()
 
 export default handler

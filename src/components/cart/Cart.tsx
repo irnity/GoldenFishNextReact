@@ -1,18 +1,17 @@
 import { FunctionComponent, ReactNode, useEffect } from "react"
-import classes from "./Cabinet.module.css"
+import classes from "./Cart.module.css"
 import useAuth from "@/hooks/auth-hook"
 import { useSelector } from "react-redux"
 import { auth } from "@/services/firebase/firebase"
-import Tab from "./components/userInfo/Tab"
-import Links from "../../components/cart/links/Links"
 import { useRouter } from "next/router"
-import Cart from "@/components/cart/Cart"
+import Links from "./links/Links"
 
-interface CabinetProps {
-  children: ReactNode
+interface CartProps {
+  type: string
+  right: ReactNode
 }
 
-const Cabinet: FunctionComponent<CabinetProps> = (props) => {
+const Cart: FunctionComponent<CartProps> = (props) => {
   const router = useRouter()
 
   const { isLogedIn, isAdmin, userInfo } = useSelector(
@@ -27,7 +26,13 @@ const Cabinet: FunctionComponent<CabinetProps> = (props) => {
     }
   }, [isLogedIn, router])
 
-  return <Cart type="cabinet" right={props.children} />
+  return (
+    <div className={classes.cart}>
+      <Links type={props.type} />
+
+      <div className={classes.info}>{props.right}</div>
+    </div>
+  )
 }
 
-export default Cabinet
+export default Cart
