@@ -23,7 +23,7 @@ const NewProductPage: FunctionComponent<NewProductPageProps> = () => {
     const result = await responce.json()
 
     console.log(result)
-    router.push("/home")
+    router.push("/")
   }
   return <NewProductForm onAddMeetup={addMeetupHadler} />
 }

@@ -16,10 +16,14 @@ import Information from "@/components/information/Information"
 import useBasket from "@/hooks/basket-hook"
 import Image from "next/image"
 import LinkProductButton from "@/components/linkProductButton/LinkProductButton"
+import { useRouter } from "next/router"
 
 interface ProductProps {}
 const Product: FunctionComponent<ProductProps> = () => {
   const dispatch = useDispatch()
+
+  const router = useRouter()
+  const { categoryId, itemId } = router.query
 
   const product = useSelector(
     (state: { product: { product: IProduct } }) => state.product.product
@@ -27,10 +31,26 @@ const Product: FunctionComponent<ProductProps> = () => {
 
   const { addProductToBasket } = useBasket()
 
-  function startDeleteHandler() {
+  const { isLogedIn, isAdmin, userInfo } = useSelector(
+    (state: {
+      auth: { isLogedIn: boolean; isAdmin: boolean; userInfo: string }
+    }) => state.auth
+  )
+
+  async function startDeleteHandler() {
     const procced = window.confirm("Are you sure?")
     if (procced) {
-      dispatch(productsActions.removeProduct())
+      const data = {
+        itemId: itemId,
+        categoryId: categoryId,
+      }
+
+      const responce = await fetch("/api/deleteproduct", {
+        method: "PUT",
+        body: JSON.stringify(data),
+      })
+      console.log(responce)
+      router.back()
     }
   }
 
@@ -75,7 +95,12 @@ const Product: FunctionComponent<ProductProps> = () => {
                 button={() => addProductToBasket(product)}
                 text="Додати В кошик"
               />
-              <LinkProductButton button={startDeleteHandler} text="Видалити" />
+              {isAdmin && (
+                <LinkProductButton
+                  button={startDeleteHandler}
+                  text="Видалити"
+                />
+              )}
             </div>
           </div>
         </div>
