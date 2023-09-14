@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from "react"
 import classes from "./index.module.css"
-import ListProducts from "@/features/listProducts/ListProducts"
+import ListProducts from "@/components/screens/listProducts/page/ListProducts"
 import { collection, getDocs, limit, query } from "firebase/firestore"
 import { db } from "@/services/firebase/firebase"
 import { IProduct } from "@/redux/model"
-import Products from "@/features/listProducts/products/Products"
-import Home from "@/features/home/Home"
+import Products from "@/components/screens/listProducts/components/products/Products"
+import Home from "@/components/screens/home/Home"
 
 interface HomePageProps {
   fishingrod: IProduct[]

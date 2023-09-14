@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { IBasketSliceProps } from "../../../../redux/model"
 import { basketActions } from "../../../../redux/basketSlice"
 import Link from "next/link"
-import Order from "@/features/order/Order"
-import LinkProductButton from "@/components/linkProductButton/LinkProductButton"
+import Order from "@/components/screens/order/Order"
+import LinkProductButton from "@/components/elements/linkProductButton/LinkProductButton"
 
 interface ModalOverlayProps {
   onConfirm: () => void

@@ -1,5 +1,5 @@
-import Information from "@/features/information/Information"
-import Tab from "@/features/profile/components/userInfo/Tab"
+import Information from "@/components/screens/information/Information"
+import Tab from "@/components/screens/profile/components/userInfo/Tab"
 import { FunctionComponent } from "react"
 
 interface ArticleReviewsProps {}

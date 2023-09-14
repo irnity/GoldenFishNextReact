@@ -20,21 +20,21 @@ interface NavigationHeaderProps {}
 
 const NavigationHeader: FunctionComponent<NavigationHeaderProps> = () => {
   return (
-    <div className={classes.cart}>
+    <nav className={classes.cart}>
       {/*  */}
       <div className={classes.left}>
         <NavLink url="/information/actions" text="Акції" />
-        <NavLink url="/information/discounts" text="Знижки" />
-        <NavLink url="/information/brands" text="Бренди" />
-        <NavLink url="/information/payment-and-delivery" text="Оплата" />
+        <NavLink url="/information/discounts" text="Доставка" />
+        <NavLink url="/information/brands" text="Знижки" />
+        <NavLink url="/information/payment-and-delivery" text="Бренди" />
         <NavLink url="/information/contacts" text="Контакти" />
         <NavLink url="/information/shops" text="Магазини" />
-        <NavLink url="/information/service-center" text="Сервіс" />
-        <NavLink url="/information/news" text="Новини" />
-        <NavLink url="/information/articles-and-reviews" text="Статті" />
+        <NavLink url="/information/service-center" text="Партнери" />
+        <NavLink url="/information/news" text="Допомога" />
+        {/* <NavLink url="/information/articles-and-reviews" text="Статті" />
         <NavLink url="/information/forum" text="Форум" />
         <NavLink url="/information/help" text="Допомога" />
-        <NavLink url="/information/guarantee" text="Гарантія" />
+        <NavLink url="/information/guarantee" text="Гарантія" /> */}
       </div>
       {/*  */}
       <div className={classes.right}>
@@ -55,7 +55,7 @@ const NavigationHeader: FunctionComponent<NavigationHeaderProps> = () => {
         </div>
       </div>
       {/*  */}
-    </div>
+    </nav>
   )
 }
 

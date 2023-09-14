@@ -9,7 +9,7 @@
   border-right: 1px solid rgba(0, 0, 0, 0.582);
   border-left: 1px solid rgba(0, 0, 0, 0.521);
   user-select: none;
-  z-index: 50;
+  z-index: 5;
   cursor: pointer;
   box-sizing: border-box;
 }

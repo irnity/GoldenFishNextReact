@@ -1,5 +1,5 @@
 // components
-import Product from "@/features/product/Product"
+import Product from "@/components/screens/product/Product"
 
 // react
 import { FunctionComponent, useEffect } from "react"

@@ -36,7 +36,7 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
   }
 
   return (
-    <>
+    <div className={classes.block}>
       <div className={classes.catalog}>
         {/* categorys */}
         {Information.map((data) => (
@@ -70,7 +70,7 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
           </div>
         </div>
       </CSSTransition>
-    </>
+    </div>
   )
 }
 

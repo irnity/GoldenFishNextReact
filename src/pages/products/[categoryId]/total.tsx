@@ -1,4 +1,4 @@
-import Total from "@/features/total/Total"
+import Total from "@/components/screens/total/Total"
 import { IProduct } from "@/redux/model"
 import { db } from "@/services/firebase/firebase"
 import { collection, getCountFromServer, getDocs } from "firebase/firestore"

@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import Cart from "@/features/product/about/cart/Cart"
-import Comments from "@/features/product/about/tabs/comments/Comments"
+import Cart from "@/components/screens/product/about/cart/Cart"
+import Comments from "@/components/screens/product/about/tabs/comments/Comments"
 import { collection, doc, getDoc, getDocs } from "firebase/firestore"
 import { db } from "@/services/firebase/firebase"
 

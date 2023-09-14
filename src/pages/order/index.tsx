@@ -1,6 +1,6 @@
 // react
 import { FunctionComponent } from "react"
-import Order from "../../features/order/Order"
+import Order from "../../components/screens/order/Order"
 
 // redux
 import { useSelector } from "react-redux"

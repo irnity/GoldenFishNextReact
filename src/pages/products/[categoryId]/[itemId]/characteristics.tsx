@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import Characteristics from "@/features/product/about/tabs/characteristics/Characteristics"
-import Cart from "@/features/product/about/cart/Cart"
+import Characteristics from "@/components/screens/product/about/tabs/characteristics/Characteristics"
+import Cart from "@/components/screens/product/about/cart/Cart"
 
 interface CharacteristicsPageProps {}
 

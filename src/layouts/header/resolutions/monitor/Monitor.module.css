@@ -1,8 +1,8 @@
 .cart::before {
   content: "";
   position: absolute;
-  width: 6%;
-  left: -6%;
+  width: 100%;
+  left: -75%;
   height: 100%;
   z-index: 0;
   background-color: rgba(3, 196, 255, 1);
@@ -11,18 +11,47 @@
   content: "";
   position: absolute;
   top: 0;
-  width: 6%;
-  right: -6%;
+  width: 100%;
+  right: -75%;
   height: 100%;
   z-index: 0;
   background-color: rgba(3, 196, 255, 1);
 }
 
 .cart {
-  width: 90%;
+  width: 100%;
   background-color: rgba(3, 196, 255, 1);
   position: relative;
-  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  display: flex;
+  width: 100%;
+  z-index: 5;
+}
+
+.left {
+  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.right {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 @media (min-width: 0px) {

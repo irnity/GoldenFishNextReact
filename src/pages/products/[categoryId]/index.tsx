@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore"
 
 import { IProduct } from "@/redux/model"
-import ListProducts from "@/features/listProducts/ListProducts"
+import ListProducts from "@/components/screens/listProducts/page/ListProducts"
 
 interface ProductsListProps {
   data: IProduct[]
@@ -26,23 +26,6 @@ const ProductsList: FunctionComponent<ProductsListProps> = ({
 }) => {
   return <ListProducts products={data} totalPages={totalPages} />
 }
-
-// export async function getStaticPaths() {
-//   const collectionRef = collection(db, "store")
-//   const collectionSnap = await getDocs(collectionRef)
-
-//   // docs to data
-//   const filteredData = collectionSnap.docs.map((doc) => ({
-//     id: doc.id,
-//   }))
-
-//   // make path id
-//   const paths = filteredData.map((data: any) => ({
-//     params: { categoryId: data.id },
-//   }))
-
-//   return { paths, fallback: false }
-// }
 
 // props
 export async function getServerSideProps(context: any) {
