@@ -1,0 +1,47 @@
+.form {
+  width: 100%;
+}
+
+.paramsContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.addParamButton {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.addParamButton:hover {
+  cursor: pointer;
+  border: 1px solid #333;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 50px;
+}
+
+.actions button {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  color: white;
+}
+
+.actions button:hover {
+  cursor: pointer;
+  border: 1px solid #333;
+}

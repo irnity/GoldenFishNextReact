@@ -18,7 +18,7 @@ async function handler(req, res) {
       image: data.image,
       price: data.price,
       inStock: data.inStock,
-      userId: data.userId,
+      params: data.params,
     }
 
     try {

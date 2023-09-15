@@ -30,6 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <div
           style={{
             width: "62%",
+            zIndex: 0,
           }}
         >
           <Footer />

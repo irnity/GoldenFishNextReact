@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react"
-import NewProductForm from "../../features/newProductForm/NewProductForm"
+import NewProductForm from "@/components/screens/newProductForm/page/NewProductForm"
 import { useRouter } from "next/router"
 import { useSelector } from "react-redux"
 
@@ -14,18 +14,7 @@ const NewProductPage: FunctionComponent<NewProductPageProps> = () => {
     }) => state.auth
   )
 
-  const addMeetupHadler = async (enteredMeetupData: any) => {
-    const responce = await fetch("/api/newproduct", {
-      method: "POST",
-      body: JSON.stringify(enteredMeetupData),
-    })
-
-    const result = await responce.json()
-
-    console.log(result)
-    router.push("/")
-  }
-  return <NewProductForm onAddMeetup={addMeetupHadler} />
+  return <NewProductForm />
 }
 
 export default NewProductPage
