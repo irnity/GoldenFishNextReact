@@ -1,6 +1,3 @@
-//
-// post /api/
-
 import { db } from "../../services/firebase/firebase"
 import { nanoid } from "@reduxjs/toolkit"
 import { addDoc, collection, doc, setDoc } from "firebase/firestore"
@@ -10,7 +7,6 @@ async function handler(req, res) {
     const data = JSON.parse(req.body)
     // edit
     const productData = {
-      // new update code creator
       code: nanoid(),
       category: data.category,
       title: data.title,
@@ -21,17 +17,14 @@ async function handler(req, res) {
       params: data.params,
     }
 
+    // firebase add new product
     try {
-      // addDoc createNew elemets with auto id
-
       const responce = await setDoc(
         doc(db, "store", productData.category, "items", productData.code),
         productData
       )
-      res.status(201).json({ message: "Meetup inserted" })
+      res.json({ message: "success", data: productData })
     } catch (err) {
-      // console.error(err)
-      // res.json(err, data)
       res.json(err)
     }
   }

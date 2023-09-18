@@ -10,21 +10,7 @@
   width: 100%;
 }
 
-.addParamButton {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  font-size: 20px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-.addParamButton:hover {
-  cursor: pointer;
-  border: 1px solid #333;
-}
-
-.actions {
+.row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,16 +18,9 @@
   gap: 50px;
 }
 
-.actions button {
-  width: 100%;
-  padding: 10px;
-  font-size: 20px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  color: white;
-}
-
-.actions button:hover {
-  cursor: pointer;
-  border: 1px solid #333;
+.error {
+  color: red;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
 }

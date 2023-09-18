@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 
 const useAddProductHook = () => {
@@ -7,12 +7,14 @@ const useAddProductHook = () => {
 
   const router = useRouter()
 
-  const [category, setCategory] = useState("")
-  const [title, setTitle] = useState("")
-  const [image, setImage] = useState("")
+  const [category, setCategory] = useState<string>("")
+  const [title, setTitle] = useState<string>("")
+  const [image, setImage] = useState<string>("")
+  const [description, setDescription] = useState<string>("")
   const [price, setPrice] = useState<number>(0)
   const [inStock, setInStock] = useState<number>(0)
-  const [description, setDescription] = useState("")
+
+  const [error, setError] = useState<string>("")
 
   const [params, setParams] = useState<{ name: string; value: string }[] | []>(
     []
@@ -68,19 +70,42 @@ const useAddProductHook = () => {
     setParams(params.slice(0, -1))
   }
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setError("")
+    }, 3000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [error])
+
   const pushProductToFirebaseHandler = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault()
 
     const data = {
-      category,
-      title,
-      description,
-      image,
-      price,
-      inStock,
-      params,
+      category: category.trim(),
+      title: title.trim(),
+      description: description.trim(),
+      image: image.trim(),
+      price: +price,
+      inStock: +inStock,
+      params: params,
+    }
+
+    if (
+      !category ||
+      !title ||
+      !description ||
+      !image ||
+      !price ||
+      !inStock ||
+      !params
+    ) {
+      setError("Please fill all fields")
+      return
     }
 
     try {
@@ -91,11 +116,16 @@ const useAddProductHook = () => {
 
       const result = await responce.json()
 
-      console.log(result)
+      console.log("Responce:", result.message, "Data:", result.data)
+
       router.replace(`/products/${data.category}`)
     } catch (error) {
       console.log(error)
     }
+  }
+
+  const routerBackHandler = () => {
+    router.back()
   }
 
   return {
@@ -115,6 +145,10 @@ const useAddProductHook = () => {
     params,
     paramNameHandler,
     paramValueHandler,
+
+    error,
+
+    routerBackHandler,
 
     addParamHandler,
     removeLastParamHandler,

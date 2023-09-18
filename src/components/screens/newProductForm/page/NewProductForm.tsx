@@ -14,7 +14,7 @@ import { useRouter } from "next/router"
 import { query } from "firebase/firestore"
 import useAddProductHook from "../hook/useAddProductHook"
 import NewProductInput from "../components/NewProductInput"
-import LinkProductButton from "@/components/elements/linkProductButton/LinkProductButton"
+import NewProductButton from "../components/NewProductButton"
 
 interface NewProductFormProps {}
 
@@ -35,6 +35,9 @@ const NewProductForm = () => {
     paramNameHandler,
     paramValueHandler,
 
+    error,
+    routerBackHandler,
+
     addParamHandler,
     removeLastParamHandler,
 
@@ -43,6 +46,7 @@ const NewProductForm = () => {
 
   return (
     <form className={classes.form} onSubmit={pushProductToFirebaseHandler}>
+      {/* Product */}
       <NewProductInput
         type="text"
         name="Category"
@@ -60,7 +64,7 @@ const NewProductForm = () => {
       <NewProductInput
         type="url"
         name="Image"
-        required={true}
+        required={false}
         placeholder="Image"
         onChange={imageHandler}
       />
@@ -72,13 +76,7 @@ const NewProductForm = () => {
         placeholder="Description"
         onChange={descriptionHandler}
       />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: "50px",
-        }}
-      >
+      <div className={classes.row}>
         <NewProductInput
           type="number"
           name="Price"
@@ -94,18 +92,12 @@ const NewProductForm = () => {
           onChange={inStockHandler}
         />
       </div>
+
+      {/* Params */}
       <div className={classes.paramsContainer}>
         <h1>Params</h1>
         {params.map((param, index) => (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
-              gap: "50px",
-            }}
-            key={index}
-          >
+          <div className={classes.row} key={index}>
             <NewProductInput
               type="text"
               name="Name"
@@ -128,34 +120,30 @@ const NewProductForm = () => {
             />
           </div>
         ))}
+        <NewProductButton
+          handler={addParamHandler}
+          text={"Add Param"}
+          type="button"
+        />
+        <NewProductButton
+          handler={removeLastParamHandler}
+          text={"Remove Param"}
+          type="button"
+        />
       </div>
-      <button
-        type="button"
-        className={classes.addParamButton}
-        onClick={addParamHandler}
-      >
-        Add param
-      </button>
-      <button
-        type="button"
-        className={classes.addParamButton}
-        onClick={removeLastParamHandler}
-      >
-        Remove param
-      </button>
 
-      <div className={classes.actions}>
-        <button
-          style={{ backgroundColor: "tomato" }}
-          onClick={() => {
-            router.back()
-          }}
-        >
-          Cancel
-        </button>
-        <button type="submit" style={{ backgroundColor: "green" }}>
-          Submit
-        </button>
+      {/* Error */}
+      <h1 className={classes.error}>{error}</h1>
+
+      {/* Navigation */}
+      <div className={classes.row}>
+        <NewProductButton
+          text={"Back"}
+          color={"tomato"}
+          handler={routerBackHandler}
+          type="button"
+        />
+        <NewProductButton text={"Submit"} color={"green"} type="submit" />
       </div>
     </form>
   )

@@ -17,4 +17,30 @@ const NewProductPage: FunctionComponent<NewProductPageProps> = () => {
   return <NewProductForm />
 }
 
+// next.js fetch server side
+// next all server side methods
+// getServerSideProps
+// getStaticProps
+// getStaticPaths
+
+// export const getServerSideProps = async (context: any) => {
+//   const { req, res } = context
+
+//   const { isLogedIn, isAdmin, userInfo } = req.cookies
+
+//   if (true) {
+//     return {
+//       redirect: {
+//         destination: "/",
+//         permanent: false,
+
+//       },
+//     }
+//   }
+
+//   return {
+//     props: {},
+//   }
+// }
+
 export default NewProductPage
