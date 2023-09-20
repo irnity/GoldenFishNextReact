@@ -13,8 +13,8 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { query } from "firebase/firestore"
 import useAddProductHook from "../hook/useAddProductHook"
-import NewProductInput from "../components/NewProductInput"
-import NewProductButton from "../components/NewProductButton"
+import CustomInput from "@/components/elements/customInput/CustomInput"
+import CustomButton from "@/components/elements/customButton/CustomButton"
 
 interface NewProductFormProps {}
 
@@ -47,21 +47,21 @@ const NewProductForm = () => {
   return (
     <form className={classes.form} onSubmit={pushProductToFirebaseHandler}>
       {/* Product */}
-      <NewProductInput
+      <CustomInput
         type="text"
         name="Category"
         required={true}
         placeholder="Category"
         onChange={categoryHandler}
       />
-      <NewProductInput
+      <CustomInput
         type="text"
         name="Title"
         required={true}
         placeholder="Title"
         onChange={titleHandler}
       />
-      <NewProductInput
+      <CustomInput
         type="url"
         name="Image"
         required={false}
@@ -69,7 +69,7 @@ const NewProductForm = () => {
         onChange={imageHandler}
       />
 
-      <NewProductInput
+      <CustomInput
         type="text"
         name="Description"
         required={true}
@@ -77,14 +77,14 @@ const NewProductForm = () => {
         onChange={descriptionHandler}
       />
       <div className={classes.row}>
-        <NewProductInput
+        <CustomInput
           type="number"
           name="Price"
           required={true}
           placeholder="0"
           onChange={priceHandler}
         />
-        <NewProductInput
+        <CustomInput
           type="number"
           name="InStock"
           required={true}
@@ -98,7 +98,7 @@ const NewProductForm = () => {
         <h1>Params</h1>
         {params.map((param, index) => (
           <div className={classes.row} key={index}>
-            <NewProductInput
+            <CustomInput
               type="text"
               name="Name"
               required={true}
@@ -108,7 +108,7 @@ const NewProductForm = () => {
                 paramNameHandler(event, index)
               }}
             />
-            <NewProductInput
+            <CustomInput
               type="text"
               name="Value"
               required={true}
@@ -120,12 +120,12 @@ const NewProductForm = () => {
             />
           </div>
         ))}
-        <NewProductButton
+        <CustomButton
           handler={addParamHandler}
           text={"Add Param"}
           type="button"
         />
-        <NewProductButton
+        <CustomButton
           handler={removeLastParamHandler}
           text={"Remove Param"}
           type="button"
@@ -137,13 +137,13 @@ const NewProductForm = () => {
 
       {/* Navigation */}
       <div className={classes.row}>
-        <NewProductButton
+        <CustomButton
           text={"Back"}
           color={"tomato"}
           handler={routerBackHandler}
           type="button"
         />
-        <NewProductButton text={"Submit"} color={"green"} type="submit" />
+        <CustomButton text={"Submit"} color={"green"} type="submit" />
       </div>
     </form>
   )

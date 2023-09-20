@@ -21,9 +21,6 @@ import { AnyAction } from "@reduxjs/toolkit"
 import { ThunkDispatch } from "redux-thunk"
 import { ROUTER_TYPE } from "next/dist/build/utils"
 
-// user.uid - User UID
-// user.email - User email
-
 const useAuth = () => {
   const { status } = useSelector((state: any) => state.auth)
 
@@ -48,7 +45,8 @@ const useAuth = () => {
     dispatch(authActions.changeStatus(""))
   }, [status])
 
-  const loginHandler = async () => {
+  const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     dispatch(authLogin({ email, password }))
   }
 
@@ -56,7 +54,10 @@ const useAuth = () => {
     await dispatch(authGmail())
   }
 
-  const registrationHandler = async () => {
+  const registrationHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault()
     dispatch(authRegistration({ email, password }))
   }
 

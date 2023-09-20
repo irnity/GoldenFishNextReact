@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./NewProductInput.module.css"
+import styles from "./CustomInput.module.css"
 
 type Props = {
   type: string
@@ -10,7 +10,7 @@ type Props = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const NewProductInput = (props: Props) => {
+const CustomInput = (props: Props) => {
   return (
     <div className={styles.container}>
       <label htmlFor={props.name}>{props.name}</label>
@@ -27,4 +27,4 @@ const NewProductInput = (props: Props) => {
   )
 }
 
-export default NewProductInput
+export default CustomInput
