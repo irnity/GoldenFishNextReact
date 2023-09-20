@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { authActions } from "@/redux/authSlice"
-import { info } from "@/redux/authActions"
+import { authGetUserInformation } from "@/redux/authSlice"
 
 import Monitor from "./resolutions/monitor/Monitor"
 import Mobile from "./resolutions/mobile/Mobile"
 
+import { ThunkDispatch } from "redux-thunk"
+import { AnyAction } from "redux"
+
 const Header = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<ThunkDispatch<any, any, AnyAction>>()
 
   useEffect(() => {
-    dispatch(authActions.isLogedInCheck())
-    dispatch(info())
+    dispatch(authGetUserInformation())
   }, [dispatch])
 
   return (
