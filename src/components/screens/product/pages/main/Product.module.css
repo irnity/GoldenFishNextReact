@@ -1,31 +1,24 @@
 .cart {
-  width: 90%;
-  margin: 0 0 20px 0;
+  width: 100%;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
 }
 
 .block {
   width: 100%;
-  margin: 5px 0 150px 0;
   display: flex;
-  justify-content: center;
   align-items: flex-start;
+  margin-bottom: 15px;
 }
 
 .cart_image {
-  width: 40%;
-  max-height: 60%;
+  width: 50%;
   border-radius: 5%;
   box-shadow: 0px 4px 7px 1px rgba(71, 71, 71, 0.274);
-  background-color: white;
   display: flex;
   align-content: center;
   justify-content: center;
-
-  flex-direction: column;
 }
 .image {
   width: 100%;
@@ -33,13 +26,11 @@
 }
 
 .cart_text {
-  width: 60%;
+  width: 50%;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  padding-left: 15px;
-  padding-bottom: 15px;
+  margin-left: 15px;
   box-sizing: border-box;
 }
 
@@ -55,7 +46,10 @@
   padding: 5px 0;
   font-size: 2em;
   margin: 0 0 15px 0;
-  border: 1px solid gainsboro;
+}
+.text p {
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .buttons {
@@ -67,4 +61,24 @@
 }
 .buttons div {
   width: 40%;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.detailsContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+}
+.commentsContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
 }

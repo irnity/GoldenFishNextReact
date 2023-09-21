@@ -11,15 +11,28 @@ import { IProduct } from "@/redux/model"
 import { useDispatch, useSelector } from "react-redux"
 
 // Components
-import AboutProduct from "./about/AboutProduct"
+import AboutProduct from "../../components/navigation/AboutProduct"
 import Information from "@/components/elements/information/Information"
 import useBasket from "@/hooks/basket-hook"
 import Image from "next/image"
 import LinkProductButton from "@/components/elements/linkProductButton/LinkProductButton"
 import { useRouter } from "next/router"
+import useProduct from "../../hooks/useProduct"
+import Link from "next/link"
+import CustomButton from "@/components/elements/customButton/CustomButton"
+import Comments from "../comments/Comments"
+import Characteristics from "../characteristics/Characteristics"
 
-interface ProductProps {}
-const Product: FunctionComponent<ProductProps> = () => {
+interface ProductProps {
+  data: any
+  commentsCount: number
+  commentsData: any
+}
+const Product: FunctionComponent<ProductProps> = ({
+  data,
+  commentsCount,
+  commentsData,
+}) => {
   const dispatch = useDispatch()
 
   const router = useRouter()
@@ -29,6 +42,11 @@ const Product: FunctionComponent<ProductProps> = () => {
     (state: { product: { product: IProduct } }) => state.product.product
   )
 
+  const { deleteProductHandler } = useProduct({
+    itemId: itemId as string,
+    categoryId: categoryId as string,
+  })
+
   const { addProductToBasket } = useBasket()
 
   const { isLogedIn, isAdmin, userInfo } = useSelector(
@@ -36,23 +54,6 @@ const Product: FunctionComponent<ProductProps> = () => {
       auth: { isLogedIn: boolean; isAdmin: boolean; userInfo: string }
     }) => state.auth
   )
-
-  async function startDeleteHandler() {
-    const procced = window.confirm("Are you sure?")
-    if (procced) {
-      const data = {
-        itemId: itemId,
-        categoryId: categoryId,
-      }
-
-      const responce = await fetch("/api/deleteproduct", {
-        method: "PUT",
-        body: JSON.stringify(data),
-      })
-      console.log(responce)
-      router.back()
-    }
-  }
 
   return (
     <div className={classes.cart}>
@@ -76,10 +77,18 @@ const Product: FunctionComponent<ProductProps> = () => {
               <p>{product.title}</p>
             </div>
             <div className={classes.text}>
+              <Link href={`/products/${categoryId}/${itemId}/comments`}>
+                <p>Відгуки: {commentsCount}</p>
+              </Link>
+            </div>
+            <div className={classes.text}>
               <span>Код товару: {product.code || "code"}</span>
             </div>
           </div>
           <div className={classes.text_block}>
+            <div className={classes.text}>
+              <span>{product.price}₴</span>
+            </div>
             <div className={classes.text}>
               {product.inStock >= "1" ? (
                 <span>В наявності</span>
@@ -87,22 +96,31 @@ const Product: FunctionComponent<ProductProps> = () => {
                 <span>Немає в наявності</span>
               )}
             </div>
-            <div className={classes.text}>
-              <span>Ціна: {product.price}₴</span>
-            </div>
             <div className={classes.buttons}>
-              <LinkProductButton
-                button={() => addProductToBasket(product)}
+              <CustomButton
+                type="button"
+                handler={() => addProductToBasket(product)}
                 text="Додати В кошик"
+                color="#4285f4"
               />
               {isAdmin && (
-                <LinkProductButton
-                  button={startDeleteHandler}
+                <CustomButton
+                  type="button"
+                  handler={deleteProductHandler}
                   text="Видалити"
+                  color="red"
                 />
               )}
             </div>
           </div>
+        </div>
+      </div>
+      <div className={classes.container}>
+        <div className={classes.detailsContainer}>
+          <Characteristics characteristics={data} />
+        </div>
+        <div className={classes.commentsContainer}>
+          <Comments data={commentsData} />
         </div>
       </div>
     </div>

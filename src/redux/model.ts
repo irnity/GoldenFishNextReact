@@ -7,6 +7,10 @@ export interface IProduct {
   description: string
   inStock: string
   category: string
+  params: {
+    name: string
+    value: string
+  }
 }
 
 export interface IBasketSliceProps {

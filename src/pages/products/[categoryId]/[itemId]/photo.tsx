@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import Cart from "@/components/screens/product/about/cart/Cart"
-import Photo from "@/components/screens/product/about/tabs/photo/Photo"
+import Cart from "@/components/screens/product/components/cart/Cart"
+import Photo from "@/components/screens/product/pages/photo/Photo"
 
 interface PhotoPageProps {}
 

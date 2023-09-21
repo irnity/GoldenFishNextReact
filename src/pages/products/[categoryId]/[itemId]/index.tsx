@@ -1,5 +1,5 @@
 // components
-import Product from "@/components/screens/product/Product"
+import Product from "@/components/screens/product/pages/main/Product"
 
 // react
 import { FunctionComponent, useEffect } from "react"
@@ -9,15 +9,29 @@ import { IProduct } from "@/redux/model"
 
 // firebase
 import { db } from "@/services/firebase/firebase"
-import { doc, getDoc } from "firebase/firestore"
+import {
+  collection,
+  doc,
+  getCountFromServer,
+  getDoc,
+  getDocs,
+  limit,
+  query,
+} from "firebase/firestore"
 import { useDispatch } from "react-redux"
 import { productsActions } from "@/redux/productsSlice"
 
 interface ItemProps {
   data: IProduct
+  commentsCount: number
+  commentsData: any
 }
 
-const Item: FunctionComponent<ItemProps> = ({ data }) => {
+const Item: FunctionComponent<ItemProps> = ({
+  data,
+  commentsCount,
+  commentsData,
+}) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -25,51 +39,18 @@ const Item: FunctionComponent<ItemProps> = ({ data }) => {
   }, [data, dispatch])
 
   return (
-    <>
-      <Product />
-    </>
+    <Product
+      data={data}
+      commentsCount={commentsCount}
+      commentsData={commentsData}
+    />
   )
 }
 
-// url paths
-// export async function getStaticPaths() {
-//   const paths: any = []
-
-//   // get all category names
-//   const collectionRef = await collection(db, "store")
-//   const collectionSnap = await getDocs(collectionRef)
-//   const documentsData = collectionSnap.docs.map((doc) => doc.id)
-
-//   // by every category name fetch items
-//   documentsData.forEach(async (doc) => {
-//     // get all items in category
-//     const itemsRef = await collection(db, "store", `${doc}`, "items")
-//     const itemsSnap = await getDocs(itemsRef)
-//     const itemsData = itemsSnap.docs.map((data) => data.id)
-
-//     // by every item create path
-//     itemsData.forEach((item) => {
-//       paths.push({
-//         params: {
-//           categoryId: doc,
-//           itemId: item,
-//         },
-//       })
-//     })
-//   })
-
-//   return {
-//     fallback: false,
-//     paths,
-//   }
-// }
-
-// get Data from server
 export async function getServerSideProps(context: any) {
   // get url
   const { categoryId, itemId } = context.params
 
-  // fetch API
   const productsCollectionRef = doc(
     db,
     "store",
@@ -78,15 +59,43 @@ export async function getServerSideProps(context: any) {
     `${itemId}`
   )
 
-  // get document
   const data = await getDoc(productsCollectionRef)
 
-  // document to data
+  const commentsCountRef = collection(
+    db,
+    "store",
+    `${categoryId}`,
+    "items",
+    `${itemId}`,
+    "comments"
+  )
+
+  const commentsCountSnapshot = await getCountFromServer(commentsCountRef)
+
+  const commentsCount = commentsCountSnapshot.data().count
+
   const filteredData = data.data()
+
+  // fetch API
+  const commentsCollectionRef = query(
+    collection(db, "store", `${categoryId}`, "items", `${itemId}`, "comments"),
+    limit(3)
+  )
+
+  // get document
+  const comments = await getDocs(commentsCollectionRef)
+
+  // document to data
+  const commentsData = comments.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }))
 
   return {
     props: {
       data: filteredData,
+      commentsCount,
+      commentsData: commentsData,
     },
   }
 }

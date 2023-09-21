@@ -3,9 +3,16 @@ import classes from "./Characteristics.module.css"
 import { IProduct } from "@/redux/model"
 import { useSelector } from "react-redux"
 
-interface CharacteristicsProps {}
+interface CharacteristicsProps {
+  characteristics?: any
+}
 
-const Characteristics: FunctionComponent<CharacteristicsProps> = () => {
+const Characteristics: FunctionComponent<CharacteristicsProps> = ({
+  characteristics,
+}) => {
+  let comments = characteristics.params
+  if (comments === undefined) comments = []
+
   const product = useSelector(
     (state: { product: { product: IProduct } }) => state.product.product
   )
@@ -14,12 +21,14 @@ const Characteristics: FunctionComponent<CharacteristicsProps> = () => {
       <div className={classes.name}>
         <h2>Основні характеристики</h2>
       </div>
-      <div className={classes.info}>
-        <div className={classes.row}>
-          <p>Опис: </p>
-          <p>{product.description}</p>
+      {comments.map((item: any) => (
+        <div className={classes.info} key={item.name}>
+          <div className={classes.row}>
+            <p>{item.name}</p>
+            <p>{item.value}</p>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   )
 }
