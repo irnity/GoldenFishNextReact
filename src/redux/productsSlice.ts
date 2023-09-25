@@ -15,6 +15,10 @@ const initialProductsState: {
     description: "Description",
     inStock: "InStock",
     category: "Category",
+    params: {
+      name: "fff",
+      value: "fff",
+    },
   },
   loaded: false,
 }
