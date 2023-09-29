@@ -19,7 +19,6 @@ import { getFunctions, httpsCallable } from "firebase/functions"
 import { useRouter } from "next/router"
 import { AnyAction } from "@reduxjs/toolkit"
 import { ThunkDispatch } from "redux-thunk"
-import { ROUTER_TYPE } from "next/dist/build/utils"
 
 const useAuth = () => {
   const { status } = useSelector((state: any) => state.auth)

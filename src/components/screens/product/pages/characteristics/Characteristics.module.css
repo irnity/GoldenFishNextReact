@@ -1,15 +1,54 @@
-.characteristics {
+.cart {
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
   padding: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   box-sizing: border-box;
+  padding-bottom: 500px;
 }
 .row {
   display: flex;
-  justify-content: flex-start;
-  padding: 5px;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.486);
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.title {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.name {
+  position: relative;
+  align-self: flex-start;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.name::before {
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  display: block;
+  width: 100%;
+  border-bottom: 1px dotted #d2d2d2;
+  content: "";
+}
+
+.name span {
+  font-size: 14px;
+  position: relative;
+  display: inline-block;
+  padding-right: 16px;
+  background-color: #f3f3f3;
+}
+
+.value {
+  width: 50%;
+  padding-left: 16px;
+  box-sizing: border-box;
+  font-size: 14px;
+  position: relative;
 }

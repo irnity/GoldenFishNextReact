@@ -61,6 +61,8 @@ export async function getServerSideProps(context: any) {
 
   const data = await getDoc(productsCollectionRef)
 
+  const filteredData = data.data()
+
   const commentsCountRef = collection(
     db,
     "store",
@@ -73,8 +75,6 @@ export async function getServerSideProps(context: any) {
   const commentsCountSnapshot = await getCountFromServer(commentsCountRef)
 
   const commentsCount = commentsCountSnapshot.data().count
-
-  const filteredData = data.data()
 
   // fetch API
   const commentsCollectionRef = query(

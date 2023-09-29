@@ -3,8 +3,10 @@ import classes from "./Cart.module.css"
 import Information from "@/components/elements/information/Information"
 import AboutProduct from "../navigation/AboutProduct"
 import Buy from "../buy/Buy"
+import { IProduct } from "@/redux/model"
 interface CartProps {
   children: ReactNode
+  product: IProduct
 }
 
 const Cart: FunctionComponent<CartProps> = (props) => {
@@ -25,9 +27,11 @@ const Cart: FunctionComponent<CartProps> = (props) => {
         <div
           style={{
             width: "40%",
+            position: "sticky",
+            top: "0px",
           }}
         >
-          <Buy />
+          <Buy product={props.product} />
         </div>
       </div>
     </div>
