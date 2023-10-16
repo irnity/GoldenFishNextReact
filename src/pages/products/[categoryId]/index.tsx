@@ -10,6 +10,8 @@ import {
   collection,
   startAfter,
   getCountFromServer,
+  doc,
+  where,
 } from "firebase/firestore"
 
 import { IProduct } from "@/redux/model"
@@ -38,8 +40,12 @@ export async function getServerSideProps(context: any) {
 
   let totalPages
 
+  // get total pages
   try {
-    const coll = collection(db, `store`, `${id}`, "items")
+    const coll = query(
+      collection(db, `products`),
+      where("category", "==", `${id}`)
+    )
     const snapshot = await getCountFromServer(coll)
 
     totalPages = snapshot.data().count
@@ -47,44 +53,39 @@ export async function getServerSideProps(context: any) {
     console.log(error)
   }
 
+  // get collection
   try {
-    // get collection
-    // first page
     if (page <= 1 || Number.isNaN(page)) {
-      const productsCollectionRef = query(
-        collection(db, `store`, `${id}`, "items"),
-        limit(9)
-      )
+      try {
+        const products = query(
+          collection(db, `products`),
+          where("category", "==", `${id}`),
+          limit(9)
+        )
+        const productsData = await getDocs(products)
 
-      data = await getDocs(productsCollectionRef)
+        data = productsData
+        console.log(id, productsData)
+      } catch (error) {
+        console.log(error)
+      }
     } else {
-      // second page
-
-      // get previes collection
-      const previesProductsCollectionRef = query(
-        collection(db, `store`, `${id}`, "items"),
-        limit(9 * (page - 1))
-      )
-
-      const previesData = await getDocs(previesProductsCollectionRef)
-
-      const lastVisible = previesData.docs[previesData.docs.length - 1]
-
       // get new collection
       const productsCollectionRef = query(
-        collection(db, `store`, `${id}`, "items"),
-        startAfter(lastVisible),
+        collection(db, `products`),
+        where("category", "==", `${id}`),
+        startAfter(page * 9 - 9),
         limit(9)
       )
-
       data = await getDocs(productsCollectionRef)
     }
 
     // docs to data
-    const filteredData = data.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id.toString(),
-    }))
+    const filteredData =
+      data?.docs?.map((doc) => ({
+        ...doc.data(),
+        id: doc.id.toString(),
+      })) || []
 
     return {
       props: {
