@@ -6,7 +6,6 @@ import { useSelector } from "react-redux"
 
 // route
 import Link from "next/link"
-import LinkProductButton from "@/components/elements/linkProductButton/LinkProductButton"
 
 import classes from "./ListProducts.module.css"
 
