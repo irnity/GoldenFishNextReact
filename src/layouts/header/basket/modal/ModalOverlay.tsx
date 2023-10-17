@@ -5,7 +5,8 @@ import { IBasketSliceProps } from "../../../../redux/model"
 import { basketActions } from "../../../../redux/basketSlice"
 import Link from "next/link"
 import Order from "@/components/screens/order/Order"
-import LinkProductButton from "@/components/elements/linkProductButton/LinkProductButton"
+import CustomButton from "@/components/elements/customButton/CustomButton"
+import { useRouter } from "next/router"
 
 interface ModalOverlayProps {
   onConfirm: () => void
@@ -13,6 +14,8 @@ interface ModalOverlayProps {
 
 const ModalOverlay: FunctionComponent<ModalOverlayProps> = ({ onConfirm }) => {
   const dispatch = useDispatch()
+
+  const router = useRouter()
 
   const basket = useSelector(
     (state: { basket: IBasketSliceProps }) => state.basket.basket
@@ -37,14 +40,19 @@ const ModalOverlay: FunctionComponent<ModalOverlayProps> = ({ onConfirm }) => {
             <span>Всього: {totalPrice}</span>
           </div>
           <div className={classes.footer_continue}>
-            <LinkProductButton button={onConfirm} text="Продовжити покупки" />
-            <LinkProductButton
-              button={clearBasketHandler}
+            <CustomButton
+              type="button"
+              handler={onConfirm}
+              text="Продовжити покупки"
+            />
+            <CustomButton
+              type="button"
+              handler={clearBasketHandler}
               text="Очистити корзину"
             />
-            <LinkProductButton
-              href="/order"
-              button={onConfirm}
+            <CustomButton
+              type="button"
+              handler={() => router.push("/order")}
               text="Оформити замовлення"
             />
           </div>
