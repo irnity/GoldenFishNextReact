@@ -2,7 +2,6 @@ import { FunctionComponent, useEffect, useState } from "react"
 
 import Catalog from "./catalog/Catalog"
 import classes from "./Monitor.module.css"
-import NavigationHeader from "../../navigation/Navigation"
 import ShopName from "../../shopName/ShopName"
 import SearchHeader from "../../search/SearchHeader"
 import Sighup from "../../signup/Signup"
@@ -13,10 +12,7 @@ interface MonitorProps {}
 const Monitor: FunctionComponent<MonitorProps> = () => {
   return (
     <div className={classes.cart}>
-      {/*  */}
       <section className={classes.container}>
-        <NavigationHeader />
-
         <div className={classes.box}>
           <div className={classes.left}>
             <ShopName />
@@ -30,7 +26,6 @@ const Monitor: FunctionComponent<MonitorProps> = () => {
         </div>
       </section>
 
-      {/*  */}
       <Catalog />
     </div>
   )

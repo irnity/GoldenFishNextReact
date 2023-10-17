@@ -1,8 +1,6 @@
 // react
-import Cabinet from "@/components/screens/profile/Cabinet"
-import Tab from "@/components/screens/profile/components/userInfo/Tab"
-import useAuth from "@/hooks/auth-hook"
-import { auth } from "@/services/firebase/firebase"
+import Cart from "@/components/screens/profile/components/cart/Cart"
+import UserInfo from "@/components/screens/profile/pages/UserInfo"
 import { FunctionComponent } from "react"
 
 // css
@@ -10,14 +8,16 @@ import { FunctionComponent } from "react"
 // redux
 import { useSelector } from "react-redux"
 
-interface MessegesPageProps {}
+interface PersonalInformationPageProps {}
 
-const MessegesPage: FunctionComponent<MessegesPageProps> = () => {
+const PersonalInformationPage: FunctionComponent<
+  PersonalInformationPageProps
+> = () => {
   return (
-    <Cabinet>
-      <Tab />
-    </Cabinet>
+    <Cart>
+      <UserInfo />
+    </Cart>
   )
 }
 
-export default MessegesPage
+export default PersonalInformationPage

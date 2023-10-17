@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react"
-import classes from "./Tab.module.css"
+import classes from "./UserInfo.module.css"
 import useAuth from "@/hooks/auth-hook"
 import { useSelector } from "react-redux"
 import LinkProductButton from "@/components/elements/linkProductButton/LinkProductButton"
 
-interface TabProps {}
+interface UserInfoProps {}
 
-const Tab: FunctionComponent<TabProps> = () => {
+const UserInfo: FunctionComponent<UserInfoProps> = () => {
   const { userInfo } = useSelector(
     (state: { auth: { userInfo: { email: string } } }) => state.auth
   )
@@ -43,4 +43,4 @@ const Tab: FunctionComponent<TabProps> = () => {
   )
 }
 
-export default Tab
+export default UserInfo
