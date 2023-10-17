@@ -31,10 +31,11 @@ const useProduct = ({ itemId, categoryId }: IproductReference) => {
         categoryId: categoryId,
       }
 
-      const responce = await fetch("/api/deleteproduct", {
+      const responce = await fetch("/api/newproduct", {
         method: "PUT",
         body: JSON.stringify(data),
       })
+
       console.log(responce)
       router.back()
     }
@@ -59,7 +60,6 @@ const useProduct = ({ itemId, categoryId }: IproductReference) => {
       positive: positive,
       negative: negative,
       comment: comment,
-      categoryId,
       itemId,
     }
 
@@ -78,6 +78,7 @@ const useProduct = ({ itemId, categoryId }: IproductReference) => {
       id: id,
       categoryId: categoryId,
       itemId: itemId,
+      name: auth.currentUser?.email,
     }
     const responce = await fetch("/api/newcomment", {
       method: "PUT",

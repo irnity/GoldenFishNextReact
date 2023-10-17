@@ -10,9 +10,10 @@ import {
   query,
 } from "firebase/firestore"
 import { db } from "@/services/firebase/firebase"
+import { IProduct } from "@/redux/model"
 
 interface CharacteristicsPageProps {
-  data: any
+  data: IProduct
 }
 
 const CharacteristicsPage: FunctionComponent<CharacteristicsPageProps> = ({
@@ -28,14 +29,7 @@ const CharacteristicsPage: FunctionComponent<CharacteristicsPageProps> = ({
 export async function getServerSideProps(context: any) {
   const { categoryId, itemId } = context.params
 
-  // fetch API
-  const productsCollectionRef = doc(
-    db,
-    "store",
-    `${categoryId}`,
-    "items",
-    `${itemId}`
-  )
+  const productsCollectionRef = doc(db, "products", `${itemId}`)
 
   const data = await getDoc(productsCollectionRef)
 

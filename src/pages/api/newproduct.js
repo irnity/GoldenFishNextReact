@@ -1,6 +1,6 @@
 import { db } from "../../services/firebase/firebase"
 import { nanoid } from "@reduxjs/toolkit"
-import { addDoc, collection, doc, setDoc } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, setDoc } from "firebase/firestore"
 
 async function handler(req, res) {
   if (req.method === "POST") {
@@ -15,17 +15,30 @@ async function handler(req, res) {
       price: data.price,
       inStock: data.inStock,
       params: data.params,
+      // firebase time
+      createdAt: new Date().toISOString(),
     }
 
     // firebase add new product
     try {
       const responce = await setDoc(
-        doc(db, "store", productData.category, "items", productData.code),
+        doc(db, "products", productData.code),
         productData
       )
       res.json({ message: "success", data: productData })
     } catch (err) {
       res.json(err)
+    }
+  }
+
+  if (req.method === "PUT") {
+    const data = JSON.parse(req.body)
+    console.log(data, req.method)
+    try {
+      await deleteDoc(doc(db, "products", data.itemId))
+      res.send({ status: 200, message: "Comment Deleted" })
+    } catch (error) {
+      res.send({ status: 500, message: "Comment not Deleted" })
     }
   }
 }

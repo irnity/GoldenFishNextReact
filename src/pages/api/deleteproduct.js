@@ -6,7 +6,7 @@ async function handler(req, res) {
   console.log(data, req.method)
   if (req.method === "PUT") {
     try {
-      await deleteDoc(doc(db, "store", data.categoryId, "items", data.itemId))
+      await deleteDoc(doc(db, "products", data.itemId))
       res.send({ status: 200, message: "Comment Deleted" })
     } catch (error) {
       res.send({ status: 500, message: "Comment not Deleted" })

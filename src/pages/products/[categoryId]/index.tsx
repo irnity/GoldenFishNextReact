@@ -56,19 +56,12 @@ export async function getServerSideProps(context: any) {
   // get collection
   try {
     if (page <= 1 || Number.isNaN(page)) {
-      try {
-        const products = query(
-          collection(db, `products`),
-          where("category", "==", `${id}`),
-          limit(9)
-        )
-        const productsData = await getDocs(products)
-
-        data = productsData
-        console.log(id, productsData)
-      } catch (error) {
-        console.log(error)
-      }
+      const products = query(
+        collection(db, `products`),
+        where("category", "==", `${id}`),
+        limit(9)
+      )
+      data = await getDocs(products)
     } else {
       // get new collection
       const productsCollectionRef = query(
@@ -81,11 +74,10 @@ export async function getServerSideProps(context: any) {
     }
 
     // docs to data
-    const filteredData =
-      data?.docs?.map((doc) => ({
-        ...doc.data(),
-        id: doc.id.toString(),
-      })) || []
+    const filteredData = data.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id.toString(),
+    }))
 
     return {
       props: {

@@ -20,14 +20,7 @@ const PhotoPage: FunctionComponent<PhotoPageProps> = ({ data }) => {
 export async function getServerSideProps(context: any) {
   const { categoryId, itemId } = context.params
 
-  // fetch API
-  const productsCollectionRef = doc(
-    db,
-    "store",
-    `${categoryId}`,
-    "items",
-    `${itemId}`
-  )
+  const productsCollectionRef = doc(db, "products", `${itemId}`)
 
   const data = await getDoc(productsCollectionRef)
 

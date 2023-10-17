@@ -22,15 +22,8 @@ async function handler(req, res) {
     try {
       // addDoc createNew elemets with auto id
 
-      const responce = await addDoc(
-        collection(
-          db,
-          "store",
-          data.categoryId,
-          "items",
-          data.itemId,
-          "comments"
-        ),
+      const responce = await setDoc(
+        doc(db, "products", data.itemId, "comments", data.email),
         productData
       )
       res.status(201).json({ message: "Meetup inserted" })
@@ -40,17 +33,7 @@ async function handler(req, res) {
   }
   if (req.method === "PUT") {
     try {
-      await deleteDoc(
-        doc(
-          db,
-          "store",
-          data.categoryId,
-          "items",
-          data.itemId,
-          "comments",
-          data.id
-        )
-      )
+      await deleteDoc(doc(db, "products", data.itemId, "comments", data.name))
       res.send({ status: 200, message: "Comment Deleted" })
     } catch (error) {
       res.send({ status: 500, message: "Comment not Deleted" })

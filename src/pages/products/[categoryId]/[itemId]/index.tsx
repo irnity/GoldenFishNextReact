@@ -42,7 +42,7 @@ const Item: FunctionComponent<ItemProps> = ({
     <Product
       data={data}
       commentsCount={commentsCount}
-      commentsData={commentsData}
+      commentsData={commentsData.slice(0, 3) || []}
     />
   )
 }
@@ -51,42 +51,27 @@ export async function getServerSideProps(context: any) {
   // get url
   const { categoryId, itemId } = context.params
 
-  const productsCollectionRef = doc(
-    db,
-    "store",
-    `${categoryId}`,
-    "items",
-    `${itemId}`
-  )
+  const productsCollectionRef = doc(db, "products", `${itemId}`)
 
   const data = await getDoc(productsCollectionRef)
 
   const filteredData = data.data()
 
-  const commentsCountRef = collection(
+  // comments
+
+  // fetch API
+  const commentsCollectionRef = collection(
     db,
-    "store",
-    `${categoryId}`,
-    "items",
+    "products",
     `${itemId}`,
     "comments"
   )
 
-  const commentsCountSnapshot = await getCountFromServer(commentsCountRef)
-
-  const commentsCount = commentsCountSnapshot.data().count
-
-  // fetch API
-  const commentsCollectionRef = query(
-    collection(db, "store", `${categoryId}`, "items", `${itemId}`, "comments"),
-    limit(3)
-  )
-
   // get document
-  const comments = await getDocs(commentsCollectionRef)
+  const commentsData = await getDocs(commentsCollectionRef)
 
   // document to data
-  const commentsData = comments.docs.map((doc) => ({
+  const filteredcommentsData = commentsData.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
   }))
@@ -94,8 +79,8 @@ export async function getServerSideProps(context: any) {
   return {
     props: {
       data: filteredData,
-      commentsCount,
-      commentsData: commentsData,
+      commentsCount: filteredcommentsData.length,
+      commentsData: filteredcommentsData,
     },
   }
 }
