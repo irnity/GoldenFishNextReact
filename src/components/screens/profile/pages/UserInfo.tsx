@@ -1,9 +1,11 @@
 import { FunctionComponent } from "react"
 import classes from "./UserInfo.module.css"
 import useAuth from "@/hooks/auth-hook"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import CustomButton from "@/components/elements/customButton/CustomButton"
 import { useRouter } from "next/router"
+import { authLogout } from "@/redux/authSlice"
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit"
 
 interface UserInfoProps {}
 
@@ -14,11 +16,13 @@ const UserInfo: FunctionComponent<UserInfoProps> = () => {
 
   const router = useRouter()
 
-  const menuHandler = () => {
+  const { logout } = useAuth()
+
+  const menuHandler = async () => {
+    await logout()
     router.push("/")
   }
 
-  const { logout } = useAuth()
   return (
     <div>
       <div className={classes.tab}>

@@ -1,16 +1,23 @@
 .cart {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .link {
   text-decoration: none;
 }
-.title {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 15px;
+
+.categoryId {
+  min-width: 20%;
+  margin-right: 10px;
+}
+.itemId {
+  min-width: 20%;
+  margin-right: 10px;
+}
+.button {
+  min-width: 20%;
+  margin-right: 10px;
 }

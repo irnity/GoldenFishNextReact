@@ -17,20 +17,26 @@ import {
   getDocs,
   limit,
   query,
+  where,
 } from "firebase/firestore"
 import { useDispatch } from "react-redux"
 import { productsActions } from "@/redux/productsSlice"
+import ProductsList from ".."
+import ListProducts from "@/components/screens/listProducts/page/ListProducts"
+import Products from "@/components/screens/listProducts/components/products/Products"
 
 interface ItemProps {
   data: IProduct
   commentsCount: number
   commentsData: any
+  canBuy: IProduct[]
 }
 
 const Item: FunctionComponent<ItemProps> = ({
   data,
   commentsCount,
   commentsData,
+  canBuy,
 }) => {
   const dispatch = useDispatch()
 
@@ -39,11 +45,14 @@ const Item: FunctionComponent<ItemProps> = ({
   }, [data, dispatch])
 
   return (
-    <Product
-      data={data}
-      commentsCount={commentsCount}
-      commentsData={commentsData.slice(0, 3) || []}
-    />
+    <>
+      <Product
+        data={data}
+        commentsCount={commentsCount}
+        commentsData={commentsData.slice(0, 3) || []}
+      />
+      <Products products={canBuy} />
+    </>
   )
 }
 
@@ -76,11 +85,29 @@ export async function getServerSideProps(context: any) {
     ...doc.data(),
   }))
 
+  let canBuy
+
+  try {
+    const canbuyquary = query(
+      collection(db, `products`),
+      where("category", "==", `fishingrod`),
+      limit(3)
+    )
+    const canBuyAnfiltered = await getDocs(canbuyquary)
+    canBuy = canBuyAnfiltered.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id.toString(),
+    }))
+  } catch (error) {
+    console.log(error)
+  }
+
   return {
     props: {
       data: filteredData,
       commentsCount: filteredcommentsData.length,
       commentsData: filteredcommentsData,
+      canBuy: canBuy,
     },
   }
 }

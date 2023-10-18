@@ -21,9 +21,10 @@ import Link from "next/link"
 import CustomButton from "@/components/elements/customButton/CustomButton"
 import Comments from "../comments/Comments"
 import Characteristics from "../characteristics/Characteristics"
+import ProductsList from "@/pages/products/[categoryId]"
 
 interface ProductProps {
-  data: any
+  data: IProduct
   commentsCount: number
   commentsData: any
 }
@@ -70,52 +71,65 @@ const Product: FunctionComponent<ProductProps> = ({
           />
         </div>
 
-        <div className={classes.cart_text}>
-          <div className={classes.text_block}>
-            <div className={classes.text}>
-              <p>{product.title}</p>
-            </div>
-            <div className={classes.text}>
-              <Link href={`/products/${categoryId}/${itemId}/comments`}>
-                <p>Відгуки: {commentsCount}</p>
-              </Link>
-            </div>
-            <div className={classes.text}>
+        <div className={classes.information_container}>
+          {/* title */}
+          <div className={classes.product_title_container}>
+            <span>{product.title}</span>
+          </div>
+
+          {/* rate & code */}
+          <div className={classes.rate_and_code_container}>
+            <Link
+              href={`/products/${categoryId}/${itemId}/comments`}
+              className={classes.rate}
+            >
+              <span>Відгуки: {commentsCount}</span>
+            </Link>
+            <div className={classes.code}>
               <span>Код товару: {product.code || "code"}</span>
             </div>
           </div>
-          <div className={classes.text_block}>
-            <div className={classes.text}>
-              <span>{product.price}₴</span>
-            </div>
-            <div className={classes.text}>
-              {product.inStock >= "1" ? (
-                <span>В наявності</span>
+
+          {/* price & buy button */}
+          <div className={classes.price_buy_container}>
+            <div className={classes.price}>
+              <h2>{product.price}₴</h2>
+              {Number(product.inStock) >= 1 ? (
+                <span className={classes.isStock}>В наявності</span>
               ) : (
-                <span>Немає в наявності</span>
+                <span className={classes.outStock}>Немає в наявності</span>
               )}
             </div>
-            <div className={classes.buttons}>
+            <div className={classes.buy}>
               <CustomButton
                 type="button"
                 handler={() => addProductToBasket(product)}
                 text="Додати В кошик"
                 color="#4285f4"
               />
-              {isAdmin && (
-                <CustomButton
-                  type="button"
-                  handler={deleteProductHandler}
-                  text="Видалити"
-                  color="red"
-                />
-              )}
             </div>
           </div>
+          {isAdmin && (
+            <CustomButton
+              type="button"
+              handler={deleteProductHandler}
+              text="Видалити"
+              color="red"
+            />
+          )}
         </div>
       </div>
       <div className={classes.container}>
         <div className={classes.detailsContainer}>
+          <div>
+            <h2>Опис</h2>
+            <span>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+              consectetur eos labore laudantium. Magni maiores praesentium
+              molestias, ea quo, unde blanditiis, vitae possimus quisquam culpa
+              dignissimos labore aspernatur distinctio et?
+            </span>
+          </div>
           <Characteristics characteristics={data} />
         </div>
         <div className={classes.commentsContainer}>

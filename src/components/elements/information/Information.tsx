@@ -15,32 +15,43 @@ const Information: FunctionComponent<InformationProps> = ({ isAdmin }) => {
   }
   return (
     <div className={classes.cart}>
-      <div className={classes.title}>
+      <div className={classes.categoryId}>
         <CustomButton
           type="button"
           handler={() => {
             router.push(`/products/${categoryId}`)
           }}
+          color="white"
+          backGroundColor="#2196f3"
           text={categoryId}
         />
-        {itemId && (
+      </div>
+      {itemId && (
+        <div className={classes.itemId}>
           <CustomButton
             type="button"
             handler={() => {
               router.push(`/products/${categoryId}/${itemId}`)
             }}
+            color="white"
+            backGroundColor="#2196f3"
             text={itemId}
           />
-        )}
-      </div>
+        </div>
+      )}
+
       {isAdmin && (
-        <CustomButton
-          type="button"
-          handler={() => {
-            router.push(`/add_product`)
-          }}
-          text="Додати товар"
-        />
+        <div className={classes.button}>
+          <CustomButton
+            type="button"
+            handler={() => {
+              router.push(`/add_product`)
+            }}
+            color="white"
+            backGroundColor="#2196f3"
+            text="Додати товар"
+          />
+        </div>
       )}
     </div>
   )
