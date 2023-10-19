@@ -7,6 +7,8 @@ export interface IProduct {
   description: string
   inStock: string
   category: string
+  totalComments: number
+  totalRate: number
   params: {
     name: string
     value: string

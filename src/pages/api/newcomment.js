@@ -3,7 +3,15 @@
 
 import { db } from "../../services/firebase/firebase"
 import { nanoid } from "@reduxjs/toolkit"
-import { addDoc, collection, deleteDoc, doc, setDoc } from "firebase/firestore"
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  increment,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore"
 
 async function handler(req, res) {
   const data = JSON.parse(req.body)
@@ -26,6 +34,10 @@ async function handler(req, res) {
         doc(db, "products", data.itemId, "comments", data.email),
         productData
       )
+      await updateDoc(doc(db, "products", data.itemId), {
+        totalComments: increment(1),
+        totalRate: increment(data.rate),
+      })
       res.status(201).json({ message: "Meetup inserted" })
     } catch (err) {
       res.json(err)
@@ -34,6 +46,10 @@ async function handler(req, res) {
   if (req.method === "PUT") {
     try {
       await deleteDoc(doc(db, "products", data.itemId, "comments", data.name))
+      await updateDoc(doc(db, "products", data.itemId), {
+        totalComments: increment(-1),
+        totalRate: increment(-data.rate),
+      })
       res.send({ status: 200, message: "Comment Deleted" })
     } catch (error) {
       res.send({ status: 500, message: "Comment not Deleted" })

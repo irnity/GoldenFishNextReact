@@ -15,6 +15,8 @@ const initialProductsState: {
     description: "Description",
     inStock: "InStock",
     category: "Category",
+    totalComments: 0,
+    totalRate: 0,
     params: {
       name: "fff",
       value: "fff",

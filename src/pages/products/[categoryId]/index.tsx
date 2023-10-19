@@ -31,13 +31,10 @@ const ProductsList: FunctionComponent<ProductsListProps> = ({
 
 // props
 export async function getServerSideProps(context: any) {
-  // запит до API або бази даних для отримання списку постів
   const id = context.params.categoryId
-
   const page = parseInt(context.query.page)
 
   let data
-
   let totalPages
 
   // get total pages
@@ -53,7 +50,7 @@ export async function getServerSideProps(context: any) {
     console.log(error)
   }
 
-  // get collection
+  // get first page
   try {
     if (page <= 1 || Number.isNaN(page)) {
       const products = query(
@@ -63,7 +60,7 @@ export async function getServerSideProps(context: any) {
       )
       data = await getDocs(products)
     } else {
-      // get new collection
+      // get second page
       const productsCollectionRef = query(
         collection(db, `products`),
         where("category", "==", `${id}`),
@@ -84,7 +81,6 @@ export async function getServerSideProps(context: any) {
         data: filteredData,
         totalPages: totalPages,
       },
-      // revalidate: 30,
     }
   } catch (err) {
     console.error(err)

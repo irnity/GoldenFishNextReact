@@ -6,7 +6,7 @@ type Props = {
   color?: string
   backGroundColor?: string
   handler?: () => void
-  text: string
+  text?: string
   svg?: React.ReactNode
 }
 

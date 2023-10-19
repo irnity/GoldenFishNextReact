@@ -168,7 +168,7 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
               >
                 <CustomButton
                   type="button"
-                  handler={() => deleteCommentHandler(comment.id)}
+                  handler={() => deleteCommentHandler(comment.id, comment.rate)}
                   text="Видалити"
                   color="red"
                 />

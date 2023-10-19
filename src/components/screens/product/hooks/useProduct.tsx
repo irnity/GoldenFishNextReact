@@ -73,12 +73,13 @@ const useProduct = ({ itemId, categoryId }: IproductReference) => {
     router.reload()
   }
 
-  const deleteCommentHandler = async (id: string) => {
+  const deleteCommentHandler = async (id: string, rate: number) => {
     const data = {
       id: id,
       categoryId: categoryId,
       itemId: itemId,
       name: auth.currentUser?.email,
+      rate: rate,
     }
     const responce = await fetch("/api/newcomment", {
       method: "PUT",

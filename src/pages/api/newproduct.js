@@ -15,6 +15,8 @@ async function handler(req, res) {
       price: data.price,
       inStock: data.inStock,
       params: data.params,
+      totalComments: 0,
+      totalRate: 0,
       // firebase time
       createdAt: new Date().toISOString(),
     }
