@@ -2,15 +2,7 @@ import { FunctionComponent, useEffect, useState } from "react"
 import classes from "./Find.module.css"
 import { useRouter } from "next/router"
 
-import * as React from "react"
-import Box from "@mui/material/Box"
-import Slider from "@mui/material/Slider"
-
 interface FindProps {}
-
-function valuetext(value: number) {
-  return `${value}°C`
-}
 
 const minDistance = 50
 
@@ -25,7 +17,10 @@ const Find: FunctionComponent<FindProps> = () => {
   })
 
   useEffect(() => {
-    const params = inStock ? inStock.split("-") : []
+    let params: string[] = []
+    if (typeof inStock === "string") {
+      params = inStock.split("-")
+    }
     setStock({
       inStock: params.includes("available"),
       outStock: params.includes("out_of_stock"),
@@ -33,7 +28,10 @@ const Find: FunctionComponent<FindProps> = () => {
   }, [inStock])
 
   const addToQuery = (url: string) => {
-    const params = inStock ? inStock.split("-") : []
+    let params: string[] = []
+    if (typeof inStock === "string") {
+      params = inStock.split("-")
+    }
     // create query
     if (!inStock) {
       router.replace({
@@ -73,14 +71,6 @@ const Find: FunctionComponent<FindProps> = () => {
     })
   }
 
-  // slider
-  const [value, setValue] = React.useState<number[]>([0, 55])
-
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    console.log(value)
-    setValue(newValue as number[])
-  }
-
   return (
     <div className={classes.find}>
       <div className={classes.title}>
@@ -118,18 +108,6 @@ const Find: FunctionComponent<FindProps> = () => {
           <label htmlFor="outStock">Немає в наявності</label>
         </div>
       </div>
-      <Box sx={{ width: "90%" }}>
-        <Slider
-          getAriaLabel={() => "Temperature range"}
-          value={value}
-          onChange={handleChange}
-          valueLabelDisplay="auto"
-          getAriaValueText={valuetext}
-          disableSwap
-          min={0}
-          max={500}
-        />
-      </Box>
     </div>
   )
 }

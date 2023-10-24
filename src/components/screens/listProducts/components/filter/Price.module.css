@@ -1,4 +1,4 @@
-.find {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -7,7 +7,6 @@
   background-color: #fff;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
   border-radius: 5px;
-  margin-bottom: 10px;
 }
 .title {
   display: flex;
@@ -15,16 +14,14 @@
   margin: 10px 0 0 2px;
   color: rgb(0, 170, 255);
   font-weight: 600;
+  margin-bottom: 5px;
 }
-.options {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+.input {
   width: 90%;
-  margin-bottom: 10px;
+  display: flex;
+  gap: 5px;
 }
 
-.options div span {
-  margin-left: 5px;
+.button {
+  width: 90%;
 }

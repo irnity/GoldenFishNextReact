@@ -18,6 +18,7 @@ import Information from "@/components/elements/information/Information"
 import Products from "../components/products/Products"
 import Sort from "../components/sort/Sort"
 import PagesNumber from "../components/pagesNumber/PagesNumber"
+import Price from "../components/filter/Price"
 
 interface ListProductsProps {
   products: IProduct[]
@@ -37,16 +38,6 @@ const ListProducts: FunctionComponent<ListProductsProps> = ({
 
   console.log(isLogedIn, isAdmin, userInfo)
 
-  const [viewMode, setViewMode] = useState<string>("row")
-
-  const viewModeHandler = () => {
-    if (viewMode === "less") {
-      setViewMode("less")
-    } else {
-      setViewMode("more")
-    }
-  }
-
   return (
     <div className={classes.container}>
       <Information isAdmin={isAdmin} />
@@ -55,16 +46,17 @@ const ListProducts: FunctionComponent<ListProductsProps> = ({
         {/*  */}
         <section className={classes.sort}>
           <Find />
+          <Price />
         </section>
         {/*  */}
         <section className={classes.products_list}>
-          <Sort viewModeHandler={viewModeHandler} viewMode={viewMode} />
+          <Sort />
 
           {products.length === 0 ? (
             <div className={classes.empty}>На данний час товар відсутній</div>
           ) : (
             <>
-              <Products products={products} viewMode={viewMode} />
+              <Products products={products} />
               <PagesNumber totalPages={totalPages} />
             </>
           )}

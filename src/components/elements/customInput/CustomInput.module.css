@@ -22,6 +22,18 @@
   border: 1px solid #ccc;
 }
 
+/* Chrome, Safari, Edge, Opera */
+.container input::-webkit-outer-spin-button,
+.container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.container input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .container input:focus {
   outline: none;
   border: 1px solid #333;

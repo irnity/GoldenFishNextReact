@@ -39,6 +39,9 @@ export async function getServerSideProps(context: any) {
   const inStock = context.query.inStock
   const inStockQuaryArray = inStock ? inStock.split(",") : []
 
+  const price = context.query.price
+  const priceQuaryArray = price ? price.split("-") : []
+
   let baseQuery = query(
     collection(db, `products`),
     where("category", "==", categoryId)
@@ -51,10 +54,18 @@ export async function getServerSideProps(context: any) {
     baseQuery = query(baseQuery, where("weCanSell", "==", false))
   }
 
+  if (priceQuaryArray.length === 2) {
+    baseQuery = query(
+      baseQuery,
+      where("price", ">=", parseInt(priceQuaryArray[0])),
+      where("price", "<=", parseInt(priceQuaryArray[1]))
+    )
+  }
+
   switch (sortQuery) {
-    case "rating":
-      baseQuery = query(baseQuery, orderBy("totalComments", "desc"))
-      break
+    // case "rating":
+    //   baseQuery = query(baseQuery, orderBy("totalComments", "desc"))
+    //   break
     case "asc":
       console.log("asc")
       baseQuery = query(baseQuery, orderBy("price", "asc"))
@@ -66,12 +77,6 @@ export async function getServerSideProps(context: any) {
       baseQuery = query(baseQuery)
       break
   }
-
-  baseQuery = query(
-    baseQuery,
-    where("price", ">", 30),
-    where("price", "<", 5000)
-  )
 
   try {
     const snapshot = await getCountFromServer(baseQuery)

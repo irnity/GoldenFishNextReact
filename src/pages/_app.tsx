@@ -15,21 +15,21 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <div
           style={{
-            width: "62%",
+            width: "75%",
           }}
         >
           <Header />
         </div>
         <div
           style={{
-            width: "62%",
+            width: "75%",
           }}
         >
           <Component {...pageProps} />
         </div>
         <div
           style={{
-            width: "62%",
+            width: "75%",
             zIndex: 0,
           }}
         >

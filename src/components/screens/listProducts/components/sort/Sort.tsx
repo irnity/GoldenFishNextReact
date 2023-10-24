@@ -4,12 +4,9 @@ import sv from "../../../../svg/menu-grid-r-svgrepo-com.svg"
 import Block from "@/assets/svg/Block"
 import { useRouter } from "next/router"
 
-interface SortProps {
-  viewMode: string
-  viewModeHandler: () => void
-}
+interface SortProps {}
 
-const Sort: FunctionComponent<SortProps> = ({ viewModeHandler }) => {
+const Sort: FunctionComponent<SortProps> = () => {
   const router = useRouter()
   const { categoryId } = router.query
   let { page, sort } = router.query
@@ -50,7 +47,7 @@ const Sort: FunctionComponent<SortProps> = ({ viewModeHandler }) => {
             <option value={"popular"}>По рейтингу</option>
             <option value={"asc"}>Від дешевих до дорогих</option>
             <option value={"desc"}>Від дорогих до дешевих</option>
-            <option value={"rating"}>За кількістю відгуків</option>
+            {/* <option value={"rating"}>За кількістю відгуків</option> */}
           </select>
         </div>
         {/* <div className={classes.shape}>

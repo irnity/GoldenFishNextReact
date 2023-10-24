@@ -6,6 +6,7 @@ import React from "react"
 import { useState } from "react"
 import classes from "./Item.module.css"
 import { FiHeart, FiShoppingCart } from "react-icons/fi"
+import { Rating } from "@mui/material"
 
 type Props = {
   product: IProduct
@@ -56,9 +57,28 @@ const Item = ({ product }: Props) => {
         <Link
           href={`/products/${product.category}/${product.id}/comments`}
           className={classes.title}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
         >
           <span>
-            {averageRate} {product.totalComments} відгуків
+            <Rating
+              readOnly
+              precision={0.5}
+              value={averageRate}
+              size="medium"
+            />
+          </span>
+          <span
+            style={{
+              textAlign: "center",
+              fontSize: "16px",
+            }}
+          >
+            {product.totalComments} відгуків
           </span>
         </Link>
 
