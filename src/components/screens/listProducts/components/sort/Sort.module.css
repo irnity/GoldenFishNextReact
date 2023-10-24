@@ -3,7 +3,7 @@
 }
 .sort_box {
   width: 100%;
-  padding: 5px 0 5px 0;
+  padding: 5px 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -17,27 +17,29 @@
   justify-content: flex-end;
 }
 .filter select {
-  width: 75%;
   display: flex;
-  justify-content: flex-end;
   border: 1px solid rgba(128, 128, 128, 0.281);
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline: none;
+  cursor: pointer;
+}
+.filter select:hover {
+  border: 1px solid rgba(0, 162, 255, 0.74);
 }
 
 .shape {
   display: flex;
-  width: 25%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-end;
+  margin: 0 10px;
 }
 .shape button {
-  width: 2.5em;
-  height: 2.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
-  /* background-color: white; */
 }
 .shape button:hover {
   border-radius: 5px;

@@ -1,5 +1,5 @@
 // react
-import { FunctionComponent } from "react"
+import { FunctionComponent, useState } from "react"
 
 // redux
 import { useSelector } from "react-redux"
@@ -37,24 +37,14 @@ const ListProducts: FunctionComponent<ListProductsProps> = ({
 
   console.log(isLogedIn, isAdmin, userInfo)
 
-  if (products.length === 0) {
-    return (
-      <div className={classes.container}>
-        <Information isAdmin={isAdmin} />
+  const [viewMode, setViewMode] = useState<string>("row")
 
-        <div className={classes.products_container}>
-          {/*  */}
-          <section className={classes.sort}>
-            <Find />
-          </section>
-          {/*  */}
-          <section className={classes.products_list}>
-            <Sort />
-            <div className={classes.empty}>На данний час товари відсутні</div>
-          </section>
-        </div>
-      </div>
-    )
+  const viewModeHandler = () => {
+    if (viewMode === "less") {
+      setViewMode("less")
+    } else {
+      setViewMode("more")
+    }
   }
 
   return (
@@ -68,9 +58,16 @@ const ListProducts: FunctionComponent<ListProductsProps> = ({
         </section>
         {/*  */}
         <section className={classes.products_list}>
-          <Sort />
-          <Products products={products} />
-          <PagesNumber totalPages={totalPages} />
+          <Sort viewModeHandler={viewModeHandler} viewMode={viewMode} />
+
+          {products.length === 0 ? (
+            <div className={classes.empty}>На данний час товар відсутній</div>
+          ) : (
+            <>
+              <Products products={products} viewMode={viewMode} />
+              <PagesNumber totalPages={totalPages} />
+            </>
+          )}
         </section>
       </div>
     </div>

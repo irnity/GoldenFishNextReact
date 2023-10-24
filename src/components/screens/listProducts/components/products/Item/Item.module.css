@@ -5,8 +5,9 @@
   align-items: center;
   box-sizing: border-box;
   background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.297);
-  /* transition: transform 0.2s ease-in-out; */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.297);
+  border-right: 1px solid rgba(0, 0, 0, 0.297);
+  border-left: 1px solid rgba(0, 0, 0, 0.297);
   width: calc(100% / 3);
   z-index: 1;
 }
@@ -124,12 +125,12 @@
   }
 }
 
-@media (min-width: 700px) {
+@media (min-width: 900px) {
   .product_box {
     width: calc(100% / 2);
   }
 }
-@media (min-width: 1020px) {
+@media (min-width: 1320px) {
   .product_box {
     width: calc(100% / 3);
   }

@@ -60,7 +60,7 @@ export async function getServerSideProps(context: any) {
   // get url
   const { categoryId, itemId } = context.params
 
-  const productsCollectionRef = doc(db, "products", `${itemId}`)
+  const productsCollectionRef = doc(db, "products", itemId)
 
   const data = await getDoc(productsCollectionRef)
 
@@ -69,12 +69,7 @@ export async function getServerSideProps(context: any) {
   // comments
 
   // fetch API
-  const commentsCollectionRef = collection(
-    db,
-    "products",
-    `${itemId}`,
-    "comments"
-  )
+  const commentsCollectionRef = collection(db, "products", itemId, "comments")
 
   // get document
   const commentsData = await getDocs(commentsCollectionRef)
@@ -85,12 +80,12 @@ export async function getServerSideProps(context: any) {
     ...doc.data(),
   }))
 
-  let canBuy
+  let canBuy: any = []
 
   try {
     const canbuyquary = query(
       collection(db, `products`),
-      where("category", "==", `fishingrod`),
+      where("category", "==", "fishingrod"),
       limit(3)
     )
     const canBuyAnfiltered = await getDocs(canbuyquary)

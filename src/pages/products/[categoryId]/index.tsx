@@ -31,74 +31,76 @@ const ProductsList: FunctionComponent<ProductsListProps> = ({
   return <ListProducts products={data} totalPages={totalPages} />
 }
 
-function createProductQuery(
-  id: string,
-  page: number,
-  sort: string | undefined
-) {
+export async function getServerSideProps(context: any) {
+  const categoryId = context.params.categoryId
+  const page = parseInt(context.query.page)
+  const sortQuery = context.query.sort
+
+  const inStock = context.query.inStock
+  const inStockQuaryArray = inStock ? inStock.split(",") : []
+
   let baseQuery = query(
-    collection(db, "products"),
-    where("category", "==", id),
-    limit(9)
+    collection(db, `products`),
+    where("category", "==", categoryId)
   )
 
-  if (page > 1) {
-    baseQuery = query(baseQuery, startAfter(page * 9 - 9))
+  if (inStockQuaryArray.includes("available")) {
+    baseQuery = query(baseQuery, where("weCanSell", "==", true))
+  }
+  if (inStockQuaryArray.includes("out_of_stock")) {
+    baseQuery = query(baseQuery, where("weCanSell", "==", false))
   }
 
-  if (sort) {
-    baseQuery = query(baseQuery, orderBy("price", sort as OrderByDirection))
+  switch (sortQuery) {
+    case "rating":
+      baseQuery = query(baseQuery, orderBy("totalComments", "desc"))
+      break
+    case "asc":
+      console.log("asc")
+      baseQuery = query(baseQuery, orderBy("price", "asc"))
+      break
+    case "desc":
+      baseQuery = query(baseQuery, orderBy("price", "desc"))
+      break
+    default:
+      baseQuery = query(baseQuery)
+      break
   }
 
-  return baseQuery
-}
-
-// props
-export async function getServerSideProps(context: any) {
-  const id = context.params.categoryId
-  const page = parseInt(context.query.page)
-  const sortQuary = context.query.sort
-
-  let sort = undefined
-
-  if (sortQuary === "cheap") {
-    sort = "asc"
-  }
-  if (sortQuary === "expensive") {
-    sort = "desc"
-  }
-
-  // console.log(id, page, sort)
-  let data
-  let totalPages
-
-  // get total pages
-  try {
-    const coll = query(collection(db, `products`), where("category", "==", id))
-    const snapshot = await getCountFromServer(coll)
-
-    totalPages = snapshot.data().count
-  } catch (error) {
-    console.log(error)
-  }
-
-  const productsCollectionRef = createProductQuery(id, page, sort)
+  baseQuery = query(
+    baseQuery,
+    where("price", ">", 30),
+    where("price", "<", 5000)
+  )
 
   try {
-    const querySnapshot = await getDocs(productsCollectionRef)
-    data = querySnapshot.docs.map((doc) => ({
+    const snapshot = await getCountFromServer(baseQuery)
+    const totalPages = snapshot.data().count
+
+    if (page && page > 1) {
+      baseQuery = query(baseQuery, limit(9 * (page - 1)))
+      const previesData = await getDocs(baseQuery)
+      const lastVisible = previesData.docs[previesData.docs.length - 1]
+
+      baseQuery = query(baseQuery, startAfter(lastVisible), limit(9))
+    } else {
+      baseQuery = query(baseQuery, limit(9))
+    }
+
+    const unfilteredData = await getDocs(baseQuery)
+    const filteredData = unfilteredData.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id.toString(),
     }))
-  } catch (error) {
-    console.error(error)
-  }
 
-  return {
-    props: {
-      data: data,
-      totalPages: totalPages,
-    },
+    return {
+      props: {
+        data: filteredData,
+        totalPages: totalPages,
+      },
+    }
+  } catch (err) {
+    console.error(err)
   }
 }
 
