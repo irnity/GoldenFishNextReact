@@ -13,7 +13,7 @@ import { useRouter } from "next/router"
 import Image from "next/image"
 
 import { IProduct } from "@/redux/model"
-import Find from "../components/filter/Find"
+import Status from "../components/filter/Status"
 import Information from "@/components/elements/information/Information"
 import Products from "../components/products/Products"
 import Sort from "../components/sort/Sort"
@@ -36,7 +36,7 @@ const ListProducts: FunctionComponent<ListProductsProps> = ({
     }) => state.auth
   )
 
-  console.log(isLogedIn, isAdmin, userInfo)
+  // console.log(isLogedIn, isAdmin, userInfo)
 
   return (
     <div className={classes.container}>
@@ -45,7 +45,7 @@ const ListProducts: FunctionComponent<ListProductsProps> = ({
       <div className={classes.products_container}>
         {/*  */}
         <section className={classes.sort}>
-          <Find />
+          <Status />
           <Price />
         </section>
         {/*  */}

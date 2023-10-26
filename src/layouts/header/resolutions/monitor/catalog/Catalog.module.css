@@ -23,12 +23,13 @@
   border-bottom: 4px solid rgb(189, 6, 6);
 }
 
+/* important z-index */
 .catalog {
   width: 100%;
   display: flex;
   justify-content: center;
   position: relative;
-  z-index: 50;
+  z-index: 1;
 }
 
 .fade_slide_enter_active {

@@ -17,26 +17,25 @@ import {
   getDocs,
   limit,
   query,
+  startAfter,
   where,
 } from "firebase/firestore"
 import { useDispatch } from "react-redux"
 import { productsActions } from "@/redux/productsSlice"
-import ProductsList from ".."
-import ListProducts from "@/components/screens/listProducts/page/ListProducts"
 import Products from "@/components/screens/listProducts/components/products/Products"
 
 interface ItemProps {
   data: IProduct
   commentsCount: number
   commentsData: any
-  canBuy: IProduct[]
+  advertising: IProduct[]
 }
 
 const Item: FunctionComponent<ItemProps> = ({
   data,
-  commentsCount,
   commentsData,
-  canBuy,
+  commentsCount,
+  advertising,
 }) => {
   const dispatch = useDispatch()
 
@@ -51,7 +50,7 @@ const Item: FunctionComponent<ItemProps> = ({
         commentsCount={commentsCount}
         commentsData={commentsData.slice(0, 3) || []}
       />
-      <Products products={canBuy} />
+      <Products products={advertising} />
     </>
   )
 }
@@ -60,49 +59,57 @@ export async function getServerSideProps(context: any) {
   // get url
   const { categoryId, itemId } = context.params
 
-  const productsCollectionRef = doc(db, "products", itemId)
-
-  const data = await getDoc(productsCollectionRef)
-
-  const filteredData = data.data()
-
-  // comments
-
-  // fetch API
-  const commentsCollectionRef = collection(db, "products", itemId, "comments")
-
-  // get document
-  const commentsData = await getDocs(commentsCollectionRef)
-
-  // document to data
-  const filteredcommentsData = commentsData.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }))
-
-  let canBuy: any = []
+  let productFiltered: IProduct | [] = []
+  let commentsFiltered: any = []
 
   try {
-    const canbuyquary = query(
+    // product
+    const productQuery = doc(db, "products", itemId)
+    const productUnfiltered = await getDoc(productQuery)
+    productFiltered = productUnfiltered.data() as IProduct
+
+    // comments
+    const commentsQuery = query(collection(db, "products", itemId, "comments"))
+    const commentsUnfiltered = await getDocs(commentsQuery)
+    commentsFiltered = commentsUnfiltered.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }))
+  } catch (error) {
+    console.log(error)
+  }
+
+  let advertisingFiltered: any = []
+
+  try {
+    const advertisingQuery = query(
       collection(db, `products`),
-      where("category", "==", "fishingrod"),
-      limit(3)
+      where("category", "==", categoryId),
+      limit(12)
     )
-    const canBuyAnfiltered = await getDocs(canbuyquary)
-    canBuy = canBuyAnfiltered.docs.map((doc) => ({
+    const advertisingUnfiltered = await getDocs(advertisingQuery)
+    advertisingFiltered = advertisingUnfiltered.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id.toString(),
     }))
+    advertisingFiltered = advertisingFiltered.filter(
+      (item: any) => item.id !== itemId
+    )
+    advertisingFiltered = advertisingFiltered.sort(() => Math.random() - 0.5)
+    advertisingFiltered = advertisingFiltered.slice(0, 3)
   } catch (error) {
     console.log(error)
   }
 
   return {
     props: {
-      data: filteredData,
-      commentsCount: filteredcommentsData.length,
-      commentsData: filteredcommentsData,
-      canBuy: canBuy,
+      // product
+      data: productFiltered,
+      // comments
+      commentsData: commentsFiltered,
+      commentsCount: commentsFiltered.length,
+      // advertising
+      advertising: advertisingFiltered,
     },
   }
 }

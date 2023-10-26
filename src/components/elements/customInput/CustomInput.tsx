@@ -9,6 +9,7 @@ type Props = {
   value?: string | number
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   max?: number
+  onFocus?: () => void
 }
 
 const CustomInput = (props: Props) => {
@@ -25,6 +26,7 @@ const CustomInput = (props: Props) => {
         onChange={props.onChange}
         max={props.max}
         min={0}
+        onFocus={props.onFocus}
       />
     </div>
   )

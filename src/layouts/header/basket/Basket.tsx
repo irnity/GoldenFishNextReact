@@ -4,6 +4,7 @@ import classes from "./Basket.module.css"
 import BasketSVG from "@/assets/svg/BasketSVG"
 import { useSelector } from "react-redux"
 import { IBasketSliceProps } from "@/redux/model"
+import { FiShoppingCart } from "react-icons/fi"
 
 interface BasketProps {}
 
@@ -22,7 +23,7 @@ const Basket: FunctionComponent<BasketProps> = () => {
     <>
       <div className={classes.mainbox}>
         <button onClick={toggleHandler}>
-          <BasketSVG />
+          <FiShoppingCart size={30} />
           <div className={classes.number}>{productCount}</div>
         </button>
       </div>

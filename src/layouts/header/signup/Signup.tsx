@@ -9,6 +9,7 @@ import { useSelector } from "react-redux"
 // custom hook
 import useAuth from "../../../hooks/auth-hook"
 import AccountSVG from "@/assets/svg/AccountSVG"
+import { FiUser } from "react-icons/fi"
 
 interface SighupProps {}
 
@@ -24,23 +25,19 @@ const Sighup: FunctionComponent<SighupProps> = () => {
     <div className={classes.signup}>
       {isLogedIn === false ? (
         <div className={classes.mainbox}>
-          <div className={classes.login}>
-            <Link href="/login">
-              <button>
-                <AccountSVG />
-              </button>
-            </Link>
-          </div>
+          <Link href="/login">
+            <button>
+              <FiUser size={38} />
+            </button>
+          </Link>
         </div>
       ) : (
         <div className={classes.mainbox}>
-          <div className={classes.login}>
-            <Link href="/cabinet/personal-information">
-              <button>
-                <AccountSVG />
-              </button>
-            </Link>
-          </div>
+          <Link href="/cabinet/personal-information">
+            <button>
+              <FiUser size={38} />
+            </button>
+          </Link>
         </div>
       )}
     </div>

@@ -1,12 +1,12 @@
 import { FunctionComponent, useEffect, useState } from "react"
-import classes from "./Find.module.css"
+import classes from "./Status.module.css"
 import { useRouter } from "next/router"
 
-interface FindProps {}
+interface StatusProps {}
 
 const minDistance = 50
 
-const Find: FunctionComponent<FindProps> = () => {
+const Status: FunctionComponent<StatusProps> = () => {
   const router = useRouter()
 
   const { categoryId, page, inStock } = router.query
@@ -46,11 +46,12 @@ const Find: FunctionComponent<FindProps> = () => {
 
       // if params is empty remove inStock from query
       if (params.length === 0) {
-        const quary = { ...router.query }
-        delete quary.inStock
+        const {
+          query: { inStock, ...query },
+        } = router
 
         router.replace({
-          query: quary,
+          query,
         })
         return
       }
@@ -72,7 +73,7 @@ const Find: FunctionComponent<FindProps> = () => {
   }
 
   return (
-    <div className={classes.find}>
+    <div className={classes.container}>
       <div className={classes.title}>
         <span>Стутус товару</span>
       </div>
@@ -85,9 +86,10 @@ const Find: FunctionComponent<FindProps> = () => {
             checked={stock.inStock}
             onChange={() => {
               addToQuery("available")
-              setStock((prevState) => {
-                return { ...prevState, inStock: !prevState.inStock }
-              })
+              setStock((prevState) => ({
+                ...prevState,
+                inStock: !prevState.inStock,
+              }))
             }}
           />
           <label htmlFor="inStock">Є в наявності</label>
@@ -100,9 +102,10 @@ const Find: FunctionComponent<FindProps> = () => {
             id="outStock"
             onChange={() => {
               addToQuery("out_of_stock")
-              setStock((prevState) => {
-                return { ...prevState, outStock: !prevState.inStock }
-              })
+              setStock((prevState) => ({
+                ...prevState,
+                outStock: !prevState.inStock,
+              }))
             }}
           />
           <label htmlFor="outStock">Немає в наявності</label>
@@ -112,4 +115,4 @@ const Find: FunctionComponent<FindProps> = () => {
   )
 }
 
-export default Find
+export default Status

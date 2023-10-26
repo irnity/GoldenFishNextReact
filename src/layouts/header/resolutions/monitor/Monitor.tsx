@@ -14,15 +14,10 @@ const Monitor: FunctionComponent<MonitorProps> = () => {
     <div className={classes.cart}>
       <section className={classes.container}>
         <div className={classes.box}>
-          <div className={classes.left}>
-            <ShopName />
-            <SearchHeader />
-          </div>
-
-          <div className={classes.right}>
-            <Sighup />
-            <Basket />
-          </div>
+          <ShopName />
+          <SearchHeader />
+          <Sighup />
+          <Basket />
         </div>
       </section>
 

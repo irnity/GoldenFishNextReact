@@ -8,23 +8,25 @@ import CustomInput from "@/components/elements/customInput/CustomInput"
 
 type Props = {}
 
-function valuetext(value: number) {
-  return `${value}°C`
-}
-
-const min = 0
-const max = 30000
+let min = 0
+let max = 5000
 
 const Price = (props: Props) => {
-  // slider
-  const [value, setValue] = useState<number[]>([min, max])
+  const router = useRouter()
+  const { price } = router.query
 
+  useEffect(() => {
+    let params: string[] = []
+    if (typeof price === "string") {
+      params = price.split("-")
+    }
+    setValue([+params[0], +params[1]])
+  }, [price])
+
+  const [value, setValue] = useState<number[]>([min, max])
   const handleChange = (event: Event, newValue: number | number[]) => {
-    console.log(value)
     setValue(newValue as number[])
   }
-
-  const router = useRouter()
 
   const priceHandler = () => {
     router.replace({
@@ -55,7 +57,7 @@ const Price = (props: Props) => {
               })
             }
           }}
-          max={30000}
+          max={5000}
           value={value[0]}
         />
         <CustomInput
@@ -73,7 +75,7 @@ const Price = (props: Props) => {
               })
             }
           }}
-          max={30000}
+          max={5000}
           value={value[1]}
         />
       </div>
@@ -83,11 +85,10 @@ const Price = (props: Props) => {
           value={value}
           onChange={handleChange}
           valueLabelDisplay="auto"
-          getAriaValueText={valuetext}
           disableSwap
           style={{ color: "rgb(33, 150, 243)" }}
           min={0}
-          max={30000}
+          max={5000}
         />
       </Box>
       <div className={classes.button}>

@@ -11,8 +11,6 @@ const Sort: FunctionComponent<SortProps> = () => {
   const { categoryId } = router.query
   let { page, sort } = router.query
 
-  console.log(categoryId, page, sort)
-
   const [sortBy, setSortBy] = useState("popular")
 
   useEffect(() => {
@@ -34,27 +32,21 @@ const Sort: FunctionComponent<SortProps> = () => {
 
   const sortHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value === sortBy) return
-    router.push({
-      pathname: `/products/${categoryId}`,
-      query: { page: 1, sort: e.target.value },
+    router.replace({
+      query: { ...router.query, sort: e.target.value },
     })
   }
   return (
     <div className={classes.cart}>
       <div className={classes.sort_box}>
         <div className={classes.filter}>
-          <select onChange={(e) => sortHandler(e)} value={sortBy}>
+          <select onChange={sortHandler} value={sortBy}>
             <option value={"popular"}>По рейтингу</option>
             <option value={"asc"}>Від дешевих до дорогих</option>
             <option value={"desc"}>Від дорогих до дешевих</option>
             {/* <option value={"rating"}>За кількістю відгуків</option> */}
           </select>
         </div>
-        {/* <div className={classes.shape}>
-          <button>
-            <Block />
-          </button>
-        </div> */}
       </div>
     </div>
   )

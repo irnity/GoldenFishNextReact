@@ -33,13 +33,10 @@ const ProductsList: FunctionComponent<ProductsListProps> = ({
 
 export async function getServerSideProps(context: any) {
   const categoryId = context.params.categoryId
-  const page = parseInt(context.query.page)
-  const sortQuery = context.query.sort
+  const { page, sort, inStock, price } = context.query
 
-  const inStock = context.query.inStock
   const inStockQuaryArray = inStock ? inStock.split(",") : []
 
-  const price = context.query.price
   const priceQuaryArray = price ? price.split("-") : []
 
   let baseQuery = query(
@@ -62,12 +59,11 @@ export async function getServerSideProps(context: any) {
     )
   }
 
-  switch (sortQuery) {
+  switch (sort) {
     // case "rating":
     //   baseQuery = query(baseQuery, orderBy("totalComments", "desc"))
     //   break
     case "asc":
-      console.log("asc")
       baseQuery = query(baseQuery, orderBy("price", "asc"))
       break
     case "desc":
@@ -82,7 +78,7 @@ export async function getServerSideProps(context: any) {
     const snapshot = await getCountFromServer(baseQuery)
     const totalPages = snapshot.data().count
 
-    if (page && page > 1) {
+    if (page && +page > 1) {
       baseQuery = query(baseQuery, limit(9 * (page - 1)))
       const previesData = await getDocs(baseQuery)
       const lastVisible = previesData.docs[previesData.docs.length - 1]
