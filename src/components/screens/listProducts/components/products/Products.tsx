@@ -8,7 +8,6 @@ interface ProductsProps {
 }
 
 const Products: FunctionComponent<ProductsProps> = ({ products }) => {
-  console.log(products)
   return (
     <div className={classes.container}>
       {products.map((product) => (

@@ -76,7 +76,12 @@ const NewProductForm = () => {
         name="Фото"
         required={false}
         placeholder="Фото"
-        onChange={(event) => imageHandler(event.target.files[0])}
+        onChange={(event) => {
+          const file = event.target.files?.[0]
+          if (file) {
+            imageHandler(file)
+          }
+        }}
       />
 
       <CustomInput

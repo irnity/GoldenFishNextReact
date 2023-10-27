@@ -13,7 +13,7 @@ const useAddProductHook = () => {
   const [category, setCategory] = useState<string>("")
   const [title, setTitle] = useState<string>("")
   const [producer, setProducer] = useState<string>("")
-  const [image, setImage] = useState<string>("")
+  const [image, setImage] = useState<any>("")
   const [description, setDescription] = useState<string>("")
   const [price, setPrice] = useState<number>(0)
   const [inStock, setInStock] = useState<number>(0)

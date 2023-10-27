@@ -8,7 +8,7 @@ import { FunctionComponent, useEffect } from "react"
 import { IProduct } from "@/redux/model"
 
 // firebase
-import { db } from "@/services/firebase/firebase"
+import { db, storage } from "@/services/firebase/firebase"
 import {
   collection,
   doc,
@@ -23,6 +23,7 @@ import {
 import { useDispatch } from "react-redux"
 import { productsActions } from "@/redux/productsSlice"
 import Products from "@/components/screens/listProducts/components/products/Products"
+import { getDownloadURL, ref } from "firebase/storage"
 
 interface ItemProps {
   data: IProduct
@@ -68,6 +69,10 @@ export async function getServerSideProps(context: any) {
     const productUnfiltered = await getDoc(productQuery)
     productFiltered = productUnfiltered.data() as IProduct
 
+    const imageRef = ref(storage, `productImages/${productFiltered.code}`) // Assuming each product has its own image ID.
+    const url = await getDownloadURL(imageRef)
+    productFiltered.image = url
+
     // comments
     const commentsQuery = query(collection(db, "products", itemId, "comments"))
     const commentsUnfiltered = await getDocs(commentsQuery)
@@ -85,7 +90,7 @@ export async function getServerSideProps(context: any) {
     const advertisingQuery = query(
       collection(db, `products`),
       where("category", "==", categoryId),
-      limit(12)
+      limit(6)
     )
     const advertisingUnfiltered = await getDocs(advertisingQuery)
     advertisingFiltered = advertisingUnfiltered.docs.map((doc) => ({
@@ -96,7 +101,20 @@ export async function getServerSideProps(context: any) {
       (item: any) => item.id !== itemId
     )
     advertisingFiltered = advertisingFiltered.sort(() => Math.random() - 0.5)
-    advertisingFiltered = advertisingFiltered.slice(0, 3)
+    advertisingFiltered = advertisingFiltered.slice(0, 4)
+
+    advertisingFiltered = await Promise.all(
+      advertisingFiltered.map(async (product: { id: any; image: string }) => {
+        const imageRef = ref(storage, `productImages/${product.id}`) // Assuming each product has its own image ID.
+        try {
+          const url = await getDownloadURL(imageRef)
+          product.image = url
+        } catch (error) {
+          console.error("Error loading image:", error)
+        }
+        return product
+      })
+    )
   } catch (error) {
     console.log(error)
   }

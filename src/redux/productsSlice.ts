@@ -17,10 +17,12 @@ const initialProductsState: {
     category: "Category",
     totalComments: 0,
     totalRate: 0,
-    params: {
-      name: "fff",
-      value: "fff",
-    },
+    params: [
+      {
+        name: "fff",
+        value: "fff",
+      },
+    ],
   },
   loaded: false,
 }

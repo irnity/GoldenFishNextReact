@@ -47,14 +47,14 @@ function Login({}: Props) {
           text="Login"
         />
 
-        <CustomButton
+        {/* <CustomButton
           type="button"
           color="black"
           backGroundColor="white"
           handler={loginWithGoogleHandler}
           text="Login with Google"
           svg={<GoogleSVG />}
-        />
+        /> */}
 
         <Link href="/signup" className={classes.link}>
           <span>To Sign up Page</span>

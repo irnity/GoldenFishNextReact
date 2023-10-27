@@ -12,7 +12,7 @@ export interface IProduct {
   params: {
     name: string
     value: string
-  }
+  }[]
 }
 
 export interface IBasketSliceProps {

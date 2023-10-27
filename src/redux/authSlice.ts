@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-import { auth, googleProvider } from "../services/firebase/firebase"
+import { auth, db, googleProvider } from "../services/firebase/firebase"
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,6 +9,7 @@ import {
 } from "firebase/auth"
 import { useRouter } from "next/router"
 import { getFunctions, httpsCallable } from "firebase/functions"
+import { Timestamp, doc, setDoc } from "firebase/firestore"
 
 interface initialAuthStateProps {
   isLogedIn: boolean
@@ -140,6 +141,12 @@ export const authRegistration = createAsyncThunk(
         email,
         password
       )
+
+      const userCollection = await setDoc(doc(db, "users", email), {
+        email: email,
+        userId: responce.user.uid,
+        createdAt: Timestamp.now(),
+      })
 
       dispatch(authActions.logInWithPassword({ admin: false, email }))
       return "isLogedIn"

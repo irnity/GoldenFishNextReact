@@ -8,6 +8,7 @@ type Props = {
   handler?: () => void
   text?: string
   svg?: React.ReactNode
+  disabled?: boolean
 }
 
 function CustomButton(props: Props) {
@@ -17,6 +18,7 @@ function CustomButton(props: Props) {
       style={{ color: props.color, backgroundColor: props.backGroundColor }}
       className={classes.addParamButton}
       onClick={props.handler}
+      disabled={props.disabled}
     >
       {props.svg && (
         <div

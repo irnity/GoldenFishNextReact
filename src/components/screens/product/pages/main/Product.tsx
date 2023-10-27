@@ -123,12 +123,7 @@ const Product: FunctionComponent<ProductProps> = ({
         <div className={classes.detailsContainer}>
           <div>
             <h2>Опис</h2>
-            <span>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              consectetur eos labore laudantium. Magni maiores praesentium
-              molestias, ea quo, unde blanditiis, vitae possimus quisquam culpa
-              dignissimos labore aspernatur distinctio et?
-            </span>
+            <span>{product.description}</span>
           </div>
           <Characteristics characteristics={data} />
         </div>

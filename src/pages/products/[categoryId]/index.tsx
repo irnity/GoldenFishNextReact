@@ -90,10 +90,10 @@ export async function getServerSideProps(context: any) {
     }
 
     const unfilteredData = await getDocs(baseQuery)
-    const filteredData = unfilteredData.docs.map((doc) => ({
+    const filteredData: IProduct[] = unfilteredData.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id.toString(),
-    }))
+    })) as IProduct[]
 
     const filteredDataWithImages = await Promise.all(
       filteredData.map(async (product) => {

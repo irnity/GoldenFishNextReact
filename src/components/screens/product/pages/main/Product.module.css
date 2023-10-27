@@ -15,6 +15,7 @@
 
 .cart_image {
   width: 50%;
+  height: 560px;
   border-radius: 5%;
   box-shadow: 0px 4px 7px 1px rgba(71, 71, 71, 0.274);
   display: flex;

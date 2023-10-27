@@ -3,7 +3,7 @@
   content: "";
   position: absolute;
   width: 500px;
-  left: -35%;
+  left: -30%;
   height: 100%;
   background-color: #323a45;
   z-index: 0;
@@ -13,7 +13,7 @@
   content: "";
   position: absolute;
   width: 500px;
-  right: -35%;
+  right: -30%;
   height: 100%;
   background-color: #323a45;
   z-index: 0;
@@ -76,7 +76,7 @@
   content: "";
   position: absolute;
   width: 500px;
-  left: -35%;
+  left: -30%;
   bottom: 0px;
 
   height: 100%;
@@ -88,7 +88,7 @@
   content: "";
   position: absolute;
   width: 500px;
-  right: -35%;
+  right: -30%;
   bottom: 0px;
   height: 100%;
   background-color: #2b313b;
