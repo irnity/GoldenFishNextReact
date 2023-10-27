@@ -6,6 +6,8 @@ import { getFirestore } from "firebase/firestore"
 
 import { getFunctions } from "firebase/functions"
 
+import { getStorage } from "firebase/storage"
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBW0n2tv3h6z7UTNRDOXdFKrGwXbgJWT6o",
@@ -30,5 +32,7 @@ export const auth = getAuth(app)
 export const googleProvider = new GoogleAuthProvider()
 
 // data
-
 export const db = getFirestore(app)
+
+// storage
+export const storage = getStorage(app)

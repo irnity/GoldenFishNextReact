@@ -19,8 +19,8 @@ const Price = (props: Props) => {
     let params: string[] = []
     if (typeof price === "string") {
       params = price.split("-")
+      setValue([+params[0], +params[1]])
     }
-    setValue([+params[0], +params[1]])
   }, [price])
 
   const [value, setValue] = useState<number[]>([min, max])

@@ -7,11 +7,10 @@ async function handler(req, res) {
     const data = JSON.parse(req.body)
     // edit
     const productData = {
-      code: nanoid(),
+      code: data.code,
       category: data.category,
       title: data.title,
       description: data.description,
-      image: data.image,
       price: data.price,
       inStock: data.inStock,
       weCanSell: true,

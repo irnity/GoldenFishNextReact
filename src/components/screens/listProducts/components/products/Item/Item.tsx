@@ -7,6 +7,9 @@ import { useState } from "react"
 import classes from "./Item.module.css"
 import { FiHeart, FiShoppingCart } from "react-icons/fi"
 import { Rating } from "@mui/material"
+import useBasket from "@/hooks/basket-hook"
+import ImageList from "../image/ImageList"
+import ToggleList from "../toggle/ToggleList"
 
 type Props = {
   product: IProduct
@@ -14,12 +17,12 @@ type Props = {
 
 const Item = ({ product }: Props) => {
   const [toggle, setToggle] = useState(false)
+  const { addProductToBasket } = useBasket()
   const averageRate = product.totalRate / product.totalComments || 0
   const inStock = product.inStock ? "В наявності" : "Немає в наявності"
-  // END: ed8c6549bwf9
   return (
     <div
-      className={classes.product_box}
+      className={classes.container}
       key={product.id}
       onMouseEnter={() => {
         setToggle(true)
@@ -28,23 +31,7 @@ const Item = ({ product }: Props) => {
         setToggle(false)
       }}
     >
-      <div className={classes.image_box}>
-        <Link
-          href={`/products/${product.category}/${product.id}`}
-          className={classes.link_image}
-        >
-          <Image
-            src={product.image}
-            alt={
-              "https://cdn.shopify.com/s/files/1/0060/3770/0678/articles/how_to_cast_rod_1200x1200.png?v=1621296605"
-            }
-            className={classes.image}
-            width={200}
-            height={200}
-            priority
-          />
-        </Link>
-      </div>
+      <ImageList product={product} />
 
       <div className={classes.info_box}>
         <Link
@@ -56,13 +43,7 @@ const Item = ({ product }: Props) => {
 
         <Link
           href={`/products/${product.category}/${product.id}/comments`}
-          className={classes.title}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
+          className={classes.comments}
         >
           <span>
             <Rating
@@ -72,14 +53,7 @@ const Item = ({ product }: Props) => {
               size="medium"
             />
           </span>
-          <span
-            style={{
-              textAlign: "center",
-              fontSize: "16px",
-            }}
-          >
-            {product.totalComments} відгуків
-          </span>
+          <span>{product.totalComments} відгуків</span>
         </Link>
 
         <div className={classes.price}>
@@ -89,30 +63,7 @@ const Item = ({ product }: Props) => {
           <span>{inStock}</span>
         </div>
       </div>
-      {toggle && (
-        <div className={classes.buttons}>
-          <div
-            style={{ paddingLeft: "10px", paddingRight: "10px", width: "50%" }}
-          >
-            <CustomButton
-              type="button"
-              handler={() => {}}
-              color="blue"
-              svg={<FiHeart />}
-            />
-          </div>
-          <div
-            style={{ paddingLeft: "10px", paddingRight: "10px", width: "50%" }}
-          >
-            <CustomButton
-              type="button"
-              handler={() => {}}
-              color="blue"
-              svg={<FiShoppingCart />}
-            />
-          </div>
-        </div>
-      )}
+      {toggle && <ToggleList product={product} />}
     </div>
   )
 }

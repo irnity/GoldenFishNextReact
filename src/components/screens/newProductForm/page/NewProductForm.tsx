@@ -5,7 +5,7 @@ import { useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { productsActions } from "@/redux/productsSlice"
 import { FunctionComponent, useEffect, useState } from "react"
-import { auth } from "@/services/firebase/firebase"
+import { auth, storage } from "@/services/firebase/firebase"
 
 import classes from "./NewProductForm.module.css"
 
@@ -15,6 +15,8 @@ import { query } from "firebase/firestore"
 import useAddProductHook from "../hook/useAddProductHook"
 import CustomInput from "@/components/elements/customInput/CustomInput"
 import CustomButton from "@/components/elements/customButton/CustomButton"
+
+import { ref } from "firebase/storage"
 
 interface NewProductFormProps {}
 
@@ -26,6 +28,7 @@ const NewProductForm = () => {
   const {
     categoryHandler,
     titleHandler,
+    producerHandler,
     imageHandler,
     descriptionHandler,
     priceHandler,
@@ -49,44 +52,51 @@ const NewProductForm = () => {
       {/* Product */}
       <CustomInput
         type="text"
-        name="Category"
+        name="Категорія"
         required={true}
-        placeholder="Category"
+        placeholder="fishingrod"
         onChange={categoryHandler}
       />
       <CustomInput
         type="text"
-        name="Title"
+        name="Назва"
         required={true}
-        placeholder="Title"
+        placeholder="Спінінгове вудлище"
         onChange={titleHandler}
       />
       <CustomInput
-        type="url"
-        name="Image"
+        type="text"
+        name="Виробник"
+        required={true}
+        placeholder="Flagman"
+        onChange={producerHandler}
+      />
+      <CustomInput
+        type="file"
+        name="Фото"
         required={false}
-        placeholder="Image"
-        onChange={imageHandler}
+        placeholder="Фото"
+        onChange={(event) => imageHandler(event.target.files[0])}
       />
 
       <CustomInput
         type="text"
-        name="Description"
+        name="Опис"
         required={true}
-        placeholder="Description"
+        placeholder="Опис"
         onChange={descriptionHandler}
       />
       <div className={classes.row}>
         <CustomInput
           type="number"
-          name="Price"
+          name="Ціна"
           required={true}
           placeholder="0"
           onChange={priceHandler}
         />
         <CustomInput
           type="number"
-          name="InStock"
+          name="Кількість"
           required={true}
           placeholder="0"
           onChange={inStockHandler}
@@ -95,14 +105,14 @@ const NewProductForm = () => {
 
       {/* Params */}
       <div className={classes.paramsContainer}>
-        <h1>Params</h1>
+        <h1>Параметри</h1>
         {params.map((param, index) => (
           <div className={classes.row} key={index}>
             <CustomInput
               type="text"
-              name="Name"
+              name="Параметр"
               required={true}
-              placeholder="Name"
+              placeholder="Довжина"
               value={param.name}
               onChange={(event) => {
                 paramNameHandler(event, index)
@@ -110,9 +120,9 @@ const NewProductForm = () => {
             />
             <CustomInput
               type="text"
-              name="Value"
+              name="Значення"
               required={true}
-              placeholder="Value"
+              placeholder="0.5 метри"
               value={param.value}
               onChange={(event) => {
                 paramValueHandler(event, index)
@@ -122,12 +132,12 @@ const NewProductForm = () => {
         ))}
         <CustomButton
           handler={addParamHandler}
-          text={"Add Param"}
+          text={"Додати параметр"}
           type="button"
         />
         <CustomButton
           handler={removeLastParamHandler}
-          text={"Remove Param"}
+          text={"Видали параметр"}
           type="button"
         />
       </div>

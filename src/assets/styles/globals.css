@@ -1,3 +1,11 @@
 .mainButtonColor {
   color: rgb(33, 150, 243);
 }
+/* make 2 rows of text */
+.text_2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

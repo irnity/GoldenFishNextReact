@@ -1,3 +1,6 @@
+import { storage } from "@/services/firebase/firebase"
+import { nanoid } from "@reduxjs/toolkit"
+import { ref, uploadBytes } from "firebase/storage"
 import { useRouter } from "next/router"
 import React, { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
@@ -9,6 +12,7 @@ const useAddProductHook = () => {
 
   const [category, setCategory] = useState<string>("")
   const [title, setTitle] = useState<string>("")
+  const [producer, setProducer] = useState<string>("")
   const [image, setImage] = useState<string>("")
   const [description, setDescription] = useState<string>("")
   const [price, setPrice] = useState<number>(0)
@@ -28,8 +32,12 @@ const useAddProductHook = () => {
     setTitle(event.target.value)
   }
 
-  const imageHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setImage(event.target.value)
+  const producerHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setProducer(event.target.value)
+  }
+
+  const imageHandler = (event: any) => {
+    setImage(event)
   }
 
   const priceHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,10 +94,11 @@ const useAddProductHook = () => {
     event.preventDefault()
 
     const data = {
+      code: nanoid(),
       category: category.trim(),
       title: title.trim(),
       description: description.trim(),
-      image: image.trim(),
+      // image: image,
       price: +price,
       inStock: +inStock,
       params: params,
@@ -116,9 +125,14 @@ const useAddProductHook = () => {
 
       const result = await responce.json()
 
-      console.log("Responce:", result.message, "Data:", result.data)
-
-      router.replace(`/products/${data.category}`)
+      if (result.message === "success") {
+        const imageRef = ref(storage, `productImages/${data.code}`)
+        const uploaded = uploadBytes(imageRef, image)
+        console.log("Responce:", result.message, "Data:", result.data)
+        router.replace(`/products/${data.category}`)
+      } else {
+        throw new Error("Error")
+      }
     } catch (error) {
       console.log(error)
     }
@@ -133,6 +147,8 @@ const useAddProductHook = () => {
     categoryHandler,
     title,
     titleHandler,
+    producer,
+    producerHandler,
     image,
     imageHandler,
     price,

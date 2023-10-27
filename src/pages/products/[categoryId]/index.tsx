@@ -3,7 +3,7 @@ import { FunctionComponent } from "react"
 import { OrderByDirection } from "firebase/firestore"
 
 // firebase
-import { db } from "../../../services/firebase/firebase"
+import { db, storage } from "../../../services/firebase/firebase"
 import {
   getDocs,
   query,
@@ -18,6 +18,7 @@ import {
 
 import { IProduct } from "@/redux/model"
 import ListProducts from "@/components/screens/listProducts/page/ListProducts"
+import { getDownloadURL, ref } from "firebase/storage"
 
 interface ProductsListProps {
   data: IProduct[]
@@ -79,13 +80,13 @@ export async function getServerSideProps(context: any) {
     const totalPages = snapshot.data().count
 
     if (page && +page > 1) {
-      baseQuery = query(baseQuery, limit(9 * (page - 1)))
+      baseQuery = query(baseQuery, limit(12 * (page - 1)))
       const previesData = await getDocs(baseQuery)
       const lastVisible = previesData.docs[previesData.docs.length - 1]
 
-      baseQuery = query(baseQuery, startAfter(lastVisible), limit(9))
+      baseQuery = query(baseQuery, startAfter(lastVisible), limit(12))
     } else {
-      baseQuery = query(baseQuery, limit(9))
+      baseQuery = query(baseQuery, limit(12))
     }
 
     const unfilteredData = await getDocs(baseQuery)
@@ -94,9 +95,22 @@ export async function getServerSideProps(context: any) {
       id: doc.id.toString(),
     }))
 
+    const filteredDataWithImages = await Promise.all(
+      filteredData.map(async (product) => {
+        const imageRef = ref(storage, `productImages/${product.id}`) // Assuming each product has its own image ID.
+        try {
+          const url = await getDownloadURL(imageRef)
+          product.image = url
+        } catch (error) {
+          console.error("Error loading image:", error)
+        }
+        return product
+      })
+    )
+
     return {
       props: {
-        data: filteredData,
+        data: filteredDataWithImages,
         totalPages: totalPages,
       },
     }
