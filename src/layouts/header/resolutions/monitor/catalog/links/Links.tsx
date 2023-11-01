@@ -10,20 +10,20 @@ interface LinksProps {
 
 const Links: FunctionComponent<LinksProps> = ({ fadeOut, catalog }) => {
   return (
-    <div className={classes.cart}>
+    <Link
+      className={classes.container}
+      href={{
+        pathname: `/products/${catalog.url}`,
+        query: { page: 1 },
+      }}
+      onClick={fadeOut}
+    >
       <div className={classes.block}>
-        <Link
-          href={{
-            pathname: `/products/${catalog.url}`,
-            query: { page: 1 },
-          }}
-          className={classes.link}
-          onClick={fadeOut}
-        >
-          &#x2022; {catalog.name}
-        </Link>
+        <div className={classes.link}>
+          <h1>{catalog.name}</h1>
+        </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

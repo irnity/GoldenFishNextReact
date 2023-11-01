@@ -5,6 +5,7 @@ import { CSSTransition } from "react-transition-group"
 
 import { Information } from "./Information"
 import Links from "./links/Links"
+import CustomBackground from "@/components/elements/customBackground/CustomBackground"
 
 interface CatalogProps {}
 
@@ -36,7 +37,7 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
   }
 
   return (
-    <div className={classes.block}>
+    <div className={classes.container}>
       <div className={classes.catalog}>
         {/* categorys */}
         {Information.map((data) => (
@@ -48,9 +49,7 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
           />
         ))}
       </div>
-      {toggleNavigation && (
-        <div className={classes.background} onClick={fadeOut}></div>
-      )}
+      {toggleNavigation && <CustomBackground handler={fadeOut} />}
       <CSSTransition
         in={toggleNavigation}
         timeout={animationTiming}
@@ -61,9 +60,8 @@ const Catalog: FunctionComponent<CatalogProps> = () => {
           exitActive: classes.fade_slide_exit_active,
         }}
       >
-        <div className={classes.catalog_block}>
+        <div className={classes.menu_container}>
           <div className={classes.catalog_link}>
-            {/* links  */}
             {list.map((catalog, index) => (
               <Links key={index} fadeOut={fadeOut} catalog={catalog} />
             ))}

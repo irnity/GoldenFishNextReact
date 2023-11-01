@@ -7,57 +7,36 @@
   margin: 10px 0 10px 0;
   user-select: none;
 }
-.selected {
-  margin: 0 5px 0 5px;
+.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--blue);
+  background: white;
+  border-radius: 15%;
+  margin: 0 5px;
   width: 50px;
   height: 50px;
+  cursor: pointer;
+}
+
+.inactive {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: scale 0.2s ease-in-out;
+  border: 1px solid var(--blue40);
+  background: white;
+  border-radius: 15%;
+  margin: 0 5px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
 }
-.selected:hover {
-  border: 2px solid rgba(72, 0, 255, 1);
-  scale: 1.1;
-}
-.selected:active {
-  scale: 1.2;
-}
-
-.unselected {
-  margin: 0 5px 0 5px;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid rgba(5, 161, 251, 0.29);
-  transition: scale 0.2s ease-in-out;
-}
-.unselected:hover {
-  border: 2px solid rgba(5, 161, 251, 1);
-  scale: 1.1;
-}
-.unselected:active {
-  scale: 1.2;
-}
-
-.link {
-  font-size: 20px;
-  padding: 15px;
-  color: black;
-  text-decoration: none;
-}
-.link:hover {
+.inactive:hover {
   color: red;
+  border: 2px solid var(--blue);
 }
-.disabled {
-  font-size: 20px;
-  padding: 15px;
-  color: black;
-  text-decoration: none;
-  pointer-events: none;
-}
+
 .disabled:hover {
   color: red;
 }

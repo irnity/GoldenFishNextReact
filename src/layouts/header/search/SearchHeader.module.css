@@ -4,7 +4,7 @@
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  z-index: 5;
+  z-index: 6;
 }
 .searchIcon {
   width: 5%;
@@ -25,11 +25,9 @@
   outline: none;
   transition: 0.2s ease-in-out;
   box-sizing: border-box;
-  z-index: 5;
+  z-index: 6;
 }
-/* .search input:focus {
-  width: 100%;
-} */
+
 .searchResults {
   width: 80%;
   top: 100%;
@@ -38,14 +36,7 @@
   color: black;
   z-index: 100;
 }
-.background {
-  position: fixed;
-  background-color: rgba(26, 28, 28, 0.444);
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-}
+
 .item {
   width: 100%;
   box-sizing: border-box;

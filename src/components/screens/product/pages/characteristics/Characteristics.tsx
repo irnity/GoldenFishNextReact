@@ -24,15 +24,17 @@ const Characteristics: FunctionComponent<CharacteristicsProps> = ({
   return (
     <div className={classes.cart}>
       <div className={classes.title}>
-        <h2>Характеристики {section}</h2>
+        <h1>Характеристики {section}</h1>
       </div>
       {comments.map((item: any) => (
         <div className={classes.info} key={item.name}>
           <div className={classes.row}>
-            <p className={classes.name}>
+            <div className={classes.name}>
               <span>{item.name}</span>
-            </p>
-            <p className={classes.value}>{item.value}</p>
+            </div>
+            <div className={classes.value}>
+              <span>{item.value}</span>
+            </div>
           </div>
         </div>
       ))}

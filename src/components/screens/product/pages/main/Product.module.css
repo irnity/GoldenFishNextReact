@@ -16,8 +16,7 @@
 .cart_image {
   width: 50%;
   height: 560px;
-  border-radius: 5%;
-  box-shadow: 0px 4px 7px 1px rgba(71, 71, 71, 0.274);
+  box-shadow: 0px 0px 3px 1px rgba(71, 71, 71, 0.274);
   display: flex;
   align-content: center;
   justify-content: center;
@@ -36,16 +35,16 @@
   box-sizing: border-box;
 }
 
-.product_title_container {
+.title_container {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 10px;
 }
-.product_title_container span {
+.title {
   font-size: 25px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .rate_and_code_container {
@@ -60,24 +59,28 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #2196f3;
+  color: var(--blue);
 }
 .rate:hover {
   text-decoration: underline;
-  color: red;
+  color: var(--red);
   text-decoration-thickness: 1px;
 }
 .rate span {
   font-size: 20px;
+}
+.rate p {
+  margin-left: 5px;
+  font-size: 20px;
   font-weight: 700;
 }
-.code {
+.code_container {
   display: flex;
   align-items: center;
 }
-.code span {
+.code_container span {
   font-size: 12px;
-  color: #797878;
+  color: var(--grey);
 }
 
 .price_buy_container {
@@ -86,6 +89,7 @@
   border: 1px solid #797878;
   border-radius: 10px;
   padding: 10px;
+  margin-top: 15px;
   margin-bottom: 10px;
 }
 .price {
@@ -95,49 +99,33 @@
 }
 
 .isStock {
-  color: #2196f3;
+  color: var(--blue);
 }
 
 .outStock {
-  color: #797878;
+  color: var(--grey);
 }
 
 .buy {
   width: 50%;
 }
 
-.text {
-  width: 100%;
-  padding: 5px 0;
-}
-.text p {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.buttons {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
 .container {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 .detailsContainer {
-  width: 50%;
+  width: 45%;
   display: flex;
   flex-direction: column;
-  margin-right: 5px;
+}
+.description_container {
+  margin-bottom: 10px;
 }
 .commentsContainer {
-  width: 50%;
+  width: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 5px;
 }

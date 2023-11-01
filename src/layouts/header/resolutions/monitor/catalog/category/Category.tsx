@@ -18,8 +18,8 @@ const CatalogList: FunctionComponent<CatalogListProps> = ({
   }
 
   return (
-    <div className={classes.catalog_section} onClick={dataHandler}>
-      <span className={classes.text}>{title}</span>
+    <div className={classes.container} onClick={dataHandler}>
+      <h1 className={classes.text}>{title}</h1>
     </div>
   )
 }

@@ -22,6 +22,7 @@ import CustomButton from "@/components/elements/customButton/CustomButton"
 import Comments from "../comments/Comments"
 import Characteristics from "../characteristics/Characteristics"
 import ProductsList from "@/pages/products/[categoryId]"
+import { Rating } from "@mui/material"
 
 interface ProductProps {
   data: IProduct
@@ -55,6 +56,9 @@ const Product: FunctionComponent<ProductProps> = ({
     }) => state.auth
   )
 
+  const averageRate = product.totalRate / product.totalComments || 0
+  const inStock = product.inStock ? "В наявності" : "Немає в наявності"
+
   return (
     <div className={classes.cart}>
       <Information />
@@ -73,8 +77,8 @@ const Product: FunctionComponent<ProductProps> = ({
 
         <div className={classes.information_container}>
           {/* title */}
-          <div className={classes.product_title_container}>
-            <span>{product.title}</span>
+          <div className={classes.title_container}>
+            <h1 className={classes.title}>{product.title}</h1>
           </div>
 
           {/* rate & code */}
@@ -83,9 +87,16 @@ const Product: FunctionComponent<ProductProps> = ({
               href={`/products/${categoryId}/${itemId}/comments`}
               className={classes.rate}
             >
-              <span>Відгуки: {commentsCount}</span>
+              <Rating
+                readOnly
+                precision={0.5}
+                value={averageRate}
+                size="small"
+              />
+
+              <p>Відгуки: {commentsCount}</p>
             </Link>
-            <div className={classes.code}>
+            <div className={classes.code_container}>
               <span>Код товару: {product.code || "code"}</span>
             </div>
           </div>
@@ -94,7 +105,7 @@ const Product: FunctionComponent<ProductProps> = ({
           <div className={classes.price_buy_container}>
             <div className={classes.price}>
               <h2>{product.price}₴</h2>
-              {Number(product.inStock) >= 1 ? (
+              {inStock ? (
                 <span className={classes.isStock}>В наявності</span>
               ) : (
                 <span className={classes.outStock}>Немає в наявності</span>
@@ -115,14 +126,15 @@ const Product: FunctionComponent<ProductProps> = ({
               handler={deleteProductHandler}
               text="Видалити"
               color="red"
+              backGroundColor="white"
             />
           )}
         </div>
       </div>
       <div className={classes.container}>
         <div className={classes.detailsContainer}>
-          <div>
-            <h2>Опис</h2>
+          <div className={classes.description_container}>
+            <h1>Опис</h1>
             <span>{product.description}</span>
           </div>
           <Characteristics characteristics={data} />

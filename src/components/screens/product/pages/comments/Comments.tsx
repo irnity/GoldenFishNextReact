@@ -9,6 +9,7 @@ import useProduct from "../../hooks/useProduct"
 import CustomInput from "@/components/elements/customInput/CustomInput"
 import CustomButton from "@/components/elements/customButton/CustomButton"
 import CustomTextArea from "@/components/elements/customTextArea/CustomTextArea"
+import { Rating } from "@mui/material"
 
 interface CommentsProps {
   data: any
@@ -131,29 +132,33 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
         {data.map((comment: any) => (
           <div key={comment.id} className={classes.comment}>
             <div className={classes.comment_name}>
-              <h3>{comment.name}</h3>
+              <h1>{comment.name}</h1>
               <span>Вігук від покупця</span>
             </div>
             <div className={classes.comment_info}>
-              <h3>Оцінка: {comment.rate}/5</h3>
+              <Rating
+                readOnly
+                precision={0.5}
+                value={comment.rate}
+                size="small"
+              />
               <p>{comment.description}</p>
             </div>
+            {comment.comment && (
+              <div className={classes.comment_info}>
+                <span>{comment.comment}</span>
+              </div>
+            )}
             {comment.positive && (
               <div className={classes.comment_info}>
-                <h3>Переваги</h3>
-                <p>{comment.positive}</p>
+                <h1>Переваги</h1>
+                <span>{comment.positive}</span>
               </div>
             )}
             {comment.negative && (
               <div className={classes.comment_info}>
-                <h3>Недоліки</h3>
-                <p>{comment.negative}</p>
-              </div>
-            )}
-            {comment.comment && (
-              <div className={classes.comment_info}>
-                <h3>Коментар</h3>
-                <p>{comment.comment}</p>
+                <h1>Недоліки</h1>
+                <span>{comment.negative}</span>
               </div>
             )}
 
@@ -162,8 +167,6 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
               <div
                 style={{
                   padding: "10px",
-                  marginBottom: "-10px",
-                  marginTop: "-10px",
                 }}
               >
                 <CustomButton
@@ -171,6 +174,7 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
                   handler={() => deleteCommentHandler(comment.id, comment.rate)}
                   text="Видалити"
                   color="red"
+                  backGroundColor="white"
                 />
               </div>
             )}

@@ -35,19 +35,18 @@ const PagesNumber: FunctionComponent<PagesNumberProps> = ({ totalPages }) => {
     <div className={classes.cart}>
       {pages.map((pageNum) => {
         return (
-          <div key={pageNum}>
-            <CustomButton
-              type="button"
-              text={pageNum.toString()}
-              handler={() => {
-                router.replace({
-                  query: { ...router.query, page: pageNum },
-                })
-              }}
-              color="white"
-              backGroundColor={page == pageNum ? "purple" : "rgb(33, 150, 243)"}
-            />
-          </div>
+          <button
+            key={pageNum}
+            className={pageNum === page ? classes.active : classes.inactive}
+            type="button"
+            onClick={() => {
+              router.replace({
+                query: { ...router.query, page: pageNum },
+              })
+            }}
+          >
+            <span>{pageNum.toString()}</span>
+          </button>
         )
       })}
     </div>

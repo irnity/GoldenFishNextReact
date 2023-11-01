@@ -17,7 +17,6 @@ type Props = {
 
 const Item = ({ product }: Props) => {
   const [toggle, setToggle] = useState(false)
-  const { addProductToBasket } = useBasket()
   const averageRate = product.totalRate / product.totalComments || 0
   const inStock = product.inStock ? "В наявності" : "Немає в наявності"
   return (
@@ -38,28 +37,33 @@ const Item = ({ product }: Props) => {
           href={`/products/${product.category}/${product.id}`}
           className={classes.title}
         >
-          <span>{product.title}</span>
+          <h1>{product.title}</h1>
         </Link>
 
         <Link
           href={`/products/${product.category}/${product.id}/comments`}
           className={classes.comments}
         >
-          <span>
-            <Rating
-              readOnly
-              precision={0.5}
-              value={averageRate}
-              size="medium"
-            />
-          </span>
+          <Rating readOnly precision={0.5} value={averageRate} size="medium" />
+
           <span>{product.totalComments} відгуків</span>
         </Link>
 
         <div className={classes.price}>
-          <span>{product.price} &#8372; </span>
+          <h1>{product.price} &#8372; </h1>
         </div>
-        <div className={classes.price}>
+        <div
+          className={classes.price}
+          style={
+            inStock === "В наявності"
+              ? {
+                  color: "green",
+                }
+              : {
+                  color: "grey",
+                }
+          }
+        >
           <span>{inStock}</span>
         </div>
       </div>

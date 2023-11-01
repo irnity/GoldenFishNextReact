@@ -35,6 +35,7 @@ const ToggleList = ({ product }: Props) => {
               addProductToBasket(product)
             }}
             color="blue"
+            backGroundColor="white"
             svg={<FiShoppingCart />}
           />
         </div>

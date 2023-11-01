@@ -16,11 +16,7 @@ const Header = () => {
   }, [dispatch])
 
   return (
-    <header
-      style={{
-        width: "100%",
-      }}
-    >
+    <header>
       <Monitor />
       <Mobile />
     </header>

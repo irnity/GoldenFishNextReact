@@ -13,6 +13,7 @@ import Link from "next/link"
 import { PiMagnifyingGlassThin } from "react-icons/pi"
 import { IProduct } from "@/redux/model"
 import classes from "./SearchHeader.module.css"
+import CustomBackground from "@/components/elements/customBackground/CustomBackground"
 
 interface SearchHeaderProps {}
 
@@ -81,12 +82,11 @@ const SearchHeader: FunctionComponent<SearchHeaderProps> = () => {
       />
       {searchResults.length > 0 && searchResultsToggle && (
         <>
-          <div
-            className={classes.background}
-            onClick={() => {
+          <CustomBackground
+            handler={() => {
               setSearchResultsToggle(false)
             }}
-          ></div>
+          />
 
           <div className={classes.searchResults}>
             {searchResults.map((result) => (

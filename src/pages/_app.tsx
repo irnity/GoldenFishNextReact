@@ -13,26 +13,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={classes.page}>
       <Provider store={store}>
-        <div
-          style={{
-            width: "75%",
-          }}
-        >
+        <div className={classes.header}>
           <Header />
         </div>
-        <div
-          style={{
-            width: "75%",
-          }}
-        >
+        <div className={classes.main}>
           <Component {...pageProps} />
         </div>
-        <div
-          style={{
-            width: "75%",
-            zIndex: 0,
-          }}
-        >
+        <div className={classes.footer}>
           <Footer />
         </div>
       </Provider>

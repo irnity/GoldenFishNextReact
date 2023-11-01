@@ -25,4 +25,5 @@
 .button {
   width: 100%;
   cursor: pointer;
+  margin-bottom: var(--default-bottom-marign);
 }

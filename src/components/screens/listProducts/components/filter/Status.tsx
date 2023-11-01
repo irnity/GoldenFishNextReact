@@ -92,7 +92,9 @@ const Status: FunctionComponent<StatusProps> = () => {
               }))
             }}
           />
-          <label htmlFor="inStock">Є в наявності</label>
+          <label htmlFor="inStock">
+            <span>Є в наявності</span>
+          </label>
         </div>
         <div>
           <input
@@ -108,7 +110,9 @@ const Status: FunctionComponent<StatusProps> = () => {
               }))
             }}
           />
-          <label htmlFor="outStock">Немає в наявності</label>
+          <label htmlFor="outStock">
+            <span>Немає в наявності</span>
+          </label>
         </div>
       </div>
     </div>

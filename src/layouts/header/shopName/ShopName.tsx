@@ -7,7 +7,7 @@ interface ShopNameProps {}
 const ShopName: FunctionComponent<ShopNameProps> = () => {
   return (
     <Link href="/" className={classes.shop}>
-      <span className={classes.text}>Golden Fish</span>
+      <h1 className={classes.text}>Golden Fish</h1>
     </Link>
   )
 }

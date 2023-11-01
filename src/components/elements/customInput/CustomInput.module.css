@@ -11,6 +11,7 @@
   font-size: 25px;
   width: 100%;
   margin-bottom: 0px;
+  font-family: var(--main-text-font);
 }
 
 .container input {
@@ -20,6 +21,7 @@
   font-size: 20px;
   border-radius: 10px;
   border: 1px solid #ccc;
+  font-family: var(--main-text-font);
 }
 
 /* Chrome, Safari, Edge, Opera */

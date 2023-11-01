@@ -5,6 +5,7 @@ type Props = {
   type: "button" | "submit" | "reset"
   color?: string
   backGroundColor?: string
+  border?: string
   handler?: () => void
   text?: string
   svg?: React.ReactNode
@@ -15,7 +16,11 @@ function CustomButton(props: Props) {
   return (
     <button
       type={props.type}
-      style={{ color: props.color, backgroundColor: props.backGroundColor }}
+      style={{
+        color: props.color,
+        backgroundColor: props.backGroundColor,
+        border: props.border,
+      }}
       className={classes.addParamButton}
       onClick={props.handler}
       disabled={props.disabled}
@@ -31,8 +36,7 @@ function CustomButton(props: Props) {
           {props.svg}
         </div>
       )}
-
-      {props.text}
+      <span>{props.text}</span>
     </button>
   )
 }
