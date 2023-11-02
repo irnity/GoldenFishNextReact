@@ -9,8 +9,9 @@ import {
   limit,
   query,
 } from "firebase/firestore"
-import { db } from "@/services/firebase/firebase"
+import { db, storage } from "@/services/firebase/firebase"
 import { IProduct } from "@/redux/model"
+import { getDownloadURL, ref } from "firebase/storage"
 
 interface CharacteristicsPageProps {
   data: IProduct
@@ -34,6 +35,10 @@ export async function getServerSideProps(context: any) {
   const data = await getDoc(productsCollectionRef)
 
   const filteredData = data.data()
+
+  const imageRef = ref(storage, `productImages/${filteredData!.code}`) // Assuming each product has its own image ID.
+  const url = await getDownloadURL(imageRef)
+  filteredData!.image = url
 
   return {
     props: {

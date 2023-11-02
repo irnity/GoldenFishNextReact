@@ -2,8 +2,9 @@ import { FunctionComponent } from "react"
 import Cart from "@/components/screens/product/components/cart/Cart"
 import Comments from "@/components/screens/product/pages/comments/Comments"
 import { collection, doc, getDoc, getDocs } from "firebase/firestore"
-import { db } from "@/services/firebase/firebase"
+import { db, storage } from "@/services/firebase/firebase"
 import { IProduct } from "@/redux/model"
+import { getDownloadURL, ref } from "firebase/storage"
 
 interface CommentsPageProps {
   data: any
@@ -48,6 +49,11 @@ export async function getServerSideProps(context: any) {
     id: doc.id,
     ...doc.data(),
   }))
+
+  const imageRef = ref(storage, `productImages/${filteredData!.code}`) // Assuming each product has its own image ID.
+  const url = await getDownloadURL(imageRef)
+  filteredData!.image = url
+
   return {
     props: {
       data: filteredcommentsData,

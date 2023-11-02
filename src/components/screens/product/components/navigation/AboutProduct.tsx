@@ -42,7 +42,7 @@ const AboutProduct: FunctionComponent<AboutProductProps> = () => {
             <span>Відгуки</span>
           </Link>
         </div>
-        <div className={classes.bottom_block_text}>
+        {/* <div className={classes.bottom_block_text}>
           <Link
             className={classes.link}
             style={name === "video" ? { color: "purple" } : undefined}
@@ -69,7 +69,7 @@ const AboutProduct: FunctionComponent<AboutProductProps> = () => {
           >
             <span>Купують разом</span>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   )

@@ -45,14 +45,25 @@ const Item: FunctionComponent<ItemProps> = ({
   }, [data, dispatch])
 
   return (
-    <>
+    <div
+      style={{
+        marginBottom: 100,
+      }}
+    >
       <Product
         data={data}
         commentsCount={commentsCount}
         commentsData={commentsData.slice(0, 3) || []}
       />
-      <Products products={advertising} />
-    </>
+      <h1>Рекомендовані товари</h1>
+      <div
+        style={{
+          borderTop: "1px solid rgba(0, 0, 0, 0.3)",
+        }}
+      >
+        <Products products={advertising} />
+      </div>
+    </div>
   )
 }
 

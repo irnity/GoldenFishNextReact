@@ -15,11 +15,15 @@
 
 .container textarea {
   box-sizing: border-box;
-  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 50px;
+  max-height: 300px;
   padding: 10px;
   font-size: 20px;
   border-radius: 10px;
   border: 1px solid #ccc;
+  font-family: var(--main-text-font);
 }
 
 .container textarea:focus {

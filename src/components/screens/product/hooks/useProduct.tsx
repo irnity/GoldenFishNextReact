@@ -3,12 +3,12 @@ import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { useSelector } from "react-redux"
 
-interface IproductReference {
+interface IProductReference {
   itemId: string
   categoryId: string
 }
 
-const useProduct = ({ itemId, categoryId }: IproductReference) => {
+const useProduct = ({ itemId, categoryId }: IProductReference) => {
   const router = useRouter()
 
   const { isLogedIn } = useSelector(
@@ -17,11 +17,13 @@ const useProduct = ({ itemId, categoryId }: IproductReference) => {
 
   const [toggleWriteComment, setToggleWriteComment] = useState(false)
 
-  const [rate, setRate] = useState(1)
-  const [positive, setPositive] = useState("")
-  const [negative, setNegative] = useState("")
-  const [comment, setComment] = useState("")
-  const [name, setName] = useState("")
+  const [comment, setComment] = useState({
+    rate: 3,
+    positive: "",
+    negative: "",
+    description: "",
+    name: "",
+  })
 
   const deleteProductHandler = async () => {
     const procced = window.confirm("Are you sure?")
@@ -54,12 +56,12 @@ const useProduct = ({ itemId, categoryId }: IproductReference) => {
   ) => {
     event.preventDefault()
     const data = {
-      name: name,
+      name: comment.name,
       email: auth.currentUser?.email,
-      rate: rate,
-      positive: positive,
-      negative: negative,
-      comment: comment,
+      rate: comment.rate,
+      positive: comment.positive,
+      negative: comment.negative,
+      comment: comment.description,
       itemId,
     }
 
@@ -78,7 +80,7 @@ const useProduct = ({ itemId, categoryId }: IproductReference) => {
       id: id,
       categoryId: categoryId,
       itemId: itemId,
-      name: auth.currentUser?.email,
+      email: auth.currentUser?.email,
       rate: rate,
     }
     const responce = await fetch("/api/newcomment", {
@@ -92,15 +94,8 @@ const useProduct = ({ itemId, categoryId }: IproductReference) => {
   }
   return {
     toggleWriteComment,
-
-    rate,
-
-    setRate,
-    setPositive,
-    setNegative,
+    comment,
     setComment,
-    setName,
-
     postCommentHandler,
 
     deleteProductHandler,

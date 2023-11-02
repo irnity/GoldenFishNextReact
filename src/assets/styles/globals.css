@@ -26,7 +26,6 @@ p {
 }
 
 span {
-  font-size: 16px;
   font-weight: 500;
   font-family: var(--main-text-font);
   margin: 0;
@@ -49,6 +48,7 @@ span {
   --red: rgb(255, 0, 0);
   --black: #1a1a1a;
   --grey: #797878;
+  --grey-1: rgba(97, 97, 97, 0.8);
   --grey-2: #2b313b;
   --main-text-font: "Roboto", sans-serif;
   --main-text-font-weight: 500;

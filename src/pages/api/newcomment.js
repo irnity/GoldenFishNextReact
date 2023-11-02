@@ -25,6 +25,7 @@ async function handler(req, res) {
       positive: data.positive,
       negative: data.negative,
       comment: data.comment,
+      date: new Date().toISOString(),
     }
 
     try {
@@ -45,7 +46,7 @@ async function handler(req, res) {
   }
   if (req.method === "PUT") {
     try {
-      await deleteDoc(doc(db, "products", data.itemId, "comments", data.name))
+      await deleteDoc(doc(db, "products", data.itemId, "comments", data.email))
       await updateDoc(doc(db, "products", data.itemId), {
         totalComments: increment(-1),
         totalRate: increment(-data.rate),

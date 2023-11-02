@@ -15,7 +15,11 @@ type Props = {
 const CustomInput = (props: Props) => {
   return (
     <div className={styles.container}>
-      {props.name && <label htmlFor={props.name}>{props.name}</label>}
+      {props.name && (
+        <label htmlFor={props.name}>
+          <h1>{props.name}</h1>
+        </label>
+      )}
       <input
         id={props.name}
         type={props.type}

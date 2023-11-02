@@ -26,10 +26,11 @@ const Buy: FunctionComponent<BuyProps> = ({ product }) => {
       <div className={classes.buttons}>
         <div className={classes.top_buttons}>
           <div>
-            <p>{product.price}₴</p>
+            <h1>{product.price}₴</h1>
+            <p>{product.inStock ? "В наявності" : "Немає в наявності"}</p>
           </div>
           <div>
-            <FiHeart color="#2196F3" size={16} />
+            <FiHeart color="#2196F3" size={25} />
           </div>
         </div>
 
