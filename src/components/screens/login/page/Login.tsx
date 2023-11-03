@@ -9,14 +9,8 @@ import CustomButton from "@/components/elements/customButton/CustomButton"
 type Props = {}
 
 function Login({}: Props) {
-  const {
-    email,
-    password,
-    emailHandler,
-    passwordHandler,
-    loginHandler,
-    loginWithGoogleHandler,
-  } = useAuth()
+  const { email, password, emailHandler, passwordHandler, loginHandler } =
+    useAuth()
   return (
     <div className={classes.container}>
       <h1>Login</h1>
@@ -46,15 +40,6 @@ function Login({}: Props) {
           backGroundColor="#2196F3"
           text="Login"
         />
-
-        {/* <CustomButton
-          type="button"
-          color="black"
-          backGroundColor="white"
-          handler={loginWithGoogleHandler}
-          text="Login with Google"
-          svg={<GoogleSVG />}
-        /> */}
 
         <Link href="/signup" className={classes.link}>
           <span>To Sign up Page</span>

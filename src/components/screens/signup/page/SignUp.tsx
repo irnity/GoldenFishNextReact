@@ -15,7 +15,6 @@ const SignUp = (props: Props) => {
     emailHandler,
     passwordHandler,
     loginHandler,
-    loginWithGoogleHandler,
     registrationHandler,
   } = useAuth()
   return (
@@ -45,14 +44,6 @@ const SignUp = (props: Props) => {
           backGroundColor="#2196F3"
           text="Sign up"
         />
-        {/* <CustomButton
-          type="button"
-          color="black"
-          backGroundColor="white"
-          handler={loginWithGoogleHandler}
-          text="Login with Google"
-          svg={<GoogleSVG />}
-        /> */}
         <Link href="/login" className={classes.link}>
           <span>To Login Page</span>
         </Link>

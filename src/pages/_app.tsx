@@ -13,7 +13,14 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={classes.page}>
       <Provider store={store}>
-        <div className={classes.header}>
+        <div
+          className={classes.header}
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 2,
+          }}
+        >
           <Header />
         </div>
         <div className={classes.main}>

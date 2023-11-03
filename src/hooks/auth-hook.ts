@@ -9,7 +9,6 @@ import { auth, db } from "../services/firebase/firebase"
 import {
   authActions,
   authCreateAdmin,
-  authGmail,
   authLogin,
   authLogout,
   authRegistration,
@@ -49,10 +48,6 @@ const useAuth = () => {
     dispatch(authLogin({ email, password }))
   }
 
-  const loginWithGoogleHandler = async () => {
-    await dispatch(authGmail())
-  }
-
   const registrationHandler = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -75,7 +70,6 @@ const useAuth = () => {
     passwordHandler,
 
     loginHandler,
-    loginWithGoogleHandler,
     registrationHandler,
     createAdmin,
     logout,

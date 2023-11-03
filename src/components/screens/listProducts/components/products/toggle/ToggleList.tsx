@@ -16,7 +16,6 @@ const ToggleList = ({ product }: Props) => {
     (state: { auth: { userInfo: { email: string } } }) => state.auth
   )
   const { addProductToBasket } = useBasket()
-  const { addFavoriteProduct } = useApi()
   return (
     <div className={classes.container}>
       <div className={classes.params}>

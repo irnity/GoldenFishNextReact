@@ -116,6 +116,13 @@ export async function getServerSideProps(context: any) {
     }
   } catch (err) {
     console.error(err)
+    return {
+      props: {
+        ok: false,
+        reason:
+          "some error description for your own consumption, not for client side",
+      },
+    }
   }
 }
 

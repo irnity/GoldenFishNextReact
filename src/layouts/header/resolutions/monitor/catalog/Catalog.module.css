@@ -28,12 +28,12 @@
 }
 @keyframes fadeIn {
   0% {
-    opacity: 0;
-    transform: translateY(-10%);
+    opacity: 1;
+    transform: translateY(-40%);
   }
 
   50% {
-    opacity: 0.5;
+    opacity: 1;
     transform: translateY(10%);
   }
   100% {
@@ -52,12 +52,12 @@
   }
 
   50% {
-    opacity: 0.5;
+    opacity: 1;
     transform: translateY(10%);
   }
   100% {
-    opacity: 0;
-    transform: translateY(-10%);
+    opacity: 1;
+    transform: translateY(-40%);
   }
 }
 

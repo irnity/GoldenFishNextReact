@@ -2,27 +2,28 @@
 import classes from "./Product.module.css"
 
 // react
-import { FunctionComponent } from "react"
+import { FunctionComponent, useEffect, useState } from "react"
+import useApi from "@/hooks/api-hook"
+import useProduct from "../../hooks/useProduct"
+import useBasket from "@/hooks/basket-hook"
 
 // Redux
-import { productsActions } from "@/redux/productsSlice"
-import { basketActions } from "@/redux/basketSlice"
 import { IProduct } from "@/redux/model"
 import { useDispatch, useSelector } from "react-redux"
+
+// NEXT
+import { useRouter } from "next/router"
+import Link from "next/link"
+import Image from "next/image"
 
 // Components
 import AboutProduct from "../../components/navigation/AboutProduct"
 import Information from "@/components/elements/information/Information"
-import useBasket from "@/hooks/basket-hook"
-import Image from "next/image"
-import { useRouter } from "next/router"
-import useProduct from "../../hooks/useProduct"
-import Link from "next/link"
 import CustomButton from "@/components/elements/customButton/CustomButton"
 import Comments from "../comments/Comments"
 import Characteristics from "../characteristics/Characteristics"
-import ProductsList from "@/pages/products/[categoryId]"
 import { Rating } from "@mui/material"
+import { FiHeart } from "react-icons/fi"
 
 interface ProductProps {
   data: IProduct
@@ -39,25 +40,35 @@ const Product: FunctionComponent<ProductProps> = ({
   const router = useRouter()
   const { categoryId, itemId } = router.query
 
-  const product = useSelector(
-    (state: { product: { product: IProduct } }) => state.product.product
-  )
-
   const { deleteProductHandler } = useProduct({
     itemId: itemId as string,
     categoryId: categoryId as string,
   })
 
-  const { addProductToBasket } = useBasket()
-
   const { isLogedIn, isAdmin, userInfo } = useSelector(
     (state: {
-      auth: { isLogedIn: boolean; isAdmin: boolean; userInfo: string }
+      auth: {
+        isLogedIn: boolean
+        isAdmin: boolean
+        userInfo: { email: string }
+      }
     }) => state.auth
   )
 
-  const averageRate = product.totalRate / product.totalComments || 0
-  const inStock = product.inStock ? "В наявності" : "Немає в наявності"
+  const { addProductToBasket } = useBasket()
+
+  const { productInFavorite, productHandler } = useApi(
+    data.code,
+    userInfo.email
+  )
+
+  const [averageRate, setAverageRate] = useState(0)
+  const [inStock, setInStock] = useState("Немає в наявності")
+
+  useEffect(() => {
+    setAverageRate(data.totalRate / data.totalComments || 0)
+    setInStock(data.inStock ? "В наявності" : "Немає в наявності")
+  }, [data.inStock, data.totalComments, data.totalRate])
 
   return (
     <div className={classes.cart}>
@@ -67,7 +78,7 @@ const Product: FunctionComponent<ProductProps> = ({
       <div className={classes.block}>
         <div className={classes.cart_image}>
           <Image
-            src={product.image}
+            src={data.image}
             width={400}
             height={400}
             alt="fishing product image"
@@ -78,7 +89,7 @@ const Product: FunctionComponent<ProductProps> = ({
         <div className={classes.information_container}>
           {/* title */}
           <div className={classes.title_container}>
-            <h1 className={classes.title}>{product.title}</h1>
+            <h1 className={classes.title}>{data.title}</h1>
           </div>
 
           {/* rate & code */}
@@ -97,14 +108,24 @@ const Product: FunctionComponent<ProductProps> = ({
               <p>Відгуки: {commentsCount}</p>
             </Link>
             <div className={classes.code_container}>
-              <span>Код товару: {product.code || "code"}</span>
+              <span>Код товару: {data.code || "code"}</span>
             </div>
           </div>
 
           {/* price & buy button */}
           <div className={classes.price_buy_container}>
             <div className={classes.price}>
-              <h2>{product.price}₴</h2>
+              <div>
+                <h2>{data.price}₴</h2>
+                <div className={classes.favorite}>
+                  <FiHeart
+                    fill={productInFavorite ? "rgba(33, 150, 243, 1)" : "white"}
+                    color="rgba(33, 150, 243, 1)"
+                    onClick={productHandler}
+                    size={25}
+                  />
+                </div>
+              </div>
               {inStock ? (
                 <span className={classes.isStock}>В наявності</span>
               ) : (
@@ -114,9 +135,10 @@ const Product: FunctionComponent<ProductProps> = ({
             <div className={classes.buy}>
               <CustomButton
                 type="button"
-                handler={() => addProductToBasket(product)}
+                handler={() => addProductToBasket(data)}
                 text="Додати В кошик"
-                color="#4285f4"
+                color="rgba(33, 150, 243, 1)"
+                backGroundColor="white"
               />
             </div>
           </div>
@@ -135,7 +157,7 @@ const Product: FunctionComponent<ProductProps> = ({
         <div className={classes.detailsContainer}>
           <div className={classes.description_container}>
             <h1>Опис</h1>
-            <span>{product.description}</span>
+            <span>{data.description}</span>
           </div>
           <Characteristics characteristics={data} />
         </div>

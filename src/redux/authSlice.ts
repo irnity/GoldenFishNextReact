@@ -52,9 +52,9 @@ export const authGetUserInformation = createAsyncThunk(
       })
 
       if (user) {
-        const logedInStorage = localStorage.getItem("logedIn")
-        const isUserAdministrator = localStorage.getItem("isUserAdministrator")
         const timeStorage: any = localStorage.getItem("time")
+
+        const admin = (await user.getIdTokenResult()).claims
 
         const todayDay: any = new Date()
         const dayLogedIn: any = new Date(timeStorage)
@@ -64,13 +64,13 @@ export const authGetUserInformation = createAsyncThunk(
 
         if (daysOnline >= 7) {
           userState.isLogedIn = false
-          userState.isAdmin = false
           userState.email = ""
+          userState.isAdmin = false
           authLogout()
         } else {
-          userState.email = user.email
           userState.isLogedIn = true
-          if (isUserAdministrator) {
+          userState.email = user.email
+          if (admin) {
             userState.isAdmin = true
           }
         }
@@ -109,25 +109,25 @@ export const authLogin = createAsyncThunk(
   }
 )
 
-export const authGmail = createAsyncThunk(
-  "auth/gmail",
-  async (_, { dispatch }) => {
-    try {
-      const responce = await signInWithPopup(auth, googleProvider)
+// export const authGmail = createAsyncThunk(
+//   "auth/gmail",
+//   async (_, { dispatch }) => {
+//     try {
+//       const responce = await signInWithPopup(auth, googleProvider)
 
-      const admin = (await responce.user.getIdTokenResult()).claims
+//       const admin = (await responce.user.getIdTokenResult()).claims
 
-      console.log(admin)
+//       console.log(admin)
 
-      dispatch(
-        authActions.logInWithPassword({ admin, email: responce.user.email })
-      )
-      return "isLogedIn"
-    } catch (err) {
-      throw err
-    }
-  }
-)
+//       dispatch(
+//         authActions.logInWithPassword({ admin, email: responce.user.email })
+//       )
+//       return "isLogedIn"
+//     } catch (err) {
+//       throw err
+//     }
+//   }
+// )
 
 export const authRegistration = createAsyncThunk(
   "auth/registration",
@@ -182,14 +182,10 @@ const authSlice = createSlice({
   initialState: initialAuthState,
   reducers: {
     logInWithPassword(state, payload) {
-      localStorage.setItem("logedIn", "true")
       localStorage.setItem("time", new Date().toISOString())
-
       state.isLogedIn = true
       state.userInfo.email = payload.payload.email
-
       if (payload.payload.admin === true) {
-        localStorage.setItem("isUserAdministrator", "true")
         state.isAdmin = true
       }
     },
@@ -215,17 +211,17 @@ const authSlice = createSlice({
     },
 
     // gmail
-    [authGmail.fulfilled.toString()]: (state, payload) => {
-      console.log(payload.payload)
-      state.status = payload.payload
-    },
-    [authGmail.rejected.toString()]: (state, payload) => {
-      console.log(payload.error.message)
-      state.status = "error"
-      state.isAdmin = false
-      state.isLogedIn = false
-      state.userInfo.email = ""
-    },
+    // [authGmail.fulfilled.toString()]: (state, payload) => {
+    //   console.log(payload.payload)
+    //   state.status = payload.payload
+    // },
+    // [authGmail.rejected.toString()]: (state, payload) => {
+    //   console.log(payload.error.message)
+    //   state.status = "error"
+    //   state.isAdmin = false
+    //   state.isLogedIn = false
+    //   state.userInfo.email = ""
+    // },
 
     // registration
     [authRegistration.fulfilled.toString()]: (state, payload) => {
@@ -253,9 +249,7 @@ const authSlice = createSlice({
       state.isLogedIn = false
       state.userInfo.email = ""
 
-      localStorage.removeItem("isUserAdministrator")
       localStorage.removeItem("time")
-      localStorage.removeItem("logedIn")
     },
   },
 })
