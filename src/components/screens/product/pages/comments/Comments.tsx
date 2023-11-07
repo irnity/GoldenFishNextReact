@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useRef, useState } from "react"
 import classes from "./Comments.module.css"
-import { IProduct } from "@/redux/model"
+import { IAuth, IProduct } from "@/redux/model"
 import { useSelector } from "react-redux"
 import { Timestamp, doc, getDoc } from "firebase/firestore"
 import { auth, db } from "@/services/firebase/firebase"
@@ -27,16 +27,8 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
   const router = useRouter()
   const { categoryId, itemId } = router.query
 
-  const { isLogedIn, isAdmin, userInfo } = useSelector(
-    (state: {
-      auth: {
-        isLogedIn: boolean
-        isAdmin: boolean
-        userInfo: {
-          email: string
-        }
-      }
-    }) => state.auth
+  const { isLogedIn, isAdmin, email } = useSelector(
+    (state: { auth: IAuth }) => state.auth
   )
 
   const {
@@ -57,13 +49,14 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
   const [commentExist, setCommentExist] = useState(false)
 
   useEffect(() => {
-    if (userInfo.email) {
-      const comments = data.filter((item: any) => item.email === userInfo.email)
+    console.log()
+    if (email) {
+      const comments = data.filter((item: any) => item.email === email)
       if (comments.length === 0) {
         setCommentExist(true)
       }
     }
-  }, [userInfo.email, data])
+  }, [email, data])
 
   return (
     <div className={classes.cart}>
@@ -148,6 +141,7 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
       )}
       <div className={classes.comments}>
         {data.map((comment: any) => {
+          console.log(comment)
           const inputDate = new Date(comment.date)
 
           const day = inputDate.getUTCDate()
@@ -160,7 +154,7 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
               <div className={classes.comment_name}>
                 <div>
                   <h1>{comment.name}</h1>
-                  <span>{formattedDate}</span>
+                  <span>{formattedDate || ""}</span>
                 </div>
                 <span>Вігук від покупця</span>
               </div>

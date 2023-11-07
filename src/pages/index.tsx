@@ -14,15 +14,18 @@ interface HomePageProps {
 
 const HomePage: FunctionComponent<HomePageProps> = ({ fishingrod, hooks }) => {
   return (
+    // <div className={classes.cart}>
+    //   <div className={classes.list}>
+    //     <h1>Вудки</h1>
+    //     <Products products={fishingrod} />
+    //   </div>
+    //   <div className={classes.list}>
+    //     <h1>Гачки</h1>
+    //     <Products products={hooks} />
+    //   </div>
+    // </div>
     <div className={classes.cart}>
-      <div className={classes.list}>
-        <h1>Вудки</h1>
-        <Products products={fishingrod} />
-      </div>
-      <div className={classes.list}>
-        <h1>Гачки</h1>
-        <Products products={hooks} />
-      </div>
+      <h1>Home Page</h1>
     </div>
   )
 }
