@@ -5,7 +5,7 @@ type Props = {
   type: string
   name?: string
   required: boolean
-  placeholder: string
+  placeholder?: string
   value?: string | number
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   max?: number

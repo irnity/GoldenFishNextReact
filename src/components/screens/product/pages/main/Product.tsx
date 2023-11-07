@@ -36,15 +36,9 @@ const Product: FunctionComponent<ProductProps> = ({
   commentsData,
 }) => {
   const dispatch = useDispatch()
-
   const router = useRouter()
+
   const { categoryId, itemId } = router.query
-
-  const { deleteProductHandler } = useProduct({
-    itemId: itemId as string,
-    categoryId: categoryId as string,
-  })
-
   const { isLogedIn, isAdmin, userInfo } = useSelector(
     (state: {
       auth: {
@@ -54,13 +48,13 @@ const Product: FunctionComponent<ProductProps> = ({
       }
     }) => state.auth
   )
+  const { deleteProductHandler } = useProduct({
+    itemId: itemId as string,
+    categoryId: categoryId as string,
+  })
 
   const { addProductToBasket } = useBasket()
-
-  const { productInFavorite, productHandler } = useApi(
-    data.code,
-    userInfo.email
-  )
+  const { productInFavorite, productHandler } = useApi(data.code)
 
   const [averageRate, setAverageRate] = useState(0)
   const [inStock, setInStock] = useState("Немає в наявності")

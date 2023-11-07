@@ -8,25 +8,37 @@
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
   border-radius: 5px;
   margin-bottom: 10px;
+  box-sizing: border-box;
+  padding: 10px;
 }
 .title {
   display: flex;
-  width: 90%;
-  margin: 10px 0 0 2px;
-  color: rgb(0, 170, 255);
-  font-weight: 600;
+  width: 100%;
+  color: var(--blue);
 }
 .options {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 90%;
-  margin-bottom: 5px;
+  width: 100%;
 }
-.options div {
-  margin-bottom: 5px;
+
+.available {
+  padding: 5px;
+  box-sizing: border-box;
 }
+.available:hover {
+  color: var(--blue);
+}
+.outStock {
+  padding: 5px;
+  box-sizing: border-box;
+}
+.outStock:hover {
+  color: var(--blue);
+}
+
 .options input {
   scale: 1.3;
   cursor: pointer;

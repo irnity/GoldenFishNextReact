@@ -1,5 +1,5 @@
 export const cabinetData = [
-  { href: "/cabinet/personal-information", text: "Інформація" },
+  { href: "/cabinet", text: "Інформація" },
   { href: "/cabinet/orders", text: "Мої замовлення" },
   { href: "/cabinet/wish-list", text: "Список бажань" },
   { href: "/cabinet/watched-products", text: "Переглянуті товари" },

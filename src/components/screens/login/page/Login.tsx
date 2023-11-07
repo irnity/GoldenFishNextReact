@@ -5,45 +5,65 @@ import Link from "next/link"
 import GoogleSVG from "@/assets/svg/GoogleSVG"
 import CustomInput from "@/components/elements/customInput/CustomInput"
 import CustomButton from "@/components/elements/customButton/CustomButton"
+import { useRouter } from "next/router"
 
 type Props = {}
 
 function Login({}: Props) {
-  const { email, password, emailHandler, passwordHandler, loginHandler } =
-    useAuth()
+  const {
+    userCredentials,
+    emailHandler,
+    passwordHandler,
+
+    loginHandler,
+  } = useAuth()
+
+  const router = useRouter()
   return (
     <div className={classes.container}>
-      <h1>Login</h1>
+      <h1 className={classes.title}>Вхід</h1>
       <form className={classes.box} onSubmit={loginHandler}>
         <CustomInput
           type="email"
-          name="Email"
+          name="Ел. пошта"
           required={true}
-          placeholder="Email"
-          value={email}
+          value={userCredentials.email}
           onChange={emailHandler}
         />
 
         <CustomInput
           type="password"
-          name="Password"
+          name="Пароль"
           required={true}
-          placeholder="Password"
-          value={password}
+          value={userCredentials.password}
           onChange={passwordHandler}
         />
+
+        <span
+          className={classes.forgotPassword}
+          onClick={() => {
+            router.push("/forgot-password")
+          }}
+        >
+          Не пам&apos;ятаю пароль
+        </span>
 
         <CustomButton
           type="submit"
           color="white"
-          // green
-          backGroundColor="#2196F3"
-          text="Login"
+          backGroundColor="rgb(17, 177, 223)"
+          text="Увійти"
         />
 
-        <Link href="/signup" className={classes.link}>
-          <span>To Sign up Page</span>
-        </Link>
+        <CustomButton
+          type="button"
+          color="rgb(17, 177, 223)"
+          backGroundColor="white"
+          text="Зареєструватися"
+          handler={() => {
+            router.push("/signup")
+          }}
+        />
       </form>
     </div>
   )

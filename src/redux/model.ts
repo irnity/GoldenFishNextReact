@@ -15,6 +15,19 @@ export interface IProduct {
   }[]
 }
 
+export interface IAuth {
+  isLogedIn: boolean
+  isAdmin: boolean
+  firstName: string
+  lastName: string
+  surname: string
+  phoneNumber: string
+  email: string | null | undefined
+  status: string | null
+  error: string | null
+  password: string
+}
+
 export interface IBasketSliceProps {
   basket: {
     code: string

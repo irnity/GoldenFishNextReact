@@ -39,7 +39,7 @@ const Price = (props: Props) => {
   return (
     <div className={classes.container}>
       <div className={classes.title}>
-        <span>Ціна</span>
+        <h1>Ціна</h1>
       </div>
       <div className={classes.input}>
         <CustomInput
@@ -79,27 +79,25 @@ const Price = (props: Props) => {
           value={value[1]}
         />
       </div>
-      <Box sx={{ width: "80%" }}>
+      <Box sx={{ width: "90%" }}>
         <Slider
           getAriaLabel={() => "Temperature range"}
           value={value}
           onChange={handleChange}
           valueLabelDisplay="auto"
           disableSwap
-          style={{ color: "rgb(33, 150, 243)" }}
+          style={{ color: "rgb(17, 177, 223)" }}
           min={0}
           max={5000}
         />
       </Box>
-      <div className={classes.button}>
-        <CustomButton
-          type="button"
-          text="Застосувати"
-          handler={priceHandler}
-          backGroundColor="rgb(33, 150, 243)"
-          color="#fff"
-        />
-      </div>
+      <CustomButton
+        type="button"
+        text="Застосувати"
+        handler={priceHandler}
+        backGroundColor="rgb(17, 177, 223)"
+        color="#fff"
+      />
     </div>
   )
 }

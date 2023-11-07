@@ -53,27 +53,6 @@ const basketSlice = createSlice({
       state.totalPrice = 0
       state.totalNumber = 0
     },
-
-    createOrder(state) {
-      async function post() {
-        let url =
-          "https://goldenfishreact-default-rtdb.europe-west1.firebasedatabase.app/order.json"
-
-        const response = await fetch(url, {
-          method: "POST",
-          body: JSON.stringify(state),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        if (!response.ok) {
-          console.log("error")
-        } else {
-          console.log("data is posted")
-        }
-      }
-      post()
-    },
   },
 })
 

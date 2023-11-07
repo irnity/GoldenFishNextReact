@@ -5,48 +5,77 @@ import CustomButton from "@/components/elements/customButton/CustomButton"
 import Link from "next/link"
 import CustomInput from "@/components/elements/customInput/CustomInput"
 import GoogleSVG from "@/assets/svg/GoogleSVG"
+import { useRouter } from "next/router"
 
 type Props = {}
 
 const SignUp = (props: Props) => {
+  const router = useRouter()
+
   const {
-    email,
-    password,
+    userCredentials,
+    firstNameHandler,
+    lastNameHandler,
+    phoneNumberHandler,
     emailHandler,
     passwordHandler,
-    loginHandler,
+
     registrationHandler,
   } = useAuth()
+
   return (
     <div className={classes.container}>
-      <h1>Sign up</h1>
+      <h1 className={classes.title}>Реєстрація</h1>
       <form className={classes.box} onSubmit={registrationHandler}>
         <CustomInput
-          type="email"
-          name="Email"
+          type="text"
+          name="Ім'я"
           required={true}
-          placeholder="Email"
-          value={email}
+          onChange={firstNameHandler}
+        />
+
+        <CustomInput
+          type="text"
+          name="Прізвище"
+          required={true}
+          onChange={lastNameHandler}
+        />
+
+        <CustomInput
+          type="tel"
+          name="Номер телефону"
+          value={userCredentials.phoneNumber}
+          required={true}
+          onChange={phoneNumberHandler}
+        />
+
+        <CustomInput
+          type="email"
+          name="Ел. пошта"
+          required={true}
           onChange={emailHandler}
         />
         <CustomInput
           type="password"
-          name="Password"
+          name="Придумайте пароль"
           required={true}
-          placeholder="Password"
-          value={password}
           onChange={passwordHandler}
         />
+
         <CustomButton
           type="submit"
           color="white"
-          // green
-          backGroundColor="#2196F3"
-          text="Sign up"
+          backGroundColor="rgb(17, 177, 223)"
+          text="Зареєструватися"
         />
-        <Link href="/login" className={classes.link}>
-          <span>To Login Page</span>
-        </Link>
+
+        <CustomButton
+          type="button"
+          color="rgb(17, 177, 223)"
+          backGroundColor="white"
+          text="Я вже зареєстрований"
+          handler={() => router.push("/login")}
+        />
       </form>
     </div>
   )

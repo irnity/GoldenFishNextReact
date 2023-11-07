@@ -2,12 +2,19 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { warningActions } from "@/redux/warningSlice"
+import { auth } from "@/services/firebase/firebase"
 
-const useApi = (id: string, email: string) => {
+const useApi = (id: string) => {
   const router = useRouter()
   const dispatch = useDispatch()
 
   const [productInFavorite, setProductInFavorite] = useState(false)
+  const [email, setEmail] = useState<string | null | undefined>("")
+
+  useEffect(() => {
+    const email = auth.currentUser?.email
+    setEmail(email)
+  }, [])
 
   useEffect(() => {
     const checkProductInFavorite = async () => {
@@ -26,12 +33,13 @@ const useApi = (id: string, email: string) => {
         })
         const data = await responce.json()
 
-        //       dispatch(warningActions.setWarning({message: data.message, code: data.color}))
+        // dispatch(warningActions.setWarning({message: data.message, code: data.color}))
         setProductInFavorite(data.exist)
       } catch (error) {
         console.log(error)
       }
     }
+
     checkProductInFavorite()
   }, [id, email, dispatch])
 

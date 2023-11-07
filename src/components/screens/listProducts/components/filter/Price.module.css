@@ -7,22 +7,17 @@
   background-color: #fff;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.22);
   border-radius: 5px;
+  box-sizing: border-box;
+  padding: 10px;
 }
 .title {
   display: flex;
-  width: 90%;
-  margin: 10px 0 0 2px;
-  color: rgb(0, 170, 255);
-  font-weight: 600;
+  width: 100%;
+  color: var(--blue);
   margin-bottom: 5px;
 }
 .input {
-  width: 90%;
+  width: 100%;
   display: flex;
-  gap: 5px;
-}
-
-.button {
-  width: 90%;
-  margin-bottom: 10px;
+  gap: 15px;
 }

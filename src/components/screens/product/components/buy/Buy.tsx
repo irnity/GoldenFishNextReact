@@ -6,6 +6,7 @@ import useBasket from "@/hooks/basket-hook"
 import Image from "next/image"
 import CustomButton from "@/components/elements/customButton/CustomButton"
 import { FiHeart } from "react-icons/fi"
+import useApi from "@/hooks/api-hook"
 
 interface BuyProps {
   product: IProduct
@@ -13,6 +14,7 @@ interface BuyProps {
 
 const Buy: FunctionComponent<BuyProps> = ({ product }) => {
   const { addProductToBasket } = useBasket()
+  const { productInFavorite, productHandler } = useApi(product.code)
   return (
     <div className={classes.buy}>
       <div className={classes.image}>
@@ -29,8 +31,13 @@ const Buy: FunctionComponent<BuyProps> = ({ product }) => {
             <h1>{product.price}₴</h1>
             <p>{product.inStock ? "В наявності" : "Немає в наявності"}</p>
           </div>
-          <div>
-            <FiHeart color="#2196F3" size={25} />
+          <div className={classes.favorite}>
+            <FiHeart
+              fill={productInFavorite ? "rgba(33, 150, 243, 1)" : "white"}
+              color="rgba(33, 150, 243, 1)"
+              onClick={productHandler}
+              size={25}
+            />
           </div>
         </div>
 

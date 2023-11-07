@@ -75,10 +75,10 @@ const Status: FunctionComponent<StatusProps> = () => {
   return (
     <div className={classes.container}>
       <div className={classes.title}>
-        <span>Стутус товару</span>
+        <h1>Стутус товару</h1>
       </div>
       <div className={classes.options}>
-        <div>
+        <div className={classes.available}>
           <input
             type="checkbox"
             name="inStock"
@@ -96,7 +96,7 @@ const Status: FunctionComponent<StatusProps> = () => {
             <span>Є в наявності</span>
           </label>
         </div>
-        <div>
+        <div className={classes.outStock}>
           <input
             type="checkbox"
             name="outStock"

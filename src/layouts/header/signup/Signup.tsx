@@ -14,16 +14,14 @@ import { FiUser } from "react-icons/fi"
 interface SighupProps {}
 
 const Sighup: FunctionComponent<SighupProps> = () => {
-  const { logout } = useAuth()
-
   // check if user is loged in
   const { isLogedIn } = useSelector(
     (state: { auth: { isLogedIn: boolean } }) => state.auth
   )
 
-  return (
-    <div className={classes.signup}>
-      {isLogedIn === false ? (
+  if (isLogedIn === false) {
+    return (
+      <div className={classes.signup}>
         <div className={classes.mainbox}>
           <Link href="/login">
             <button>
@@ -31,15 +29,19 @@ const Sighup: FunctionComponent<SighupProps> = () => {
             </button>
           </Link>
         </div>
-      ) : (
-        <div className={classes.mainbox}>
-          <Link href="/cabinet/personal-information">
-            <button>
-              <FiUser size={38} />
-            </button>
-          </Link>
-        </div>
-      )}
+      </div>
+    )
+  }
+
+  return (
+    <div className={classes.signup}>
+      <div className={classes.mainbox}>
+        <Link href="/cabinet">
+          <button>
+            <FiUser size={38} />
+          </button>
+        </Link>
+      </div>
     </div>
   )
 }
