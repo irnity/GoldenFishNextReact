@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.container label {
+  font-size: 25px;
+  width: 100%;
+  margin-bottom: 0px;
+  font-family: var(--main-text-font);
+}
+
+.container input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: var(--main-text-font);
+}
+
+/* Chrome, Safari, Edge, Opera */
+.container input::-webkit-outer-spin-button,
+.container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.container input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.container input:focus {
+  outline: none;
+  border: 1px solid #333;
+}

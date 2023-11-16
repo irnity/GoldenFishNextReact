@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  z-index: 0;
+  position: relative;
+}
+.not_found {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}

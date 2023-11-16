@@ -1,0 +1,27 @@
+.cart {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.info {
+  width: 100%;
+  height: auto;
+  margin: 0 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+}

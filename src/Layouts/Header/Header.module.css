@@ -1,0 +1,55 @@
+.warning {
+  position: absolute;
+  height: 35px;
+  width: 50%;
+  top: 105%;
+  left: 25%;
+  border-radius: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+}
+.warning span {
+  margin-left: 15px;
+  color: white;
+  font-size: 20px;
+}
+.fade_slide_enter_active {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.fade_slide_exit_active {
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+}

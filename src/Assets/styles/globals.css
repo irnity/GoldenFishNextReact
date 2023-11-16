@@ -1,0 +1,58 @@
+.mainButtonColor {
+  color: rgb(33, 150, 243);
+}
+/* make 2 rows of text */
+.text_2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+h1 {
+  font-size: 22px;
+  font-weight: 500;
+  font-family: var(--main-text-font);
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--main-text-font);
+  margin: 0;
+  padding: 0;
+}
+
+span {
+  font-weight: 500;
+  font-family: var(--main-text-font);
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --white: rgba(255, 255, 255, 1);
+  --white80: rgba(255, 255, 255, 0.8);
+  --white60: rgba(255, 255, 255, 0.6);
+  --white50: 'gainsboro';
+  --white40: rgba(255, 255, 255, 0.4);
+  --white20: rgba(255, 255, 255, 0.2);
+  --white10: rgba(255, 255, 255, 0.1);
+  --blue: rgba(17, 177, 223, 1);
+  --blue80: rgba(17, 177, 223, 0.8);
+  --blue60: rgba(17, 177, 223, 0.6);
+  --blue40: rgba(17, 177, 223, 0.4);
+  --blue20: rgba(17, 177, 223, 0.2);
+  --blue10: rgba(17, 177, 223, 0.1);
+  --green: #198754;
+  --red: #dc3545;
+  --black: #1a1a1a;
+  --grey: #797878;
+  --grey-1: rgba(97, 97, 97, 0.8);
+  --grey-2: #2b313b;
+  --main-text-font: 'Roboto', sans-serif;
+  --main-text-font-weight: 500;
+  --default-bottom-marign: 10px;
+}

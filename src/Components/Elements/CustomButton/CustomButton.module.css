@@ -1,0 +1,15 @@
+.addParamButton {
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addParamButton:hover {
+  cursor: pointer;
+  border: 1px solid #333;
+}
