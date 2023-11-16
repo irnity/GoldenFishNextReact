@@ -1,0 +1,39 @@
+.container {
+  width: 100%;
+  padding: 5px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.281);
+  border-top: 1px solid rgba(128, 128, 128, 0.281);
+}
+
+.container select {
+  display: flex;
+  border: 1px solid rgba(128, 128, 128, 0.281);
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline: none;
+  cursor: pointer;
+}
+.filter select:hover {
+  border: 1px solid rgba(0, 162, 255, 0.74);
+}
+
+.shape {
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 10px;
+}
+.shape button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+.shape button:hover {
+  border-radius: 5px;
+  background-color: rgba(0, 162, 255, 0.74);
+}

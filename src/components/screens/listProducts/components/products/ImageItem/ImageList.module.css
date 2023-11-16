@@ -1,0 +1,29 @@
+.image_box {
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 230px;
+  height: 230px;
+  box-sizing: border-box;
+}
+
+/* info */
+
+.link_image {
+  width: 95%;
+  height: 95%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
