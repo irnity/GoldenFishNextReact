@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import classes from './Item.module.css'
 import { Rating } from '@mui/material'
 import ImageList from '../ImageItem/ImageList'
-import colors from '@/Assets/styles/colors'
+import colors from '@/Assets/Styles/colors'
 import ToggleList from '../ToggleItem/ToggleItem'
 
 interface Props {

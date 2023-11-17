@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
 import CustomInput from '@/Components/Elements/CustomInput/CustomInput'
-import colors from '@/Assets/styles/colors'
+import colors from '@/Assets/Styles/colors'
 
 const min = 0
 const max = 5000

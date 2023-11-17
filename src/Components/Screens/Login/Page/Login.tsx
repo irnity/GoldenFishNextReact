@@ -4,7 +4,7 @@ import useAuth from '@/Hooks/auth-hook'
 import CustomInput from '@/Components/Elements/CustomInput/CustomInput'
 import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
 import { useRouter } from 'next/router'
-import colors from '@/Assets/styles/colors'
+import colors from '@/Assets/Styles/colors'
 
 function Login() {
   const {

@@ -6,7 +6,7 @@ import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
 import CustomInput from '@/Components/Elements/CustomInput/CustomInput'
 
 import { useRouter } from 'next/router'
-import colors from '@/Assets/styles/colors'
+import colors from '@/Assets/Styles/colors'
 
 const SignUp = () => {
   const router = useRouter()

@@ -1,13 +1,13 @@
 import Footer from '@/Layouts/Footer/Footer'
 import Header from '@/Layouts/Header/Header'
 import React from 'react'
-import '@/assets/styles/globals.css'
+import '@/Assets/Styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import store from '@/Redux'
 import classes from './_app.module.css'
 
-import '../assets/styles/Style.css'
+import '../Assets/Styles/Style.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
