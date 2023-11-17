@@ -137,6 +137,7 @@ const useAuth = () => {
         firstName: updateFieldIfChanged('firstName', userCredentials.firstName),
         lastName: updateFieldIfChanged('lastName', userCredentials.lastName),
         surname: updateFieldIfChanged('surname', userCredentials.surname),
+        email: userReduxState.email as string,
       })
     )
   }

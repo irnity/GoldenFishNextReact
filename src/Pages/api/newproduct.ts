@@ -1,8 +1,7 @@
 import { db } from '../../services/firebase/firebase'
-import { nanoid } from '@reduxjs/toolkit'
-import { addDoc, collection, deleteDoc, doc, setDoc } from 'firebase/firestore'
+import { deleteDoc, doc, setDoc } from 'firebase/firestore'
 
-async function handler(req, res) {
+async function handler(req: any, res: any) {
   if (req.method === 'POST') {
     const data = JSON.parse(req.body)
     // edit
@@ -24,10 +23,7 @@ async function handler(req, res) {
 
     // firebase add new product
     try {
-      const responce = await setDoc(
-        doc(db, 'products', productData.code),
-        productData
-      )
+      await setDoc(doc(db, 'products', productData.code), productData)
       res.json({ message: 'success', data: productData })
     } catch (err) {
       res.json(err)

@@ -1,4 +1,4 @@
-import { type IProduct } from '@/redux/model'
+import { type IProduct } from '@/Redux/model'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'

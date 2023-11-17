@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import classes from './Link.module.css'
 
-import { type FunctionComponent } from 'react'
+import React from 'react'
 
 interface CatalogLinksProps {
   toogleHandlerLinks: any
 }
 
-const CatalogLinks: FunctionComponent<CatalogLinksProps> = (props) => {
+const CatalogLinks = (props: CatalogLinksProps) => {
   return (
     <div className={classes.list}>
       <ul>

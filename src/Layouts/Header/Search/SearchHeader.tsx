@@ -1,4 +1,4 @@
-import { type FunctionComponent, useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
   type DocumentData,
   collection,
@@ -11,11 +11,9 @@ import { db } from '@/services/firebase/firebase'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PiMagnifyingGlassThin } from 'react-icons/pi'
-import { type IProduct } from '@/redux/model'
+import { type IProduct } from '@/Redux/model'
 import classes from './SearchHeader.module.css'
-import CustomBackground from '@/components/elements/customBackground/CustomBackground'
-
-interface SearchHeaderProps {}
+import CustomBackground from '@/Components/Elements/CustomBackground/CustomBackground'
 
 const fetchProducts = async (searchInput: string) => {
   const productQuery = query(
@@ -30,7 +28,7 @@ const fetchProducts = async (searchInput: string) => {
   return products
 }
 
-const SearchHeader: FunctionComponent<SearchHeaderProps> = () => {
+const SearchHeader = () => {
   const [searchInput, setSearchInput] = useState('')
   const [searchResults, setSearchResults] = useState<IProduct[]>([])
   const [searchResultsToggle, setSearchResultsToggle] = useState(true)
@@ -41,6 +39,7 @@ const SearchHeader: FunctionComponent<SearchHeaderProps> = () => {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     const timer = setTimeout(async () => {
       if (searchInput.length === 0) {
         setSearchResults([])

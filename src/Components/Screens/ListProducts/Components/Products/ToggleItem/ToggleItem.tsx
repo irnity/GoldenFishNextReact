@@ -1,9 +1,9 @@
 import React from 'react'
 import classes from './ToggleItem.module.css'
-import { type IProduct } from '@/redux/model'
-import CustomButton from '@/components/elements/customButton/CustomButton'
+import { type IProduct } from '@/Redux/model'
+import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
 import { FiShoppingCart } from 'react-icons/fi'
-import useBasket from '@/hooks/basket-hook'
+import useBasket from '@/Hooks/basket-hook'
 
 interface Props {
   product: IProduct

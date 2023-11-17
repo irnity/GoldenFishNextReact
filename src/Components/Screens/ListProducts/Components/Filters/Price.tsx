@@ -3,9 +3,9 @@ import classes from './Price.module.css'
 import { useRouter } from 'next/router'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
-import CustomButton from '@/components/elements/customButton/CustomButton'
-import CustomInput from '@/components/elements/customInput/CustomInput'
-import colors from '@/assets/styles/colors'
+import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
+import CustomInput from '@/Components/Elements/CustomInput/CustomInput'
+import colors from '@/Assets/styles/colors'
 
 const min = 0
 const max = 5000

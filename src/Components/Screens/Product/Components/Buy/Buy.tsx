@@ -1,18 +1,17 @@
-import { type FunctionComponent } from 'react'
+import React from 'react'
 import classes from './Buy.module.css'
-import { useSelector } from 'react-redux'
-import { type IProduct } from '@/redux/model'
-import useBasket from '@/hooks/basket-hook'
+import { type IProduct } from '@/Redux/model'
+import useBasket from '@/Hooks/basket-hook'
 import Image from 'next/image'
-import CustomButton from '@/components/elements/customButton/CustomButton'
+import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
 import { FiHeart } from 'react-icons/fi'
-import useApi from '@/hooks/api-hook'
+import useApi from '@/Hooks/api-hook'
 
 interface BuyProps {
   product: IProduct
 }
 
-const Buy: FunctionComponent<BuyProps> = ({ product }) => {
+const Buy = ({ product }: BuyProps) => {
   const { addProductToBasket } = useBasket()
   const { productInFavorite, productHandler } = useApi(product.code)
   return (
@@ -29,7 +28,11 @@ const Buy: FunctionComponent<BuyProps> = ({ product }) => {
         <div className={classes.top_buttons}>
           <div>
             <h1>{product.price}₴</h1>
-            <p>{product.inStock ? 'В наявності' : 'Немає в наявності'}</p>
+            <p>
+              {product.inStock === 'В наявності'
+                ? 'В наявності'
+                : 'Немає в наявності'}
+            </p>
           </div>
           <div className={classes.favorite}>
             <FiHeart

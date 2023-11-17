@@ -1,5 +1,5 @@
 // react
-import { type FunctionComponent } from 'react'
+import React from 'react'
 // router
 import Link from 'next/link'
 // css
@@ -7,13 +7,10 @@ import classes from './Signup.module.css'
 // redux
 import { useSelector } from 'react-redux'
 // custom hook
-import useAuth from '../../../hooks/auth-hook'
-import AccountSVG from '@/assets/svg/AccountSVG'
+
 import { FiUser } from 'react-icons/fi'
 
-interface SighupProps {}
-
-const Sighup: FunctionComponent<SighupProps> = () => {
+const Sighup = () => {
   // check if user is loged in
   const { isLogedIn } = useSelector(
     (state: { auth: { isLogedIn: boolean } }) => state.auth

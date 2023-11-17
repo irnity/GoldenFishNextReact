@@ -1,6 +1,6 @@
 import classes from './Products.module.css'
 import React from 'react'
-import { type IProduct } from '@/redux/model'
+import { type IProduct } from '@/Redux/model'
 import Item from './Item/Item'
 
 interface ProductsProps {

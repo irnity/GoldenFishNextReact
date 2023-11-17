@@ -17,7 +17,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 // Components
-import AboutProduct from '../../Components/navigation/AboutProduct'
+import AboutProduct from '../../Components/Navigation/AboutProduct'
 import Information from '@/Components/Elements/Information/Information'
 import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
 import Comments from '../Comments/Comments'

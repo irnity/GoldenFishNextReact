@@ -28,7 +28,7 @@ export async function getServerSideProps(context: any) {
 
   const data = await getDoc(productsCollectionRef)
 
-  const filteredData = data.data()
+  const filteredData = data.data() as IProduct
 
   // fetch API
   const commentsCollectionRef = collection(
@@ -47,9 +47,9 @@ export async function getServerSideProps(context: any) {
     ...doc.data(),
   }))
 
-  const imageRef = ref(storage, `productImages/${filteredData!.code}`) // Assuming each product has its own image ID.
+  const imageRef = ref(storage, `productImages/${filteredData.code}`) // Assuming each product has its own image ID.
   const url = await getDownloadURL(imageRef)
-  filteredData!.image = url
+  filteredData.image = url
 
   return {
     props: {

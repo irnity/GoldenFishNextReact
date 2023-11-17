@@ -1,15 +1,13 @@
-import { type FunctionComponent, useEffect, useState } from 'react'
+import React from 'react'
 
-import Catalog from './catalog/Catalog'
+import Catalog from './Catalog/Catalog'
 import classes from './Monitor.module.css'
-import ShopName from '../../shopName/ShopName'
-import SearchHeader from '../../search/SearchHeader'
-import Sighup from '../../signup/Signup'
-import Basket from '../../basket/Basket'
+import ShopName from '../../ShopName/ShopName'
+import SearchHeader from '../../Search/SearchHeader'
+import Sighup from '../../Signup/Signup'
+import Basket from '../../Basket/Basket'
 
-interface MonitorProps {}
-
-const Monitor: FunctionComponent<MonitorProps> = () => {
+const Monitor = () => {
   return (
     <div className={classes.cart}>
       <section className={classes.container}>

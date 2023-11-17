@@ -1,9 +1,9 @@
 import React from 'react'
 import classes from './Information.module.css'
 import { type NextRouter, useRouter } from 'next/router'
-import CustomButton from '../customButton/CustomButton'
+import CustomButton from '../CustomButton/CustomButton'
 import { useSelector } from 'react-redux'
-import { type IAuth } from '@/redux/model'
+import { type IAuth } from '@/Redux/model'
 
 const Information = () => {
   const router: NextRouter = useRouter()

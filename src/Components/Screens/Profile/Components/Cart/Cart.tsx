@@ -1,7 +1,5 @@
-import { type FunctionComponent, type ReactNode, useEffect } from 'react'
+import React, { type ReactNode, useEffect } from 'react'
 import classes from './Cart.module.css'
-import useAuth from '@/hooks/auth-hook'
-import { useSelector } from 'react-redux'
 import { auth } from '@/services/firebase/firebase'
 import { useRouter } from 'next/router'
 import { cabinetData } from './CabinetDataLinks'
@@ -11,19 +9,13 @@ interface CartProps {
   children: ReactNode
 }
 
-const Cart: FunctionComponent<CartProps> = (props) => {
+const Cart = (props: CartProps) => {
   const router = useRouter()
-
-  const { isLogedIn, isAdmin, userInfo } = useSelector(
-    (state: {
-      auth: { isLogedIn: boolean; isAdmin: boolean; userInfo: string }
-    }) => state.auth
-  )
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (!user) {
-        router.push('/login')
+      if (user == null) {
+        void router.push('/login')
       }
     })
 

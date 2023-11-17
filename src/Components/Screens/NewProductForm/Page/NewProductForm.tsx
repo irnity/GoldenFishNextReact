@@ -1,9 +1,9 @@
 import classes from './NewProductForm.module.css'
 import React from 'react'
 
-import useAddProductHook from '../hook/useAddProductHook'
-import CustomInput from '@/components/elements/customInput/CustomInput'
-import CustomButton from '@/components/elements/customButton/CustomButton'
+import useAddProductHook from '../Hook/useAddProductHook'
+import CustomInput from '@/Components/Elements/CustomInput/CustomInput'
+import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
 
 const NewProductForm = () => {
   const {

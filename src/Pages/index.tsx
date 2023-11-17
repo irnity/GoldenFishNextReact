@@ -2,7 +2,7 @@ import React, { type FunctionComponent } from 'react'
 import classes from './index.module.css'
 import { collection, getDocs, limit, query } from 'firebase/firestore'
 import { db } from '@/services/firebase/firebase'
-import { type IProduct } from '@/redux/model'
+import { type IProduct } from '@/Redux/model'
 interface HomePageProps {
   fishingrod: IProduct[]
   hooks: IProduct[]

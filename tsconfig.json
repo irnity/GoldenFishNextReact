@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/api/newproduct.js"
+    "src/Pages/api/newproduct.ts"
   ],
   "exclude": ["node_modules"]
 }

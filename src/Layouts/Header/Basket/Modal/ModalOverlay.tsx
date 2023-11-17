@@ -1,12 +1,12 @@
 import classes from './ModalOverlay.module.css'
 import React, { type FunctionComponent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { type IBasketSliceProps } from '../../../../redux/model'
-import { basketActions } from '../../../../redux/basketSlice'
-import Link from 'next/link'
-import Order from '@/components/screens/order/Order'
-import CustomButton from '@/components/elements/customButton/CustomButton'
+
 import { useRouter } from 'next/router'
+import { basketActions } from '@/Redux/basketSlice'
+import { type IBasketSliceProps } from '@/Redux/model'
+import Order from '@/Components/Screens/Order/Order'
+import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
 
 interface ModalOverlayProps {
   onConfirm: () => void
@@ -52,7 +52,9 @@ const ModalOverlay: FunctionComponent<ModalOverlayProps> = ({ onConfirm }) => {
             />
             <CustomButton
               type="button"
-              handler={async () => await router.push('/order')}
+              handler={() => {
+                void router.push('/order')
+              }}
               text="Оформити замовлення"
             />
           </div>

@@ -1,21 +1,19 @@
 //
 // post /api/
 
-import { db } from "../../services/firebase/firebase"
-import { nanoid } from "@reduxjs/toolkit"
+import { db } from '../../services/firebase/firebase'
+
 import {
-  addDoc,
-  collection,
   deleteDoc,
   doc,
   increment,
   setDoc,
   updateDoc,
-} from "firebase/firestore"
+} from 'firebase/firestore'
 
-async function handler(req, res) {
+async function handler(req: any, res: any) {
   const data = JSON.parse(req.body)
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     // edit
     const productData = {
       // new update code creator
@@ -31,29 +29,29 @@ async function handler(req, res) {
     try {
       // addDoc createNew elemets with auto id
 
-      const responce = await setDoc(
-        doc(db, "products", data.itemId, "comments", data.email),
+      await setDoc(
+        doc(db, 'products', data.itemId, 'comments', data.email),
         productData
       )
-      await updateDoc(doc(db, "products", data.itemId), {
+      await updateDoc(doc(db, 'products', data.itemId), {
         totalComments: increment(1),
         totalRate: increment(data.rate),
       })
-      res.status(201).json({ message: "Meetup inserted" })
+      res.status(201).json({ message: 'Meetup inserted' })
     } catch (err) {
       res.json(err)
     }
   }
-  if (req.method === "PUT") {
+  if (req.method === 'PUT') {
     try {
-      await deleteDoc(doc(db, "products", data.itemId, "comments", data.email))
-      await updateDoc(doc(db, "products", data.itemId), {
+      await deleteDoc(doc(db, 'products', data.itemId, 'comments', data.email))
+      await updateDoc(doc(db, 'products', data.itemId), {
         totalComments: increment(-1),
         totalRate: increment(-data.rate),
       })
-      res.send({ status: 200, message: "Comment Deleted" })
+      res.send({ status: 200, message: 'Comment Deleted' })
     } catch (error) {
-      res.send({ status: 500, message: "Comment not Deleted" })
+      res.send({ status: 500, message: 'Comment not Deleted' })
     }
   }
 }

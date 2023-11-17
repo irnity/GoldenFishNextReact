@@ -1,20 +1,18 @@
-import { useState, type FunctionComponent } from 'react'
-import Category from '../catalog/category/Category'
+import React, { useState } from 'react'
+import Category from '../../../Resolutions/Monitor/Catalog/Category/Category'
 import classes from './Catalog.module.css'
 import { CSSTransition } from 'react-transition-group'
 
-import { Information } from './Information'
-import Links from './links/Links'
-import CustomBackground from '@/components/elements/customBackground/CustomBackground'
-
-interface CatalogProps {}
+import { Information } from '../../../Resolutions/Monitor/Catalog/Information'
+import Links from '../../../Resolutions/Monitor/Catalog/Links/Links'
+import CustomBackground from '@/Components/Elements/CustomBackground/CustomBackground'
 
 const animationTiming = {
   enter: 300,
   exit: 300,
 }
 
-const Catalog: FunctionComponent<CatalogProps> = () => {
+const Catalog = () => {
   const [toggleNavigation, setToggleNavigation] = useState(false)
   const [list, setList] = useState<Array<{ name: string; url: string }>>([])
 

@@ -1,11 +1,9 @@
-import { type FunctionComponent } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import classes from './AboutProduct.module.css'
 import { useRouter } from 'next/router'
 
-interface AboutProductProps {}
-
-const AboutProduct: FunctionComponent<AboutProductProps> = () => {
+const AboutProduct = () => {
   const router = useRouter()
   const { categoryId, itemId } = router.query as {
     categoryId: string

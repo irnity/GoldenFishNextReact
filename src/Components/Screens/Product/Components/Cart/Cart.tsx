@@ -1,15 +1,15 @@
-import { type FunctionComponent, type ReactNode } from 'react'
+import React, { type ReactNode } from 'react'
 import classes from './Cart.module.css'
-import Information from '@/components/elements/information/Information'
-import AboutProduct from '../navigation/AboutProduct'
-import Buy from '../buy/Buy'
-import { type IProduct } from '@/redux/model'
+import Information from '@/Components/Elements/Information/Information'
+import AboutProduct from '../Navigation/AboutProduct'
+import Buy from '../Buy/Buy'
+import { type IProduct } from '@/Redux/model'
 interface CartProps {
   children: ReactNode
   product: IProduct
 }
 
-const Cart: FunctionComponent<CartProps> = (props) => {
+const Cart = (props: CartProps) => {
   return (
     <div className={classes.cart}>
       <div className={classes.nav}>

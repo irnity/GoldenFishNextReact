@@ -1,6 +1,6 @@
 import React, { type FunctionComponent } from 'react'
 import classes from './Total.module.css'
-import { type IProduct } from '@/redux/model'
+import { type IProduct } from '@/Redux/model'
 import Link from 'next/link'
 
 interface TotalProps {

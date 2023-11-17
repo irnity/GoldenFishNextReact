@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { type FunctionComponent } from 'react'
+import React from 'react'
 import classes from './Links.module.css'
 
 interface LinksProps {
@@ -8,7 +8,7 @@ interface LinksProps {
   catalog: { name: string; url: string }
 }
 
-const Links: FunctionComponent<LinksProps> = ({ fadeOut, catalog }) => {
+const Links = ({ fadeOut, catalog }: LinksProps) => {
   return (
     <Link
       className={classes.container}

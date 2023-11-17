@@ -1,14 +1,11 @@
-import { type FunctionComponent, useState } from 'react'
-import BasketOverlay from './Overlay'
+import React, { useState } from 'react'
+import BasketOverlay from './BasketOverlay'
 import classes from './Basket.module.css'
-import BasketSVG from '@/assets/svg/BasketSVG'
 import { useSelector } from 'react-redux'
-import { type IBasketSliceProps } from '@/redux/model'
+import { type IBasketSliceProps } from '@/Redux/model'
 import { FiShoppingCart } from 'react-icons/fi'
 
-interface BasketProps {}
-
-const Basket: FunctionComponent<BasketProps> = () => {
+const Basket = () => {
   const [toggleOverlay, setToggleOverlay] = useState(true)
 
   const toggleHandler = () => {

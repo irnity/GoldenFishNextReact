@@ -1,6 +1,6 @@
 import React from 'react'
-import { type IBasketSliceProps } from '../../../redux/model'
 import classes from './Order.module.css'
+import { type IBasketSliceProps } from '@/Redux/model'
 
 interface OrderProps {
   basket: IBasketSliceProps['basket']

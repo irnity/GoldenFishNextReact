@@ -10,26 +10,38 @@ export const authChangeCredentials = createAsyncThunk(
       firstName,
       lastName,
       surname,
+      email,
     }: {
       firstName?: string
       lastName?: string
       surname?: string
+      email: string
     },
     { dispatch }
   ) => {
     const user = auth.currentUser
     if (user !== undefined) {
-      const updateFields = {
-        ...(firstName && { firstName }),
-        ...(lastName && { lastName }),
-        ...(surname && { surname }),
+      const updateFields: {
+        firstName?: string
+        lastName?: string
+        surname?: string
+      } = {}
+
+      if (firstName !== undefined) {
+        updateFields.firstName = firstName
       }
 
-      const email = user.email
+      if (lastName !== undefined) {
+        updateFields.lastName = lastName
+      }
 
-      const docRef = doc(db, 'users', email!)
+      if (surname !== undefined) {
+        updateFields.surname = surname
+      }
 
-      const responce = await updateDoc(docRef, updateFields)
+      const docRef = doc(db, 'users', email)
+
+      await updateDoc(docRef, updateFields)
 
       dispatch(
         warningActions.setWarning({
@@ -43,6 +55,17 @@ export const authChangeCredentials = createAsyncThunk(
         lastName: updateFields.lastName,
         surname: updateFields.surname,
         status: 'success',
+      }
+    } else {
+      dispatch(
+        warningActions.setWarning({
+          code: 500,
+          message: 'Помилка оновлення профілю',
+        })
+      )
+
+      return {
+        status: 'error',
       }
     }
   }

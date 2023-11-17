@@ -1,4 +1,4 @@
-import { type FunctionComponent } from 'react'
+import React from 'react'
 import classes from './Category.module.css'
 
 interface CatalogListProps {
@@ -8,11 +8,11 @@ interface CatalogListProps {
   catalog: Array<{ name: string; url: string }>
 }
 
-const CatalogList: FunctionComponent<CatalogListProps> = ({
+const CatalogList = ({
   toggleNavigationHandler,
   title,
   catalog,
-}) => {
+}: CatalogListProps) => {
   const dataHandler = () => {
     toggleNavigationHandler(catalog)
   }

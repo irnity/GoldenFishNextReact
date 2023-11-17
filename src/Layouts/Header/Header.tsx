@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Monitor from './resolutions/monitor/Monitor'
-import Mobile from './resolutions/mobile/Mobile'
+import Monitor from './Resolutions/Monitor/Monitor'
+import Mobile from './Resolutions/Mobile/Mobile'
 
 import classes from './Header.module.css'
 
 import { type ThunkDispatch } from 'redux-thunk'
 import { type AnyAction } from 'redux'
 import { CSSTransition } from 'react-transition-group'
-import { warningActions } from '@/redux/warningSlice'
-import useAuth from '@/hooks/auth-hook'
+import { warningActions } from '@/Redux/warningSlice'
 
 const animationTiming = {
   enter: 300,
@@ -19,8 +18,6 @@ const animationTiming = {
 
 const Header = () => {
   const dispatch = useDispatch<ThunkDispatch<any, any, AnyAction>>()
-
-  const auth = useAuth()
 
   const { message, code } = useSelector(
     (state: { warning: { message: string; code: number } }) => state.warning

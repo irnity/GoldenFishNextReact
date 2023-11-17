@@ -18,7 +18,7 @@ const useApi = (id: string) => {
 
   useEffect(() => {
     const checkProductInFavorite = async () => {
-      if (!id || !email) {
+      if (id === '' || email === '') {
         return
       }
 
@@ -40,7 +40,7 @@ const useApi = (id: string) => {
       }
     }
 
-    checkProductInFavorite()
+    void checkProductInFavorite()
   }, [id, email, dispatch])
 
   const addFavoriteProduct = async () => {
@@ -87,14 +87,14 @@ const useApi = (id: string) => {
   }
 
   const productHandler = () => {
-    if (!email) {
-      router.push('/login')
+    if (email === undefined) {
+      void router.push('/login')
       return
     }
     if (productInFavorite) {
-      removeFavoriteProduct()
+      void removeFavoriteProduct()
     } else {
-      addFavoriteProduct()
+      void addFavoriteProduct()
     }
   }
 

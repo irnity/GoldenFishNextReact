@@ -1,12 +1,12 @@
 import React from 'react'
 import classes from './SignUp.module.css'
-import useAuth from '@/hooks/auth-hook'
-import CustomButton from '@/components/elements/customButton/CustomButton'
+import useAuth from '@/Hooks/auth-hook'
+import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
 
-import CustomInput from '@/components/elements/customInput/CustomInput'
+import CustomInput from '@/Components/Elements/CustomInput/CustomInput'
 
 import { useRouter } from 'next/router'
-import colors from '@/assets/styles/colors'
+import colors from '@/Assets/styles/colors'
 
 const SignUp = () => {
   const router = useRouter()

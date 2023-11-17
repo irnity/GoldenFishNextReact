@@ -1,26 +1,21 @@
 import React, { useState } from 'react'
 import classes from './UserName.module.css'
 import { FiUser } from 'react-icons/fi'
-import CustomButton from '@/components/elements/customButton/CustomButton'
+import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
 import { useSelector } from 'react-redux'
-import CustomInput from '@/components/elements/customInput/CustomInput'
-import useAuth from '@/hooks/auth-hook'
-import { type IAuth } from '@/redux/model'
+import CustomInput from '@/Components/Elements/CustomInput/CustomInput'
+import useAuth from '@/Hooks/auth-hook'
+import { type IAuth } from '@/Redux/model'
 
-interface Props {}
-
-const UserName = (props: Props) => {
+const UserName = () => {
   const userReduxState = useSelector((state: { auth: IAuth }) => state.auth)
 
   const {
     userCredentials,
     setUserCredentials,
-    emailHandler,
-    passwordHandler,
     firstNameHandler,
     lastNameHandler,
     surnameHandler,
-    phoneNumberHandler,
 
     changeCredentialsHandler,
   } = useAuth()
@@ -55,15 +50,15 @@ const UserName = (props: Props) => {
             <div className={classes.list}>
               <div>
                 <h1>Ім&apos;я</h1>
-                <span>{userReduxState.firstName || 'Відсутнє'}</span>
+                <span>{userReduxState.firstName ?? 'Відсутнє'}</span>
               </div>
               <div>
                 <h1>Прізвище</h1>
-                <span>{userReduxState.lastName || 'Відсутнє'}</span>
+                <span>{userReduxState.lastName ?? 'Відсутнє'}</span>
               </div>
               <div>
                 <h1>По батькові</h1>
-                <span>{userReduxState.surname || 'Відсутнє'}</span>
+                <span>{userReduxState.surname ?? 'Відсутнє'}</span>
               </div>
             </div>
           ) : (
@@ -98,7 +93,9 @@ const UserName = (props: Props) => {
                 type="submit"
                 color="white"
                 backGroundColor="#198754"
-                handler={changeCredentialsHandler}
+                handler={() => {
+                  void changeCredentialsHandler()
+                }}
               />
             )}
             <CustomButton

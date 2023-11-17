@@ -1,11 +1,11 @@
-import { type IProduct } from '@/redux/model'
+import { type IProduct } from '@/Redux/model'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
 import classes from './Item.module.css'
 import { Rating } from '@mui/material'
 import ImageList from '../ImageItem/ImageList'
-import colors from '@/assets/styles/colors'
+import colors from '@/Assets/styles/colors'
 import ToggleList from '../ToggleItem/ToggleItem'
 
 interface Props {

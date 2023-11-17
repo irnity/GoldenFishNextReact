@@ -1,23 +1,21 @@
-import { type FunctionComponent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import classes from './Mobile.module.css'
-import ShopName from '../../shopName/ShopName'
-import SearchHeader from '../../search/SearchHeader'
-import Sighup from '../../signup/Signup'
-import Basket from '../../basket/Basket'
+import ShopName from '../../ShopName/ShopName'
+import SearchHeader from '../../Search/SearchHeader'
+import Sighup from '../../Signup/Signup'
+import Basket from '../../Basket/Basket'
 
 import { CSSTransition } from 'react-transition-group'
-import Links from './links/Links'
-import CatalogLinks from './links/CatalogLinks'
-
-interface MobileProps {}
+import Links from './Links/Links'
+import CatalogLinks from './Links/CatalogLinks'
 
 const animationTiming = {
   enter: 300,
   exit: 285,
 }
 
-const Mobile: FunctionComponent<MobileProps> = () => {
+const Mobile = () => {
   const [toogleMenu, setToogleMenu] = useState(false)
   const [links, setLinks] = useState(false)
   const [catalog, setCatalog] = useState(false)

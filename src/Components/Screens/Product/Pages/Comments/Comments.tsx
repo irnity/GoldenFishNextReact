@@ -49,7 +49,7 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
 
   useEffect(() => {
     console.log()
-    if (email) {
+    if (email !== undefined) {
       const comments = data.filter((item: any) => item.email === email)
       if (comments.length === 0) {
         setCommentExist(true)
@@ -69,7 +69,12 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
         />
       )}
       {toggleWriteComment && (
-        <form onSubmit={postCommentHandler} className={classes.box}>
+        <form
+          onSubmit={(e) => {
+            void postCommentHandler(e)
+          }}
+          className={classes.box}
+        >
           <div className={classes.title}>
             <h1>Написати відгук</h1>
           </div>
@@ -153,7 +158,7 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
               <div className={classes.comment_name}>
                 <div>
                   <h1>{comment.name}</h1>
-                  <span>{formattedDate || ''}</span>
+                  <span>{formattedDate ?? ''}</span>
                 </div>
                 <span>Вігук від покупця</span>
               </div>
@@ -166,12 +171,12 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
                 />
                 <p>{comment.description}</p>
               </div>
-              {comment.comment && (
+              {comment.comment !== undefined && (
                 <div className={classes.comment_info}>
                   <span>{comment.comment}</span>
                 </div>
               )}
-              {comment.positive && (
+              {comment.positive !== undefined && (
                 <div className={classes.comment_info}>
                   <span
                     style={{
@@ -183,7 +188,7 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
                   <span>{comment.positive}</span>
                 </div>
               )}
-              {comment.negative && (
+              {comment.negative !== undefined && (
                 <div className={classes.comment_info}>
                   <span
                     style={{
@@ -196,7 +201,7 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
                 </div>
               )}
 
-              {((isLogedIn && comment.email == auth.currentUser?.email) ||
+              {((isLogedIn && comment.email === auth.currentUser?.email) ||
                 isAdmin) && (
                 <div
                   style={{
@@ -205,8 +210,8 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
                 >
                   <CustomButton
                     type="button"
-                    handler={async () => {
-                      await deleteCommentHandler(comment.id, comment.rate)
+                    handler={() => {
+                      void deleteCommentHandler(comment.id, comment.rate)
                     }}
                     text="Видалити"
                     color="red"

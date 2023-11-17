@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { type FunctionComponent } from 'react'
+import React from 'react'
 
 import classes from './Link.module.css'
 
@@ -7,7 +7,7 @@ interface LinksProps {
   toogleHandlerCatalog: any
 }
 
-const Links: FunctionComponent<LinksProps> = (props) => {
+const Links = (props: LinksProps) => {
   return (
     <div className={classes.list}>
       <ul>

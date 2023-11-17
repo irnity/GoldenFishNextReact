@@ -1,29 +1,23 @@
-import { type FunctionComponent } from 'react'
-import classes from './UserInfo.module.css'
-import useAuth from '@/hooks/auth-hook'
-import { useDispatch, useSelector } from 'react-redux'
-import CustomButton from '@/components/elements/customButton/CustomButton'
-import { useRouter } from 'next/router'
-import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit'
-import PersonalData from '../components/userInformation/UserName'
 import React from 'react'
+import classes from './UserInfo.module.css'
+import useAuth from '@/Hooks/auth-hook'
+import CustomButton from '@/Components/Elements/CustomButton/CustomButton'
+import UserName from '../Components/UserInformation/UserName'
 
-interface UserInfoProps {}
-
-const UserInfo: FunctionComponent<UserInfoProps> = () => {
-  const router = useRouter()
-
+const UserInfo = () => {
   const { logout } = useAuth()
 
   return (
     <div className={classes.container}>
       <div className={classes.tab}>
-        <PersonalData />
+        <UserName />
       </div>
 
       <div className={classes.buttons}>
         <CustomButton
-          handler={logout}
+          handler={() => {
+            void logout()
+          }}
           text="Змінити пароль"
           type="button"
           color="white"
@@ -32,7 +26,9 @@ const UserInfo: FunctionComponent<UserInfoProps> = () => {
         />
 
         <CustomButton
-          handler={logout}
+          handler={() => {
+            void logout()
+          }}
           text="Вихід"
           type="button"
           color="white"

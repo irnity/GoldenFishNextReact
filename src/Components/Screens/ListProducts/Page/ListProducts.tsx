@@ -5,13 +5,13 @@ import React from 'react'
 
 import classes from './ListProducts.module.css'
 
-import { type IProduct } from '@/redux/model'
-import Status from '../components/Filters/Status'
-import Information from '@/components/elements/information/Information'
-import Products from '../components/Products/Products'
-import Sort from '../components/Sorting/Sort'
-import PagesNumber from '../components/PagesNumber/PagesNumber'
-import Price from '../components/Filters/Price'
+import { type IProduct } from '@/Redux/model'
+import Status from '../Components/Filters/Status'
+import Information from '@/Components/Elements/Information/Information'
+import Products from '../Components/Products/Products'
+import Sort from '../Components/Sorting/Sort'
+import PagesNumber from '../Components/PagesNumber/PagesNumber'
+import Price from '../Components/Filters/Price'
 
 interface ListProductsProps {
   products: IProduct[]
