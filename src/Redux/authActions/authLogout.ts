@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { type IAuth } from '../model'
-import { auth } from '@/services/firebase/firebase'
+import { auth } from '@/Services/Firebase/firebase'
 import { signOut } from 'firebase/auth'
 
 export const authLogout = createAsyncThunk('auth/logout', async () => {

@@ -2,7 +2,6 @@ import React, { type FunctionComponent, useEffect, useState } from 'react'
 import classes from './Comments.module.css'
 import { type IAuth } from '@/Redux/model'
 import { useSelector } from 'react-redux'
-import { auth } from '@/services/firebase/firebase'
 import { useRouter } from 'next/router'
 import useProduct from '../../Hook/useProduct'
 import CustomInput from '@/Components/Elements/CustomInput/CustomInput'
@@ -26,9 +25,7 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
   const router = useRouter()
   const { categoryId, itemId } = router.query
 
-  const { isLogedIn, isAdmin, email } = useSelector(
-    (state: { auth: IAuth }) => state.auth
-  )
+  const authReduxState = useSelector((state: { auth: IAuth }) => state.auth)
 
   const {
     toggleWriteComment,
@@ -49,13 +46,15 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
 
   useEffect(() => {
     console.log()
-    if (email !== undefined) {
-      const comments = data.filter((item: any) => item.email === email)
+    if (authReduxState.email !== undefined) {
+      const comments = data.filter(
+        (item: any) => item.email === authReduxState.email
+      )
       if (comments.length === 0) {
         setCommentExist(true)
       }
     }
-  }, [email, data])
+  }, [authReduxState.email, data])
 
   return (
     <div className={classes.cart}>
@@ -201,8 +200,9 @@ const Comments: FunctionComponent<CommentsProps> = ({ data }) => {
                 </div>
               )}
 
-              {((isLogedIn && comment.email === auth.currentUser?.email) ||
-                isAdmin) && (
+              {((authReduxState.isLogedIn &&
+                comment.email === authReduxState.email) ||
+                authReduxState.isAdmin) && (
                 <div
                   style={{
                     padding: '10px',

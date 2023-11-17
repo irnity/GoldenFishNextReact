@@ -12,7 +12,7 @@ import {
   where,
   orderBy,
 } from 'firebase/firestore'
-import { db, storage } from '../../../services/firebase/firebase'
+import { db, storage } from '@/Services/Firebase/firebase'
 import { getDownloadURL, ref } from 'firebase/storage'
 
 import { type IProduct } from '@/Redux/model'

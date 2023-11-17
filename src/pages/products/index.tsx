@@ -1,6 +1,6 @@
 import Total from '@/Components/Screens/Total/Total'
 import { type IProduct } from '@/Redux/model'
-import { db } from '@/services/firebase/firebase'
+import { db } from '@/Services/Firebase/firebase'
 import { collection, getDocs } from 'firebase/firestore'
 import React from 'react'
 

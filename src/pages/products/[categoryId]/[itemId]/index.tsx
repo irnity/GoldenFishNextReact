@@ -8,7 +8,7 @@ import React, { useEffect } from 'react'
 import { type IComment, type IProduct } from '@/Redux/model'
 
 // firebase
-import { db, storage } from '@/services/firebase/firebase'
+import { db, storage } from '@/Services/Firebase/firebase'
 import {
   collection,
   doc,

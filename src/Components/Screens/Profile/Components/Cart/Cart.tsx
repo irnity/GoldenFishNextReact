@@ -1,9 +1,10 @@
 import React, { type ReactNode, useEffect } from 'react'
 import classes from './Cart.module.css'
-import { auth } from '@/services/firebase/firebase'
 import { useRouter } from 'next/router'
 import { cabinetData } from './CabinetDataLinks'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
+import { type IAuth } from '@/Redux/model'
 
 interface CartProps {
   children: ReactNode
@@ -12,14 +13,12 @@ interface CartProps {
 const Cart = (props: CartProps) => {
   const router = useRouter()
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user == null) {
-        void router.push('/login')
-      }
-    })
+  const authReduxState = useSelector((state: { auth: IAuth }) => state.auth)
 
-    return unsubscribe
+  useEffect(() => {
+    if (authReduxState.email == null) {
+      void router.push('/login')
+    }
   }, [router])
 
   return (

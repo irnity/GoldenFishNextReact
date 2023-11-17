@@ -1,5 +1,5 @@
+import { db } from '@/Services/Firebase/firebase'
 import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../../services/firebase/firebase'
 
 async function handler(req: any, res: any) {
   const data = JSON.parse(req.body)

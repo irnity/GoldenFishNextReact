@@ -2,7 +2,7 @@ import React from 'react'
 import Cart from '@/Components/Screens/Product/Components/Cart/Cart'
 import Accessories from '@/Components/Screens/Product/Pages/Accessories/Accessories'
 import { doc, getDoc } from 'firebase/firestore'
-import { db } from '@/services/firebase/firebase'
+import { db } from '@/Services/Firebase/firebase'
 import { type IProduct } from '@/Redux/model'
 
 interface AccessoriesPageProps {

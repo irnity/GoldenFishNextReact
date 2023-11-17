@@ -1,4 +1,4 @@
-import { auth } from '@/services/firebase/firebase'
+import { auth } from '@/Services/Firebase/firebase'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { type IAuth } from '../model'
 import { authLogout } from './authLogout'

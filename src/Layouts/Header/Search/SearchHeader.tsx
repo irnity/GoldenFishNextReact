@@ -7,7 +7,7 @@ import {
   query,
   where,
 } from 'firebase/firestore'
-import { db } from '@/services/firebase/firebase'
+import { db } from '@/Services/Firebase/firebase'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PiMagnifyingGlassThin } from 'react-icons/pi'

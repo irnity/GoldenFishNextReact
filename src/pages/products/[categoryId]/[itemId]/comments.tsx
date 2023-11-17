@@ -2,7 +2,7 @@ import React from 'react'
 import Cart from '@/Components/Screens/Product/Components/Cart/Cart'
 import Comments from '@/Components/Screens/Product/Pages/Comments/Comments'
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
-import { db, storage } from '@/services/firebase/firebase'
+import { db, storage } from '@/Services/Firebase/firebase'
 import { type IProduct } from '@/Redux/model'
 import { getDownloadURL, ref } from 'firebase/storage'
 

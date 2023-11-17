@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { warningActions } from '../warningSlice'
-import { auth } from '@/services/firebase/firebase'
+import { auth } from '@/Services/Firebase/firebase'
 
 export const authRestorePassword = createAsyncThunk(
   'auth/restorePassword',

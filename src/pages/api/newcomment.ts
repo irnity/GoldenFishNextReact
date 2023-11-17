@@ -1,8 +1,7 @@
 //
 // post /api/
 
-import { db } from '../../services/firebase/firebase'
-
+import { db } from '@/Services/Firebase/firebase'
 import {
   deleteDoc,
   doc,

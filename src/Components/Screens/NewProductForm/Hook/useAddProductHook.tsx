@@ -1,4 +1,4 @@
-import { storage } from '@/services/firebase/firebase'
+import { storage } from '@/Services/Firebase/firebase'
 import { nanoid } from '@reduxjs/toolkit'
 import { ref, uploadBytes } from 'firebase/storage'
 import { useRouter } from 'next/router'

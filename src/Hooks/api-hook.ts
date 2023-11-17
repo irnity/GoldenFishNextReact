@@ -1,18 +1,20 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { warningActions } from '@/Redux/warningSlice'
-import { auth } from '@/services/firebase/firebase'
+import { type IAuth } from '@/Redux/model'
 
 const useApi = (id: string) => {
   const router = useRouter()
   const dispatch = useDispatch()
 
+  const authReduxState = useSelector((state: { auth: IAuth }) => state.auth)
+
   const [productInFavorite, setProductInFavorite] = useState(false)
   const [email, setEmail] = useState<string | null | undefined>('')
 
   useEffect(() => {
-    const email = auth.currentUser?.email
+    const email = authReduxState.email
     setEmail(email)
   }, [])
 

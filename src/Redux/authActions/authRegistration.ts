@@ -1,4 +1,4 @@
-import { auth, db } from '@/services/firebase/firebase'
+import { auth, db } from '@/Services/Firebase/firebase'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { Timestamp, doc, setDoc } from 'firebase/firestore'

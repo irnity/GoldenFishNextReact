@@ -1,4 +1,4 @@
-import { db } from '../../services/firebase/firebase'
+import { db } from '@/Services/Firebase/firebase'
 import { deleteDoc, doc, setDoc } from 'firebase/firestore'
 
 async function handler(req: any, res: any) {

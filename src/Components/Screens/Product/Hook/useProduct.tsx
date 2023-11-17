@@ -1,4 +1,4 @@
-import { auth } from '@/services/firebase/firebase'
+import { type IAuth } from '@/Redux/model'
 import { useRouter } from 'next/router'
 import type React from 'react'
 import { useState } from 'react'
@@ -12,9 +12,7 @@ interface IProductReference {
 const useProduct = ({ itemId, categoryId }: IProductReference) => {
   const router = useRouter()
 
-  const { isLogedIn } = useSelector(
-    (state: { auth: { isLogedIn: boolean } }) => state.auth
-  )
+  const authReduxState = useSelector((state: { auth: IAuth }) => state.auth)
 
   const [toggleWriteComment, setToggleWriteComment] = useState(false)
 
@@ -45,7 +43,7 @@ const useProduct = ({ itemId, categoryId }: IProductReference) => {
   }
 
   const toggleWriteCommentHandler = () => {
-    if (!isLogedIn) {
+    if (!authReduxState.isLogedIn) {
       void router.push('/login')
     } else {
       setToggleWriteComment((prevState) => !prevState)
@@ -58,7 +56,7 @@ const useProduct = ({ itemId, categoryId }: IProductReference) => {
     event.preventDefault()
     const data = {
       name: comment.name,
-      email: auth.currentUser?.email,
+      email: authReduxState.email,
       rate: comment.rate,
       positive: comment.positive,
       negative: comment.negative,
@@ -81,7 +79,7 @@ const useProduct = ({ itemId, categoryId }: IProductReference) => {
       id,
       categoryId,
       itemId,
-      email: auth.currentUser?.email,
+      email: authReduxState.email,
       rate,
     }
     const responce = await fetch('/api/newcomment', {
