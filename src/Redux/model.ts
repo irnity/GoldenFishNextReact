@@ -33,6 +33,7 @@ export interface IAuth {
   lastName: string
   surname: string
   phoneNumber: string
+  address: string
   email: string | null | undefined
   status: string | null
   error: string | null

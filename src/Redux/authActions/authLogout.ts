@@ -9,6 +9,7 @@ export const authLogout = createAsyncThunk('auth/logout', async () => {
     lastName: '',
     surname: '',
     phoneNumber: '',
+    address: '',
     email: '',
     isLogedIn: false,
     isAdmin: false,
@@ -16,15 +17,12 @@ export const authLogout = createAsyncThunk('auth/logout', async () => {
     error: null,
     password: '',
   }
-  try {
-    await signOut(auth)
 
-    localStorage.removeItem('time')
+  await signOut(auth)
 
-    userState.status = 'isLogedOut'
+  localStorage.removeItem('time')
 
-    return userState
-  } catch (err) {
-    console.log('error:', err)
-  }
+  userState.status = 'isLogedOut'
+
+  return userState
 })

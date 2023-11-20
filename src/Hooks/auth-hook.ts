@@ -30,6 +30,7 @@ const useAuth = () => {
     lastName: '',
     surname: '',
     phoneNumber: '+38',
+    address: '',
     email: '',
     password: '',
   })
@@ -62,6 +63,13 @@ const useAuth = () => {
     setUserCredentials({
       ...userCredentials,
       phoneNumber: event.target.value,
+    })
+  }
+
+  const addressHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserCredentials({
+      ...userCredentials,
+      address: event.target.value,
     })
   }
 
@@ -137,6 +145,11 @@ const useAuth = () => {
         firstName: updateFieldIfChanged('firstName', userCredentials.firstName),
         lastName: updateFieldIfChanged('lastName', userCredentials.lastName),
         surname: updateFieldIfChanged('surname', userCredentials.surname),
+        phoneNumber: updateFieldIfChanged(
+          'phoneNumber',
+          userCredentials.phoneNumber
+        ),
+        address: updateFieldIfChanged('address', userCredentials.address),
         email: userReduxState.email as string,
       })
     )
@@ -159,6 +172,7 @@ const useAuth = () => {
     lastNameHandler,
     surnameHandler,
     phoneNumberHandler,
+    addressHandler,
 
     loginHandler,
     registrationHandler,

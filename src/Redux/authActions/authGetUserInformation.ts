@@ -11,6 +11,7 @@ export const authGetUserInformation = createAsyncThunk(
       lastName: '',
       surname: '',
       phoneNumber: '',
+      address: '',
       email: '',
       isLogedIn: false,
       isAdmin: false,
@@ -44,7 +45,8 @@ export const authGetUserInformation = createAsyncThunk(
         })
         const data = await fetchUser.json()
 
-        const { firstName, lastName, surname, phoneNumber, email } = data.data
+        const { firstName, lastName, surname, phoneNumber, address, email } =
+          data.data
 
         userState = {
           ...userState,
@@ -52,6 +54,7 @@ export const authGetUserInformation = createAsyncThunk(
           lastName,
           surname,
           phoneNumber,
+          address,
           email,
           isLogedIn: true,
           status: 'success',

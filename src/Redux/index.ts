@@ -7,7 +7,9 @@ import warningSlice from './warningSlice'
 const store = configureStore({
   reducer: {
     product: productsSlice,
+    // basketReduxState
     basket: basketSlice,
+    // userReduxState
     auth: authSlice,
     warning: warningSlice,
   },

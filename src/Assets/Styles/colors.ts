@@ -4,6 +4,8 @@ const colors = {
   Main_HalfWhite_Color: 'gainsboro',
   Main_Grey_Color: '#797878',
   Main_Green_Color: '#198754',
+  Agree_Green_Color: '#198754',
+  Cancel_Red_Color: '#dc3545',
 }
 
 export default colors

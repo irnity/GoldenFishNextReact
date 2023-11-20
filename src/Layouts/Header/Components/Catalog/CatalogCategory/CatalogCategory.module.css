@@ -1,0 +1,21 @@
+.container {
+  width: 20%;
+  border-right: 1px solid gainsboro;
+  display: flex;
+  flex-direction: column;
+}
+.item_not_selected {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.item_selected {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  cursor: pointer;
+  color: var(--blue);
+  background-color: gainsboro;
+}

@@ -17,6 +17,7 @@ const initialAuthState: IAuth = {
   lastName: '',
   surname: '',
   phoneNumber: '',
+  address: '',
   email: '',
   status: null,
   error: null,
@@ -27,29 +28,21 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: initialAuthState,
   reducers: {
-    // logInWithPassword(state, payload) {
-    //   localStorage.setItem("time", new Date().toISOString())
-    //   state.isLogedIn = true
-    //   state.userInfo.email = payload.payload.email
-    //   if (payload.payload.admin === true) {
-    //     state.isAdmin = true
-    //   }
-    // },
     changeStatus(state, payload) {
       state.status = payload.payload
     },
   },
 
-  extraReducers: {
-    // authGetUserInformation
-    [authGetUserInformation.fulfilled.toString()]: (state, payload) => {
-      console.log(payload.payload)
+  extraReducers: (builder) => {
+    // get user information
+    builder.addCase(authGetUserInformation.fulfilled, (state, payload) => {
       const {
         firstName,
         lastName,
         surname,
         email,
         phoneNumber,
+        address,
         isAdmin,
         isLogedIn,
         status,
@@ -60,85 +53,89 @@ const authSlice = createSlice({
       state.surname = surname
       state.phoneNumber = phoneNumber
       state.email = email
+      state.address = address
       state.isLogedIn = isLogedIn
       state.isAdmin = isAdmin
       state.status = status
-    },
+    })
 
-    // login with email & password
-    [authLogin.fulfilled.toString()]: (state, payload) => {
+    // login
+    builder.addCase(authLogin.fulfilled, (state, actions) => {
       const {
         firstName,
         lastName,
         surname,
         email,
         phoneNumber,
+        address,
         isAdmin,
         isLogedIn,
         status,
-      } = payload.payload
+      } = actions.payload
 
       state.firstName = firstName
       state.lastName = lastName
       state.surname = surname
       state.phoneNumber = phoneNumber
+      state.address = address
       state.email = email
       state.isLogedIn = isLogedIn
       state.isAdmin = isAdmin
       state.status = status
-    },
+    })
 
     // registration
-    [authRegistration.fulfilled.toString()]: (state, payload) => {
+    builder.addCase(authRegistration.fulfilled, (state, payload) => {
       state.status = payload.payload
-    },
+    })
 
     // restore password
-    [authRestorePassword.fulfilled.toString()]: (state, payload) => {
-      state.status = payload.payload
-    },
+    builder.addCase(authRestorePassword.fulfilled, (state, payload) => {
+      state.status = 'success'
+    })
 
     // change credentials
-    [authChangeCredentials.fulfilled.toString()]: (state, payload) => {
-      const { firstName, lastName, surname, phoneNumber, status } =
-        payload.payload
+    builder.addCase(authChangeCredentials.fulfilled, (state, actions) => {
+      const { firstName, lastName, surname, phoneNumber, address, status } =
+        actions.payload
 
-      state.firstName = firstName === undefined ? state.firstName : firstName
-      state.lastName = lastName === undefined ? state.lastName : lastName
-      state.surname = surname === undefined ? state.surname : surname
-      state.phoneNumber =
-        phoneNumber === undefined ? state.phoneNumber : phoneNumber
-
+      state.firstName = firstName ?? state.firstName
+      state.lastName = lastName ?? state.lastName
+      state.surname = surname ?? state.surname
+      state.phoneNumber = phoneNumber ?? state.phoneNumber
+      state.address = address ?? state.address
       state.status = status
-    },
+    })
 
     // create admin
-    [authCreateAdmin.fulfilled.toString()]: (state, payload) => {
-      state.status = payload.payload
-    },
+    builder.addCase(authCreateAdmin.fulfilled, (state, payload) => {
+      state.status = 'success'
+    })
 
     // logout
-    [authLogout.fulfilled.toString()]: (state, payload) => {
+    builder.addCase(authLogout.fulfilled, (state, actions) => {
       const {
         firstName,
         lastName,
         surname,
         email,
         phoneNumber,
+        address,
         isAdmin,
         isLogedIn,
         status,
-      } = payload.payload
+      } = actions.payload
 
       state.firstName = firstName
       state.lastName = lastName
       state.surname = surname
       state.phoneNumber = phoneNumber
+      state.address = address
       state.email = email
       state.isLogedIn = isLogedIn
       state.isAdmin = isAdmin
       state.status = status
-    },
+    })
   },
 })
 

@@ -1,0 +1,45 @@
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gainsboro;
+  margin-bottom: 10px;
+}
+.toggle {
+  cursor: pointer;
+}
+.toggle h1 {
+  font-size: 25px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+.list {
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px 0;
+}
+.list div {
+  padding: 10px;
+  width: calc(100% / 3);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.list div span {
+  font-size: 16px;
+}
+.list input {
+  margin-bottom: -10px;
+}
+.button {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+.button button {
+  width: 50%;
+}

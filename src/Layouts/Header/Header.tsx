@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Monitor from './Resolutions/Monitor/Monitor'
-import Mobile from './Resolutions/Mobile/Mobile'
 
 import classes from './Header.module.css'
 
-import { type ThunkDispatch } from 'redux-thunk'
-import { type AnyAction } from 'redux'
 import { CSSTransition } from 'react-transition-group'
 import { warningActions } from '@/Redux/warningSlice'
 
@@ -17,7 +14,7 @@ const animationTiming = {
 }
 
 const Header = () => {
-  const dispatch = useDispatch<ThunkDispatch<any, any, AnyAction>>()
+  const dispatch = useDispatch()
 
   const { message, code } = useSelector(
     (state: { warning: { message: string; code: number } }) => state.warning
@@ -62,7 +59,6 @@ const Header = () => {
       </CSSTransition>
 
       <Monitor />
-      <Mobile />
     </header>
   )
 }

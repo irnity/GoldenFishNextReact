@@ -14,6 +14,7 @@ export const authLogin = createAsyncThunk(
       lastName: '',
       surname: '',
       phoneNumber: '',
+      address: '',
       email: '',
       isLogedIn: false,
       isAdmin: false,
@@ -31,12 +32,13 @@ export const authLogin = createAsyncThunk(
     })
     const data = await fetchUser.json()
 
-    const { firstName, lastName, surname, phoneNumber } = data.data
+    const { firstName, lastName, surname, phoneNumber, address } = data.data
     userState = {
       firstName,
       lastName,
       surname,
       phoneNumber,
+      address,
       email: data.data.email,
       isLogedIn: true,
       isAdmin: claims.admin,

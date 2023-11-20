@@ -1,12 +1,12 @@
 .background {
   position: fixed;
   background-color: rgba(26, 28, 28, 0.444);
-  top: 0;
+  top: 60px;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 5;
-  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
   animation: fadeIn 0.3s ease-out forwards;
 }
 @keyframes fadeIn {

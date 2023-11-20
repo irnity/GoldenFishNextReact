@@ -10,11 +10,15 @@ export const authChangeCredentials = createAsyncThunk(
       firstName,
       lastName,
       surname,
+      phoneNumber,
+      address,
       email,
     }: {
       firstName?: string
       lastName?: string
       surname?: string
+      phoneNumber?: string
+      address?: string
       email: string
     },
     { dispatch }
@@ -25,6 +29,8 @@ export const authChangeCredentials = createAsyncThunk(
         firstName?: string
         lastName?: string
         surname?: string
+        phoneNumber?: string
+        address?: string
       } = {}
 
       if (firstName !== undefined) {
@@ -37,6 +43,14 @@ export const authChangeCredentials = createAsyncThunk(
 
       if (surname !== undefined) {
         updateFields.surname = surname
+      }
+
+      if (phoneNumber !== undefined) {
+        updateFields.phoneNumber = phoneNumber
+      }
+
+      if (address !== undefined) {
+        updateFields.address = address
       }
 
       const docRef = doc(db, 'users', email)
@@ -54,6 +68,8 @@ export const authChangeCredentials = createAsyncThunk(
         firstName: updateFields.firstName,
         lastName: updateFields.lastName,
         surname: updateFields.surname,
+        phoneNumber: updateFields.phoneNumber,
+        address: updateFields.address,
         status: 'success',
       }
     } else {

@@ -4,11 +4,12 @@ import { type NextRouter, useRouter } from 'next/router'
 import CustomButton from '../CustomButton/CustomButton'
 import { useSelector } from 'react-redux'
 import { type IAuth } from '@/Redux/model'
+import colors from '@/Assets/Styles/colors'
 
 const Information = () => {
   const router: NextRouter = useRouter()
 
-  const { isAdmin } = useSelector((state: { auth: IAuth }) => state.auth)
+  const authReduxState = useSelector((state: { auth: IAuth }) => state.auth)
 
   const { categoryId, itemId } = router.query as {
     categoryId: string
@@ -27,8 +28,8 @@ const Information = () => {
           handler={() => {
             routerHandler(`/products/${categoryId}`)
           }}
-          color="white"
-          backGroundColor="#2196f3"
+          color={colors.Main_White_Color}
+          backGroundColor={colors.Main_Blue_Color}
           text={categoryId}
         />
       </div>
@@ -39,22 +40,22 @@ const Information = () => {
             handler={() => {
               routerHandler(`/products/${categoryId}/${itemId}`)
             }}
-            color="white"
-            backGroundColor="#2196f3"
+            color={colors.Main_White_Color}
+            backGroundColor={colors.Main_Blue_Color}
             text={itemId}
           />
         </div>
       )}
 
-      {isAdmin && (
+      {authReduxState.isAdmin && (
         <div className={classes.button}>
           <CustomButton
             type="button"
             handler={() => {
               routerHandler(`/add_product`)
             }}
-            color="white"
-            backGroundColor="#2196f3"
+            color={colors.Main_White_Color}
+            backGroundColor={colors.Main_Blue_Color}
             text="Додати товар"
           />
         </div>
