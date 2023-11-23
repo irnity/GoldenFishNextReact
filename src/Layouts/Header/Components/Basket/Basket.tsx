@@ -13,7 +13,7 @@ const animationTiming = {
 }
 
 const Basket = () => {
-  const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(false)
 
   const toggleHandler = () => {
     setToggle((prevState) => !prevState)

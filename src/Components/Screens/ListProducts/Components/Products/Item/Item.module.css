@@ -5,9 +5,10 @@
   align-items: center;
   box-sizing: border-box;
   background-color: #ffffff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.297);
-  border-right: 1px solid rgba(0, 0, 0, 0.297);
-  border-left: 1px solid rgba(0, 0, 0, 0.297);
+  border-bottom: 1px solid gainsboro;
+  border-right: 1px solid gainsboro;
+  border-left: 1px solid gainsboro;
+  border-top: 1px solid gainsboro;
   width: calc(100% / 3);
   z-index: 1;
 }
@@ -18,7 +19,7 @@
 }
 
 .container:hover ::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -5%;
@@ -28,7 +29,7 @@
   z-index: 1;
 }
 .container:hover ::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   right: -5%;

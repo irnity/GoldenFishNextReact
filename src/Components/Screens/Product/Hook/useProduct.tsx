@@ -5,11 +5,11 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 interface IProductReference {
-  itemId: string
-  categoryId: string
+  productCode: string
+  productCategory: string
 }
 
-const useProduct = ({ itemId, categoryId }: IProductReference) => {
+const useProduct = ({ productCode, productCategory }: IProductReference) => {
   const router = useRouter()
 
   const authReduxState = useSelector((state: { auth: IAuth }) => state.auth)
@@ -28,8 +28,8 @@ const useProduct = ({ itemId, categoryId }: IProductReference) => {
     const procced = window.confirm('Are you sure?')
     if (procced) {
       const data = {
-        itemId,
-        categoryId,
+        productCode,
+        productCategory,
       }
 
       const responce = await fetch('/api/newproduct', {
@@ -55,13 +55,14 @@ const useProduct = ({ itemId, categoryId }: IProductReference) => {
   ) => {
     event.preventDefault()
     const data = {
+      productCode,
+      productCategory,
       name: comment.name,
       email: authReduxState.email,
       rate: comment.rate,
       positive: comment.positive,
       negative: comment.negative,
       comment: comment.description,
-      itemId,
     }
 
     const responce = await fetch('/api/newcomment', {
@@ -74,13 +75,20 @@ const useProduct = ({ itemId, categoryId }: IProductReference) => {
     router.reload()
   }
 
-  const deleteCommentHandler = async (id: string, rate: number) => {
+  const deleteCommentHandler = async ({
+    code,
+    category,
+    rate,
+  }: {
+    code: string
+    category: string
+    rate: number
+  }) => {
     const data = {
-      id,
-      categoryId,
-      itemId,
-      email: authReduxState.email,
+      productCode: code,
+      productCategory: category,
       rate,
+      email: authReduxState.email,
     }
     const responce = await fetch('/api/newcomment', {
       method: 'PUT',

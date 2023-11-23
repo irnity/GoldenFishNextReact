@@ -57,6 +57,8 @@ const useApi = (id: string) => {
       })
       const data = await responce.json()
 
+      console.log(data)
+
       dispatch(
         warningActions.setWarning({ message: data.message, code: data.status })
       )

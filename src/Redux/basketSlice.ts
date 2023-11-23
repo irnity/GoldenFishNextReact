@@ -11,42 +11,57 @@ const basketSlice = createSlice({
   name: 'Basket',
   initialState: initialBasketState,
   reducers: {
-    addToBasket(
-      state,
-      {
-        payload: { description, title, image, price, code, inStock },
-      }: {
-        payload: IProduct
-      }
-    ) {
+    addToBasket(state, actions) {
+      const addedProduct: IProduct = actions.payload
       const existedProductIndex = state.basket.findIndex(
-        (product) => product.code === code
+        (product) => product.code === addedProduct.code
       )
-      state.totalPrice += price
+
+      state.totalPrice += addedProduct.price
       state.totalNumber++
 
       if (existedProductIndex < 0) {
-        const newProduct = {
-          code,
-          description,
-          image,
+        state.basket.push({
+          ...addedProduct,
           amountToBuy: 1,
-          totalPrice: price,
-          title,
-        }
-        state.basket.push(newProduct)
+          totalPrice: addedProduct.price,
+        })
       } else {
-        // get existed product
         const existingProduct = state.basket[existedProductIndex]
-        // change values in existed product
         const updatedProduct = {
           ...existingProduct,
-          amountToBuy: existingProduct.amountToBuy++,
-          totalPrice: existingProduct.totalPrice + price,
+          amountToBuy: existingProduct.amountToBuy + 1,
+          totalPrice: existingProduct.totalPrice + addedProduct.price,
         }
         // change existed product
         state.basket[existedProductIndex] = updatedProduct
       }
+    },
+    lowerAmount(state, actions) {
+      const code: string = actions.payload
+      const existedProductIndex = state.basket.findIndex(
+        (product) => product.code === code
+      )
+      state.totalPrice -= state.basket[existedProductIndex].price
+      state.totalNumber--
+      if (state.basket[existedProductIndex].amountToBuy === 1) {
+        state.basket.splice(existedProductIndex, 1)
+      } else {
+        state.basket[existedProductIndex].amountToBuy--
+        state.basket[existedProductIndex].totalPrice -=
+          state.basket[existedProductIndex].price
+      }
+    },
+    increaseAmount(state, actions) {
+      const code: string = actions.payload
+      const existedProductIndex = state.basket.findIndex(
+        (product) => product.code === code
+      )
+      state.basket[existedProductIndex].amountToBuy++
+      state.basket[existedProductIndex].totalPrice +=
+        state.basket[existedProductIndex].price
+      state.totalPrice += state.basket[existedProductIndex].price
+      state.totalNumber++
     },
     clearBasket(state) {
       state.basket = []

@@ -35,14 +35,14 @@ const Item = ({ product }: Props) => {
 
       <div className={classes.info_box}>
         <Link
-          href={`/products/${product.category}/${product.id}`}
+          href={`/products/${product.category}/${product.code}`}
           className={classes.title}
         >
           <h1>{product.title}</h1>
         </Link>
 
         <Link
-          href={`/products/${product.category}/${product.id}/comments`}
+          href={`/products/${product.category}/${product.code}/comments`}
           className={classes.comments}
         >
           <Rating readOnly precision={0.5} value={averageRate} size="medium" />

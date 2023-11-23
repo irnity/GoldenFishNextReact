@@ -1,0 +1,41 @@
+.comments {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  margin-bottom: 10px;
+  width: 100%;
+  border: 2px solid gainsboro;
+  border-radius: 5px;
+}
+
+.comment_name {
+  border-bottom: 2px solid gainsboro;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.comment_name h1 {
+  font-weight: 600;
+}
+.comment_name div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.comment_name span {
+  font-size: 12px;
+  color: var(--grey);
+}
+.comment_info {
+  width: 100%;
+  padding: 10px 10px 0 10px;
+  box-sizing: border-box;
+}
+.comment_info:last-child {
+  margin-bottom: 10px;
+}

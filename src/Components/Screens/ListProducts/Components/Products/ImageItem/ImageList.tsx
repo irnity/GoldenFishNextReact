@@ -12,7 +12,7 @@ const ImageList = ({ product }: Props) => {
   return (
     <div className={classes.image_box}>
       <Link
-        href={`/products/${product.category}/${product.id}`}
+        href={`/products/${product.category}/${product.code}`}
         className={classes.link_image}
       >
         <Image

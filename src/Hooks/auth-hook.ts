@@ -23,7 +23,7 @@ const useAuth = () => {
 
   useEffect(() => {
     void dispatch(authGetUserInformation())
-  }, [dispatch])
+  }, [])
 
   const [userCredentials, setUserCredentials] = useState({
     firstName: '',

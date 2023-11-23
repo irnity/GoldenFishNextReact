@@ -8,11 +8,9 @@
   font-size: 30px;
   font-weight: 600;
 }
-
-.buttons button {
-  margin-bottom: 10px;
-}
-
-.tab {
-  margin-bottom: 10px;
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
 }

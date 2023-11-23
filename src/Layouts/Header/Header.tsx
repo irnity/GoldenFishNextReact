@@ -7,6 +7,7 @@ import classes from './Header.module.css'
 
 import { CSSTransition } from 'react-transition-group'
 import { warningActions } from '@/Redux/warningSlice'
+import useAuth from '@/Hooks/auth-hook'
 
 const animationTiming = {
   enter: 300,
@@ -14,6 +15,8 @@ const animationTiming = {
 }
 
 const Header = () => {
+  useAuth()
+
   const dispatch = useDispatch()
 
   const { message, code } = useSelector(

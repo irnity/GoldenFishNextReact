@@ -1,0 +1,6 @@
+.order_information {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}

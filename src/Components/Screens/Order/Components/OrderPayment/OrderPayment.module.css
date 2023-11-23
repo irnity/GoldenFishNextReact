@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+.title h1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.payment {
+  margin-bottom: var(--default-bottom-marign);
+  width: 50%;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+  padding: 10px;
+}

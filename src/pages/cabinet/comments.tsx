@@ -1,12 +1,12 @@
 // react
 import Cart from '@/Components/Screens/Profile/Components/Cart/Cart'
-import UserInfo from '@/Components/Screens/Profile/UserCredentials/Pages/UserInfo'
+import UserComments from '@/Components/Screens/Profile/UserComments/Page/UserComments'
 import React from 'react'
 
 const PersonalInformationPage = () => {
   return (
     <Cart>
-      <UserInfo />
+      <UserComments />
     </Cart>
   )
 }

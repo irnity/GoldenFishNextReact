@@ -12,29 +12,39 @@ import {
 
 async function handler(req: any, res: any) {
   const data = JSON.parse(req.body)
+
+  const productData = {
+    code: data.productCode,
+    category: data.productCategory,
+    name: data.name,
+    email: data.email,
+    rate: data.rate,
+    positive: data.positive,
+    negative: data.negative,
+    comment: data.comment,
+    date: new Date().toISOString(),
+  }
+
   if (req.method === 'POST') {
     // edit
-    const productData = {
-      // new update code creator
-      name: data.name,
-      email: data.email,
-      rate: data.rate,
-      positive: data.positive,
-      negative: data.negative,
-      comment: data.comment,
-      date: new Date().toISOString(),
-    }
 
     try {
-      // addDoc createNew elemets with auto id
-
+      // add comment to user
       await setDoc(
-        doc(db, 'products', data.itemId, 'comments', data.email),
+        doc(db, 'users', productData.email, 'comments', productData.code),
         productData
       )
-      await updateDoc(doc(db, 'products', data.itemId), {
+
+      // add comment to product
+      await setDoc(
+        doc(db, 'products', productData.code, 'comments', productData.email),
+        productData
+      )
+
+      // update product
+      await updateDoc(doc(db, 'products', productData.code), {
         totalComments: increment(1),
-        totalRate: increment(data.rate),
+        totalRate: increment(productData.rate),
       })
       res.status(201).json({ message: 'Meetup inserted' })
     } catch (err) {
@@ -43,11 +53,22 @@ async function handler(req: any, res: any) {
   }
   if (req.method === 'PUT') {
     try {
-      await deleteDoc(doc(db, 'products', data.itemId, 'comments', data.email))
-      await updateDoc(doc(db, 'products', data.itemId), {
+      // delete comment from user
+      await deleteDoc(
+        doc(db, 'users', productData.email, 'comments', productData.code)
+      )
+
+      // delete comment from product
+      await deleteDoc(
+        doc(db, 'products', productData.code, 'comments', productData.email)
+      )
+
+      // update product
+      await updateDoc(doc(db, 'products', productData.code), {
         totalComments: increment(-1),
         totalRate: increment(-data.rate),
       })
+
       res.send({ status: 200, message: 'Comment Deleted' })
     } catch (error) {
       res.send({ status: 500, message: 'Comment not Deleted' })

@@ -11,6 +11,9 @@ const UserInfo = () => {
 
   return (
     <div className={classes.container}>
+      <div className={classes.title}>
+        <h1>Особисті дані</h1>
+      </div>
       <div className={classes.tab}>
         <UserName />
         <UserContacts />

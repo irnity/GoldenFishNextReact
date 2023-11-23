@@ -4,6 +4,7 @@ import { Timestamp, deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore'
 async function handler(req: any, res: any) {
   const data = JSON.parse(req.body)
 
+  // need for check if product in favorite
   if (req.method === 'POST' && data.action === 'Check') {
     try {
       const docRef = doc(db, 'users', data.email, 'favoriteProducts', data.id)

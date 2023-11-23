@@ -42,12 +42,22 @@ export interface IAuth {
 
 export interface IBasketSliceProps {
   basket: Array<{
+    id: string
     code: string
-    description: string
-    image: string
-    amountToBuy: number
-    totalPrice: number
     title: string
+    image: string
+    price: number
+    totalPrice: number
+    amountToBuy: number
+    description: string
+    inStock: string
+    category: string
+    totalComments: number
+    totalRate: number
+    params: Array<{
+      name: string
+      value: string
+    }>
   }>
   totalPrice: number
   totalNumber: number

@@ -1,13 +1,14 @@
+// react
 import Cart from '@/Components/Screens/Profile/Components/Cart/Cart'
-import UserInfo from '@/Components/Screens/Profile/UserCredentials/Pages/UserInfo'
+
+import UserFavorite from '@/Components/Screens/Profile/UserFavorite/Page/UserFavorite'
 import React from 'react'
 
 const PersonalInformationPage = () => {
   return (
     <Cart>
-      <UserInfo />
+      <UserFavorite />
     </Cart>
   )
 }
-
 export default PersonalInformationPage

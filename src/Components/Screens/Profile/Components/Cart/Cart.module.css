@@ -15,7 +15,10 @@
 }
 
 .cart {
-  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
   box-sizing: border-box;
   font-weight: 500;
   cursor: pointer;
