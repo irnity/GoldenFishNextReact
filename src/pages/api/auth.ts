@@ -32,6 +32,7 @@ async function handler(req: any, res: any) {
         })
       }
     } catch (error) {
+      console.log(error)
       res.send({
         status: 500,
         message: 'Помилка спробуйте знову або зачекайте',

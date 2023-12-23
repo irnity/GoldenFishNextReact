@@ -3,12 +3,13 @@ import classes from './index.module.css'
 import { collection, getDocs, limit, query } from 'firebase/firestore'
 import { db } from '@/Services/Firebase/firebase'
 import { type IProduct } from '@/Redux/model'
-interface HomePageProps {
-  fishingrod: IProduct[]
-  hooks: IProduct[]
-}
+// interface HomePageProps {
+//   fishingrod: IProduct[]
+//   hooks: IProduct[]
+// }
 
-const HomePage: FunctionComponent<HomePageProps> = ({ fishingrod, hooks }) => {
+// const HomePage: FunctionComponent<HomePageProps> = ({ fishingrod, hooks }) => {
+  const HomePage= () => {
   return (
     // <div className={classes.cart}>
     //   <div className={classes.list}>
@@ -26,49 +27,49 @@ const HomePage: FunctionComponent<HomePageProps> = ({ fishingrod, hooks }) => {
   )
 }
 
-export async function getServerSideProps(context: any) {
-  // запит до API або бази даних для отримання списку постів
+// export async function getServerSideProps(context: any) {
+//   // запит до API або бази даних для отримання списку постів
 
-  try {
-    // get collection
-    // first page
+//   try {
+//     // get collection
+//     // first page
 
-    const fishingrodCollectionRef = query(
-      collection(db, `store`, `fishingrod`, 'items'),
-      limit(3)
-    )
+//     const fishingrodCollectionRef = query(
+//       collection(db, `store`, `fishingrod`, 'items'),
+//       limit(3)
+//     )
 
-    const fishingrod = await getDocs(fishingrodCollectionRef)
+//     const fishingrod = await getDocs(fishingrodCollectionRef)
 
-    // docs to data
-    const fishingrodFilteredData = fishingrod.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id.toString(),
-    }))
+//     // docs to data
+//     const fishingrodFilteredData = fishingrod.docs.map((doc) => ({
+//       ...doc.data(),
+//       id: doc.id.toString(),
+//     }))
 
-    const hooksCollectionRef = query(
-      collection(db, `store`, `hooks`, 'items'),
-      limit(3)
-    )
+//     const hooksCollectionRef = query(
+//       collection(db, `store`, `hooks`, 'items'),
+//       limit(3)
+//     )
 
-    const hooks = await getDocs(hooksCollectionRef)
+//     const hooks = await getDocs(hooksCollectionRef)
 
-    // docs to data
-    const hooksFilteredData = hooks.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id.toString(),
-    }))
+//     // docs to data
+//     const hooksFilteredData = hooks.docs.map((doc) => ({
+//       ...doc.data(),
+//       id: doc.id.toString(),
+//     }))
 
-    return {
-      props: {
-        fishingrod: fishingrodFilteredData,
-        hooks: hooksFilteredData,
-      },
-      // revalidate: 30,
-    }
-  } catch (err) {
-    console.error(err)
-  }
-}
+//     return {
+//       props: {
+//         fishingrod: fishingrodFilteredData,
+//         hooks: hooksFilteredData,
+//       },
+//       // revalidate: 30,
+//     }
+//   } catch (err) {
+//     console.error(err)
+//   }
+// }
 
 export default HomePage
