@@ -3,12 +3,14 @@ import { doc, getDoc } from 'firebase/firestore'
 
 async function handler(req: any, res: any) {
   const data = JSON.parse(req.body)
-  console.log(data)
+  console.log('auth fetch:', data)
   if (req.method === 'POST') {
     try {
       const docRef = doc(db, 'users', data)
 
       const docSnap = await getDoc(docRef)
+
+      console.log('docSnap', docSnap)
 
       const userInfo = docSnap.data()
 
@@ -32,6 +34,7 @@ async function handler(req: any, res: any) {
         })
       }
     } catch (error) {
+      console.log(error)
       res.send({
         status: 500,
         message: 'Помилка спробуйте знову або зачекайте',

@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { type IAuth } from '../model'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/Services/Firebase/firebase'
+import { auth, db } from '@/Services/Firebase/firebase'
+import { doc, getDoc } from 'firebase/firestore'
 
 export const authLogin = createAsyncThunk(
   'auth/login',
@@ -26,20 +27,27 @@ export const authLogin = createAsyncThunk(
     const responce = await signInWithEmailAndPassword(auth, email, password)
     const claims = (await responce.user.getIdTokenResult()).claims
 
-    const fetchUser = await fetch('/api/auth', {
-      method: 'POST',
-      body: JSON.stringify(email),
-    })
-    const data = await fetchUser.json()
+    const docRef = doc(db, 'users', email)
 
-    const { firstName, lastName, surname, phoneNumber, address } = data.data
+    const docSnap = await getDoc(docRef)
+
+    const userInfo = docSnap.data()
+
+    const { firstName, lastName, surname, phoneNumber, address } = userInfo as {
+      firstName: string
+      lastName: string
+      surname: string
+      phoneNumber: string
+      address: string
+    }
+
     userState = {
       firstName,
       lastName,
       surname,
       phoneNumber,
       address,
-      email: data.data.email,
+      email: userInfo.email,
       isLogedIn: true,
       isAdmin: claims.admin,
       status: 'isLogedIn',

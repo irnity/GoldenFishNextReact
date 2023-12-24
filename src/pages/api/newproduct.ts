@@ -4,6 +4,7 @@ import { deleteDoc, doc, setDoc } from 'firebase/firestore'
 async function handler(req: any, res: any) {
   if (req.method === 'POST') {
     const data = JSON.parse(req.body)
+
     // edit
     const productData = {
       code: data.code,
@@ -16,6 +17,7 @@ async function handler(req: any, res: any) {
       params: data.params,
       totalComments: 0,
       totalRate: 0,
+      uid: data.uid,
 
       // firebase time
       createdAt: new Date().toISOString(),

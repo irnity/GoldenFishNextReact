@@ -5,7 +5,7 @@ import { warningActions } from '@/Redux/warningSlice'
 import { type IAuth, type IProduct } from '@/Redux/model'
 import { useDispatch, useSelector } from 'react-redux'
 import { collection, getDocs } from 'firebase/firestore'
-import { db } from '@/Services/Firebase/firebase'
+import { auth, db } from '@/Services/Firebase/firebase'
 import CommentsList from '@/Components/Screens/Product/Components/CommentsList/CommentsList'
 
 const UserComments = () => {
@@ -32,7 +32,7 @@ const UserComments = () => {
       authReduxState.email,
       'comments'
     )
-
+    console.log(auth.currentUser?.uid)
     const fetch = async () => {
       try {
         const favoriteProductsCollection = await getDocs(
@@ -43,12 +43,12 @@ const UserComments = () => {
           doc.data()
         ) as any
 
-        console.log(favoriteProducts)
+        console.log('Favorite Products:', favoriteProducts)
 
         setloading(false)
         setdata(favoriteProducts)
       } catch (error) {
-        console.log(error)
+        console.error('Fetch Error:', error)
         dispatch(
           warningActions.setWarning({
             code: 500,
@@ -58,7 +58,8 @@ const UserComments = () => {
       }
     }
     void fetch()
-  }, [])
+  }, [authReduxState])
+
   return (
     <div className={classes.container}>
       <div className={classes.title}>

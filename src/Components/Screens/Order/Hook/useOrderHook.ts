@@ -81,11 +81,11 @@ const useOrderHook = () => {
   const formOrder = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const order = {
-      ...userCredentials,
-      ...baksetReduxState,
+      userCredentials,
+      basket: baksetReduxState,
     }
 
-    console.log(order)
+    console.log('hook:', order)
     const responce = await fetch('/api/ordercreate', {
       method: 'POST',
       body: JSON.stringify(order),

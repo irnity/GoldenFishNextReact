@@ -1,7 +1,8 @@
-import { auth } from '@/Services/Firebase/firebase'
+import { auth, db } from '@/Services/Firebase/firebase'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { type IAuth } from '../model'
 import { authLogout } from './authLogout'
+import { doc, getDoc } from 'firebase/firestore'
 
 export const authGetUserInformation = createAsyncThunk(
   'auth/email',
@@ -25,6 +26,8 @@ export const authGetUserInformation = createAsyncThunk(
         auth.onAuthStateChanged(resolve)
       })
 
+      console.log(user.email)
+
       if (user !== undefined) {
         const timeStorage: any = localStorage.getItem('time')
         const todayDay: any = new Date()
@@ -39,14 +42,14 @@ export const authGetUserInformation = createAsyncThunk(
 
         const claims = (await user.getIdTokenResult()).claims
 
-        const fetchUser = await fetch('/api/auth', {
-          method: 'POST',
-          body: JSON.stringify(auth.currentUser?.email),
-        })
-        const data = await fetchUser.json()
+        const docRef = doc(db, 'users', user.email)
+
+        const docSnap = await getDoc(docRef)
+
+        const userInfo = docSnap.data()
 
         const { firstName, lastName, surname, phoneNumber, address, email } =
-          data.data
+          userInfo
 
         userState = {
           ...userState,

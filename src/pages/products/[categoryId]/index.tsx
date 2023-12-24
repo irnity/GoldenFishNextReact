@@ -112,6 +112,7 @@ export async function getServerSideProps(context: any) {
 
     return {
       props: {
+        // need remove uid from data
         data: filteredDataWithImages,
         totalProducts,
       },
