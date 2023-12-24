@@ -1,72 +1,64 @@
-import React from 'react'
+import React, { type FunctionComponent } from 'react'
 import classes from './index.module.css'
-// interface HomePageProps {
-//   fishingrod: IProduct[]
-//   hooks: IProduct[]
-// }
+import Products from '@/Components/Screens/ListProducts/Components/Products/Products'
+import { type IProduct } from '@/Redux/model'
+import { collection, getDocs, limit, query, where } from 'firebase/firestore'
+import { db, storage } from '@/Services/Firebase/firebase'
+import { getDownloadURL, ref } from 'firebase/storage'
+import Link from 'next/link'
+interface HomePageProps {
+  data: IProduct[]
+  hooks: IProduct[]
+}
 
-// const HomePage: FunctionComponent<HomePageProps> = ({ fishingrod, hooks }) => {
-const HomePage = () => {
+const HomePage: FunctionComponent<HomePageProps> = ({ data, hooks }) => {
   return (
-    // <div className={classes.cart}>
-    //   <div className={classes.list}>
-    //     <h1>Вудки</h1>
-    //     <Products products={fishingrod} />
-    //   </div>
-    //   <div className={classes.list}>
-    //     <h1>Гачки</h1>
-    //     <Products products={hooks} />
-    //   </div>
-    // </div>
     <div className={classes.cart}>
-      <h1>Home Page</h1>
+      <div className={classes.list}>
+        <Link href={'/products/fishingrod'} className={classes.link}>
+          <h1 className={classes.text}>Вудки</h1>
+        </Link>
+        <Products products={data} />
+      </div>
     </div>
   )
 }
 
-// export async function getServerSideProps(context: any) {
-//   // запит до API або бази даних для отримання списку постів
+export async function getServerSideProps(context: any) {
+  try {
+    const baseQuery = query(
+      collection(db, `products`),
+      where('category', '==', 'fishingrod'),
+      limit(9)
+    )
 
-//   try {
-//     // get collection
-//     // first page
+    const unfilteredData = await getDocs(baseQuery)
+    const filteredData: IProduct[] = unfilteredData.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id.toString(),
+    })) as IProduct[]
 
-//     const fishingrodCollectionRef = query(
-//       collection(db, `store`, `fishingrod`, 'items'),
-//       limit(3)
-//     )
+    const filteredDataWithImages = await Promise.all(
+      filteredData.map(async (product) => {
+        const imageRef = ref(storage, `productImages/${product.id}`)
+        try {
+          const url = await getDownloadURL(imageRef)
+          product.image = url
+        } catch (error) {
+          console.error('Error loading image:', error)
+        }
+        return product
+      })
+    )
 
-//     const fishingrod = await getDocs(fishingrodCollectionRef)
-
-//     // docs to data
-//     const fishingrodFilteredData = fishingrod.docs.map((doc) => ({
-//       ...doc.data(),
-//       id: doc.id.toString(),
-//     }))
-
-//     const hooksCollectionRef = query(
-//       collection(db, `store`, `hooks`, 'items'),
-//       limit(3)
-//     )
-
-//     const hooks = await getDocs(hooksCollectionRef)
-
-//     // docs to data
-//     const hooksFilteredData = hooks.docs.map((doc) => ({
-//       ...doc.data(),
-//       id: doc.id.toString(),
-//     }))
-
-//     return {
-//       props: {
-//         fishingrod: fishingrodFilteredData,
-//         hooks: hooksFilteredData,
-//       },
-//       // revalidate: 30,
-//     }
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
+    return {
+      props: {
+        data: filteredDataWithImages,
+      },
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 export default HomePage

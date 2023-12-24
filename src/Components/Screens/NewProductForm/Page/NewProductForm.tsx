@@ -121,16 +121,20 @@ const NewProductForm = () => {
             />
           </div>
         ))}
-        <CustomButton
-          handler={addParamHandler}
-          text={'Додати параметр'}
-          type="button"
-        />
-        <CustomButton
-          handler={removeLastParamHandler}
-          text={'Видали параметр'}
-          type="button"
-        />
+        <div className={classes.space}>
+          <CustomButton
+            handler={addParamHandler}
+            text={'Додати параметр'}
+            type="button"
+          />
+        </div>
+        <div className={classes.space}>
+          <CustomButton
+            handler={removeLastParamHandler}
+            text={'Видали параметр'}
+            type="button"
+          />
+        </div>
       </div>
 
       {/* Error */}
