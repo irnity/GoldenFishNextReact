@@ -1,19 +1,12 @@
-import React, { type FunctionComponent } from 'react'
+import React from 'react'
 import classes from './index.module.css'
-import { collection, getDocs, limit, query } from 'firebase/firestore'
-import { db } from '@/Services/Firebase/firebase'
-import { type IProduct } from '@/Redux/model'
 // interface HomePageProps {
 //   fishingrod: IProduct[]
 //   hooks: IProduct[]
 // }
 
-<<<<<<< HEAD
-const HomePage = () => {
-=======
 // const HomePage: FunctionComponent<HomePageProps> = ({ fishingrod, hooks }) => {
-  const HomePage= () => {
->>>>>>> 46c0ed751d8599d5bae8e4e1e11b6685f76ee700
+const HomePage = () => {
   return (
     // <div className={classes.cart}>
     //   <div className={classes.list}>
@@ -31,8 +24,6 @@ const HomePage = () => {
   )
 }
 
-<<<<<<< HEAD
-=======
 // export async function getServerSideProps(context: any) {
 //   // запит до API або бази даних для отримання списку постів
 
@@ -78,5 +69,4 @@ const HomePage = () => {
 //   }
 // }
 
->>>>>>> 46c0ed751d8599d5bae8e4e1e11b6685f76ee700
 export default HomePage

@@ -40,7 +40,7 @@ export async function getServerSideProps(context: any) {
 
   const inStockQuaryArray = inStock === undefined ? [] : inStock.split(',')
 
-  const priceQuaryArray = price === undefined ? [] : price.split(',')
+  const priceQuaryArray = price === undefined ? [] : price.split('-')
 
   let baseQuery = query(
     collection(db, `products`),

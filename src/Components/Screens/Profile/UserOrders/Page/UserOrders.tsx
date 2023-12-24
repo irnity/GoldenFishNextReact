@@ -7,9 +7,7 @@ import { db } from '@/Services/Firebase/firebase'
 import { warningActions } from '@/Redux/warningSlice'
 import OrderItem from '../Components/UserOrderItem/UserOrderItem'
 
-interface Props {}
-
-const UserOrders = (props: Props) => {
+const UserOrders = () => {
   const [data, setData] = useState([])
 
   const dispatch = useDispatch()
@@ -58,8 +56,8 @@ const UserOrders = (props: Props) => {
         <h1>Замовлення</h1>
       </div>
       <div className={classes.orders}>
-        {data.map((item) => (
-          <OrderItem key={item.id} data={item} />
+        {data.map((item, index) => (
+          <OrderItem key={index} data={item} />
         ))}
       </div>
     </div>

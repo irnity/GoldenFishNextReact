@@ -33,10 +33,7 @@ interface ProductProps {
 const Product = ({ data, commentsCount, commentsData }: ProductProps) => {
   const router = useRouter()
 
-  const { categoryId, itemId } = router.query as {
-    categoryId: string
-    itemId: string
-  }
+  const { categoryId, itemId } = router.query as any
   const { isAdmin } = useSelector((state: { auth: IAuth }) => state.auth)
   const { deleteProductHandler } = useProduct({
     itemId,

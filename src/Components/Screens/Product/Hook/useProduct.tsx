@@ -4,12 +4,7 @@ import type React from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-interface IProductReference {
-  productCode: string
-  productCategory: string
-}
-
-const useProduct = ({ productCode, productCategory }: IProductReference) => {
+const useProduct = ({ productCode, productCategory }: any) => {
   const router = useRouter()
 
   const authReduxState = useSelector((state: { auth: IAuth }) => state.auth)

@@ -49,7 +49,14 @@ export const authGetUserInformation = createAsyncThunk(
         const userInfo = docSnap.data()
 
         const { firstName, lastName, surname, phoneNumber, address, email } =
-          userInfo
+          userInfo as {
+            firstName: string
+            lastName: string
+            surname: string
+            phoneNumber: string
+            address: string
+            email: string
+          }
 
         userState = {
           ...userState,

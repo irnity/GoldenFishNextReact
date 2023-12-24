@@ -5,13 +5,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { type IAuth } from '@/Redux/model'
-import {
-  FiEye,
-  FiFileText,
-  FiHeart,
-  FiMessageCircle,
-  FiUser,
-} from 'react-icons/fi'
+import { FiFileText, FiHeart, FiMessageCircle, FiUser } from 'react-icons/fi'
 
 const cabinetData = [
   { icon: <FiUser size={25} />, href: '/cabinet', text: 'Інформація' },
@@ -24,11 +18,6 @@ const cabinetData = [
     icon: <FiHeart size={25} />,
     href: '/cabinet/wishlist',
     text: 'Список бажань',
-  },
-  {
-    icon: <FiEye size={25} />,
-    href: '/cabinet/watched-products',
-    text: 'Переглянуті товари',
   },
   {
     icon: <FiMessageCircle size={25} />,

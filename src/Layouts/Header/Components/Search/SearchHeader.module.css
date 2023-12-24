@@ -34,7 +34,9 @@
 .searchResults {
   width: 100%;
   top: 90%;
+  height: 350px;
   position: absolute;
+  overflow-y: scroll;
   background-color: white;
   color: black;
   z-index: 2;

@@ -29,7 +29,7 @@ const useAuth = () => {
     firstName: '',
     lastName: '',
     surname: '',
-    phoneNumber: '+38',
+    phoneNumber: '',
     address: '',
     email: '',
     password: '',

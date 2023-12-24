@@ -3,12 +3,10 @@ import {
   type DocumentData,
   collection,
   getDocs,
-  limit,
   query,
   where,
 } from 'firebase/firestore'
 import { db } from '@/Services/Firebase/firebase'
-import Image from 'next/image'
 import Link from 'next/link'
 import { PiMagnifyingGlassThin } from 'react-icons/pi'
 import { type IProduct } from '@/Redux/model'
@@ -19,8 +17,7 @@ const fetchProducts = async (searchInput: string) => {
   const productQuery = query(
     collection(db, 'products'),
     where('title', '>=', searchInput),
-    where('title', '<=', searchInput + '\uf8ff'),
-    limit(4)
+    where('title', '<=', searchInput + '\uf8ff')
   )
 
   const productResults = await getDocs(productQuery)
@@ -99,13 +96,6 @@ const SearchHeader = () => {
                 key={result.id}
                 className={classes.item}
               >
-                <Image
-                  src={result.image}
-                  alt={result.title}
-                  width={200}
-                  height={200}
-                  className={classes.image}
-                />
                 <div className={classes.text}>
                   <span className={classes.titleName}>{result.title}</span>
                   <span className={classes.titlePrice}>

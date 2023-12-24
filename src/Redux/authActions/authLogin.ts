@@ -47,7 +47,7 @@ export const authLogin = createAsyncThunk(
       surname,
       phoneNumber,
       address,
-      email: userInfo.email,
+      email: userInfo?.email ?? '',
       isLogedIn: true,
       isAdmin: claims.admin,
       status: 'isLogedIn',
